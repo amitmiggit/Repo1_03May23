@@ -1,0 +1,141 @@
+lp06krp10:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp06krp10            RUNNING              0
+A  lp06krp11            RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp06krp10            Y          N               ONLINE
+B  NIC             lp06krp11            Y          N               ONLINE
+B  ikrqcs10        lp06krp10            Y          N               OFFLINE
+B  ikrqcs10        lp06krp11            Y          N               ONLINE
+B  pkrpcs00        lp06krp10            Y          N               ONLINE
+B  pkrpcs00        lp06krp11            Y          N               OFFLINE
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # vxprint -htq | grep -i lvbackup_drl-10877
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+sd 59_10877_0083-01 lvbackup_drl-10877 59_10877_0083 0 2112 LOG   hitachi_vspg1k0_0083 ENA
+lp06krp10:~ # vxprint -htq | grep -i lvbackup_drl-10877 -B20
+dm 59_10877_012f hitachi_vspg1k0_012f auto 65536 471961632 -
+dm 59_10877_0074 hitachi_vspg1k0_0074 auto 65536 471961632 -
+dm 59_10877_0083 hitachi_vspg1k0_0083 auto 65536 471961632 FAILING
+dm 59_10877_0130 hitachi_vspg1k0_0130 auto 65536 471961632 -
+
+v  lvbackup     -            ENABLED  ACTIVE   2359691264 PREFER  lvbackup-10879 fsgen
+pl lvbackup-10877 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 59_10877_012e-01 lvbackup-10877 59_10877_012e 0 471961632 0    hitachi_vspg1k0_012e ENA
+sd 59_10877_012f-01 lvbackup-10877 59_10877_012f 0 471961632 471961632 hitachi_vspg1k0_012f ENA
+sd 59_10877_0130-01 lvbackup-10877 59_10877_0130 0 471961632 943923264 hitachi_vspg1k0_0130 ENA
+sd 59_10877_0083-02 lvbackup-10877 59_10877_0083 2112 471799712 1415884896 hitachi_vspg1k0_0083 ENA
+sd 59_10877_0074-01 lvbackup-10877 59_10877_0074 0 471961632 1887684608 hitachi_vspg1k0_0074 ENA
+sd 59_10877_0083-03 lvbackup-10877 59_10877_0083 471801824 45024 2359646240 hitachi_vspg1k0_0083 ENA
+pl lvbackup-10879 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 39_10879_012e-01 lvbackup-10879 39_10879_012e 0 471961632 0    hitachi_vspg1k1_012e ENA
+sd 39_10879_012f-01 lvbackup-10879 39_10879_012f 0 471961632 471961632 hitachi_vspg1k1_012f ENA
+sd 39_10879_0130-01 lvbackup-10879 39_10879_0130 0 471961632 943923264 hitachi_vspg1k1_0130 ENA
+sd 39_10879_0083-01 lvbackup-10879 39_10879_0083 2112 471799712 1415884896 hitachi_vspg1k1_0083 ENA
+sd 39_10879_0074-01 lvbackup-10879 39_10879_0074 0 471961632 1887684608 hitachi_vspg1k1_0074 ENA
+sd 39_10879_0083-02 lvbackup-10879 39_10879_0083 471801824 45024 2359646240 hitachi_vspg1k1_0083 ENA
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+sd 59_10877_0083-01 lvbackup_drl-10877 59_10877_0083 0 2112 LOG   hitachi_vspg1k0_0083 ENA
+lp06krp10:~ # vxprint -htq | grep -i lvbackup_drl-10877 -B25
+dm 39_10879_012f hitachi_vspg1k1_012f auto 65536 471961632 -
+dm 39_10879_0074 hitachi_vspg1k1_0074 auto 65536 471961632 -
+dm 39_10879_0083 hitachi_vspg1k1_0083 auto 65536 471961632 FAILING
+dm 39_10879_0130 hitachi_vspg1k1_0130 auto 65536 471961632 -
+dm 59_10877_012e hitachi_vspg1k0_012e auto 65536 471961632 -
+dm 59_10877_012f hitachi_vspg1k0_012f auto 65536 471961632 -
+dm 59_10877_0074 hitachi_vspg1k0_0074 auto 65536 471961632 -
+dm 59_10877_0083 hitachi_vspg1k0_0083 auto 65536 471961632 FAILING
+dm 59_10877_0130 hitachi_vspg1k0_0130 auto 65536 471961632 -
+
+v  lvbackup     -            ENABLED  ACTIVE   2359691264 PREFER  lvbackup-10879 fsgen
+pl lvbackup-10877 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 59_10877_012e-01 lvbackup-10877 59_10877_012e 0 471961632 0    hitachi_vspg1k0_012e ENA
+sd 59_10877_012f-01 lvbackup-10877 59_10877_012f 0 471961632 471961632 hitachi_vspg1k0_012f ENA
+sd 59_10877_0130-01 lvbackup-10877 59_10877_0130 0 471961632 943923264 hitachi_vspg1k0_0130 ENA
+sd 59_10877_0083-02 lvbackup-10877 59_10877_0083 2112 471799712 1415884896 hitachi_vspg1k0_0083 ENA
+sd 59_10877_0074-01 lvbackup-10877 59_10877_0074 0 471961632 1887684608 hitachi_vspg1k0_0074 ENA
+sd 59_10877_0083-03 lvbackup-10877 59_10877_0083 471801824 45024 2359646240 hitachi_vspg1k0_0083 ENA
+pl lvbackup-10879 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 39_10879_012e-01 lvbackup-10879 39_10879_012e 0 471961632 0    hitachi_vspg1k1_012e ENA
+sd 39_10879_012f-01 lvbackup-10879 39_10879_012f 0 471961632 471961632 hitachi_vspg1k1_012f ENA
+sd 39_10879_0130-01 lvbackup-10879 39_10879_0130 0 471961632 943923264 hitachi_vspg1k1_0130 ENA
+sd 39_10879_0083-01 lvbackup-10879 39_10879_0083 2112 471799712 1415884896 hitachi_vspg1k1_0083 ENA
+sd 39_10879_0074-01 lvbackup-10879 39_10879_0074 0 471961632 1887684608 hitachi_vspg1k1_0074 ENA
+sd 39_10879_0083-02 lvbackup-10879 39_10879_0083 471801824 45024 2359646240 hitachi_vspg1k1_0083 ENA
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+sd 59_10877_0083-01 lvbackup_drl-10877 59_10877_0083 0 2112 LOG   hitachi_vspg1k0_0083 ENA
+lp06krp10:~ # vxprint -htq | grep -i lvbackup_drl-10877 -B35
+Disk group: dgpkrpcs0002
+
+dg dgpkrpcs0002 default      default  17000    1605019192.306.lp06krp10
+
+dm 39_10879_012e hitachi_vspg1k1_012e auto 65536 471961632 -
+dm 39_10879_012f hitachi_vspg1k1_012f auto 65536 471961632 -
+dm 39_10879_0074 hitachi_vspg1k1_0074 auto 65536 471961632 -
+dm 39_10879_0083 hitachi_vspg1k1_0083 auto 65536 471961632 FAILING
+dm 39_10879_0130 hitachi_vspg1k1_0130 auto 65536 471961632 -
+dm 59_10877_012e hitachi_vspg1k0_012e auto 65536 471961632 -
+dm 59_10877_012f hitachi_vspg1k0_012f auto 65536 471961632 -
+dm 59_10877_0074 hitachi_vspg1k0_0074 auto 65536 471961632 -
+dm 59_10877_0083 hitachi_vspg1k0_0083 auto 65536 471961632 FAILING
+dm 59_10877_0130 hitachi_vspg1k0_0130 auto 65536 471961632 -
+
+v  lvbackup     -            ENABLED  ACTIVE   2359691264 PREFER  lvbackup-10879 fsgen
+pl lvbackup-10877 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 59_10877_012e-01 lvbackup-10877 59_10877_012e 0 471961632 0    hitachi_vspg1k0_012e ENA
+sd 59_10877_012f-01 lvbackup-10877 59_10877_012f 0 471961632 471961632 hitachi_vspg1k0_012f ENA
+sd 59_10877_0130-01 lvbackup-10877 59_10877_0130 0 471961632 943923264 hitachi_vspg1k0_0130 ENA
+sd 59_10877_0083-02 lvbackup-10877 59_10877_0083 2112 471799712 1415884896 hitachi_vspg1k0_0083 ENA
+sd 59_10877_0074-01 lvbackup-10877 59_10877_0074 0 471961632 1887684608 hitachi_vspg1k0_0074 ENA
+sd 59_10877_0083-03 lvbackup-10877 59_10877_0083 471801824 45024 2359646240 hitachi_vspg1k0_0083 ENA
+pl lvbackup-10879 lvbackup   ENABLED  ACTIVE   2359691264 CONCAT  -        RW
+sd 39_10879_012e-01 lvbackup-10879 39_10879_012e 0 471961632 0    hitachi_vspg1k1_012e ENA
+sd 39_10879_012f-01 lvbackup-10879 39_10879_012f 0 471961632 471961632 hitachi_vspg1k1_012f ENA
+sd 39_10879_0130-01 lvbackup-10879 39_10879_0130 0 471961632 943923264 hitachi_vspg1k1_0130 ENA
+sd 39_10879_0083-01 lvbackup-10879 39_10879_0083 2112 471799712 1415884896 hitachi_vspg1k1_0083 ENA
+sd 39_10879_0074-01 lvbackup-10879 39_10879_0074 0 471961632 1887684608 hitachi_vspg1k1_0074 ENA
+sd 39_10879_0083-02 lvbackup-10879 39_10879_0083 471801824 45024 2359646240 hitachi_vspg1k1_0083 ENA
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+sd 59_10877_0083-01 lvbackup_drl-10877 59_10877_0083 0 2112 LOG   hitachi_vspg1k0_0083 ENA
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # vxprint -htq dgpkrpcs0002 | grep -i deta
+lp06krp10:~ #
+lp06krp10:~ # vxprint -htq -g dgpkrpcs0002 | grep -i deta
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+pl lvbackup_drl-10879 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # vxctl fixnames
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # vxprint -htq -g dgpkrpcs0002 | grep -i deta
+pl lvbackup_drl-10877 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+pl lvbackup_drl-10879 lvbackup DETACHED ACTIVE LOGONLY  CONCAT    -        RW
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # vxplex -g dgpkrpcs0002 att lvbackup lvbackup_drl-10877
+lp06krp10:~ # vxplex -g dgpkrpcs0002 att lvbackup lvbackup_drl-10879
+lp06krp10:~ #
+lp06krp10:~ # vxtask list
+TASKID  PTID TYPE/STATE    PCT   PROGRESS
+lp06krp10:~ # vxprint -htq -g dgpkrpcs0002 | grep -i deta
+lp06krp10:~ #
+lp06krp10:~ #
+lp06krp10:~ # su - qqnagio
+qqnagio@lp06krp10:~> cd prod/
+qqnagio@lp06krp10:~/prod> cd /lfs/opt/nagios/prod/lib/nagios/plugins
+qqnagio@lp06krp10:~/prod/lib/nagios/plugins> cd
+qqnagio@lp06krp10:~> cd prod/local/lib/
+qqnagio@lp06krp10:~/prod/local/lib> cd nagios/plugins/
+qqnagio@lp06krp10:~/prod/local/lib/nagios/plugins> ./check_vxvm
+OK - Veritas Volume Manager OK
+qqnagio@lp06krp10:~/prod/local/lib/nagios/plugins>
+ 

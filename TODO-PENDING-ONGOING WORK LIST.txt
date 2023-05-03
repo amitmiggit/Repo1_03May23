@@ -1,0 +1,382 @@
+To do work list
+
+===================
+
+
+1A. Query regarding Old SAP HANA DB DNS Swap - TAS000005365026 -------------------TBD
+============================================================================
+2.Servers assigned with Diff SAN Luns - need a cleanup (Servers assigned with multiple SAN devices- need cleanup) -----TBD
+===============================================================================================================================
+
+As we all know each Physical server attached to SAN storage will have its own home san and all LUNs should come from same SAN arrays.
+However during activity like VM or Cluster package or Server move  Luns from Diff SAN is assigned to server (called Visibility assignment) for short duration.  After the scheduled activity the Visibility assignment will be taken put.
+But somehow due to some misses or some issues on server still we are seeing LUNs from different SANs on servers , which is not good and we need to clean the same. 
+
+I am assigning the servers for all of us to check, analyze and take  a needful corrective  action. 
+
+1)Check the home san of the server #check4autosan.pl  and check the Array of these servers 
+2)Login to Storm tool click on array overview – provide the HOME san and search – on the output you will see one or two pair of array. 
+All Luns to server should be one of these SAN array pair.
+Check on server is all LUNs are from diff SAN or not.  If LUNS are also seen from diff san then make a note of those LUNs 
+3)If the server is  assigned with diff SAN Luns, then find to which servers these diff SAN Luns assigned to 
+Login to  storm tool 
+Click on the san return or remove visibility 
+Enter the server name (source server name) 
+Then search for the diff SAN Luns number – here you will find the diff servers to which these Luns are assigned 
+Now check for home same of the diff server and verify is this the same home san which is mentioned in excel sheet 
+If yes now you need to find why these Diff SAN Luns assigned to source servers (is there any Migration task running/completed or clean up task running/completed) 
+Once you find why these diff SAN luns are assigned  then based on the findings take a corrective action
+For any queries please let me know
+
+lpxendb077	EDC306 (19.0 2.1/13.4 1.2)	EDC306 (19.0 2.1/13.4 1.2),EDC301 (13.4 1.1/18.4 2.1)	Amit
+lpxendb078	EDC306 (19.0 2.1/13.4 1.2)	EDC306 (19.0 2.1/13.4 1.2),EDC301 (13.4 1.1/18.4 2.1)	Amit
+lpxendb081	EDC308 (19.0 2.2/13.4 1.1)	EDC308 (19.0 2.2/13.4 1.1),EDC310 (18.4 1.2/19.0 1.1)	Amit
+lpxendb082	EDC308 (19.0 2.2/13.4 1.1)	EDC308 (19.0 2.2/13.4 1.1),EDC310 (18.4 1.2/19.0 1.1)	Amit
+lpxendb401	GMA311	GMA311,EDC306 (19.0 2.1/13.4 1.2)	Amit
+lpxendb402	GMA311	GMA311,EDC306 (19.0 2.1/13.4 1.2)	Amit
+lpxendb403	GMA311	GMA311,EDC301 (13.4 1.1/18.4 2.1)	Amit
+lpxendb404	GMA311	GMA311,EDC301 (13.4 1.1/18.4 2.1)	Amit
+lpxendig017	EDC302 (18.4 1.2/19.0 1.2)	EDC302 (18.4 1.2/19.0 1.2),EDC310 (18.4 1.2/19.0 1.1)	Amit
+lpxendig018	EDC302 (18.4 1.2/19.0 1.2)	EDC302 (18.4 1.2/19.0 1.2),EDC310 (18.4 1.2/19.0 1.1)	Amit
+lpxendk09	EDC306 (19.0 2.1/13.4 1.2)	EDC306 (19.0 2.1/13.4 1.2),EDC305 (19.0 2.2/13.4 1.1)	Amit
+lpxendk10	EDC306 (19.0 2.1/13.4 1.2)	EDC306 (19.0 2.1/13.4 1.2),EDC305 (19.0 2.2/13.4 1.1)	Amit
+
+3. Tasks in my queue - Ongoing
+==============================
+
+4.
+==================================================
+
+5. 
+======================================================================
+
+6.One PE task in my bin to discuss - Now there are 5 ------ Ongoing 
+============================================================================
+
+7.Tasks from Sujeet to look  - Ongoing
+=========================================================================
+
+8 ==== 1 sujeet's server MD Migration Pending ..........
+===================================================================
+
+9.TAS000005501229 wrongly performed by Sujeet roy
+
+============================================================================
+
+15.June - 
+================
+1.Tasks from Abhishek Rattan - 10 -------- done 
+2.Sudo task on priority from Manoranjan - 1 --- done
+3.My own tasks to perform - 3 PE , 1 WIP , 3 taken from Abhishek Rattan
+
+========================================
+
+25-June-2021
+
+TAS000005739612 and TAS000005739611 , why raised for same server , FS extension
+Server assigned on me and Ashwini both had same servers I requested LUN from Storm we have to return that in my task as disk extended through Ashwini's task
+
+7 July-2021
+----------------
+4 tasks in my bin to complete - different challenges with each task 3 task end date 7 July , 1 is PE 
+1 case to investigate regarding package creation why the server HBA not ok and why all not happening - 7 July end date 
+2 Interviews on 7th July end date - Done 
+Weekly task report to prepare of tasks - deadline 8 July 10 AM
+
+
+14 July 
+====================
+4 tasks in bin to complete
+1 task - 10 July TAS000005767881   - MD Migration -done
+
+
+30 July
+===============
+
+2 task for the execution on Saturday
+1 activity where disk to be removed 
+
+
+BCKWt9wD5qJt
+
+===============================
+
+25 Aug
+
+1. Task where 3 Xen Farms to be reinstalled by me :TAS000005904791  - Ongoing
+2. 6 Tasks in my bin  - Ongoing
+3. 1 CRQ to be opened for TAS000005767881 related to cleanup of the server under this task - Yet to do
+4. 26th DCODB change status and filter tasks. - Completed
+
+26 Aug
+
+1.Thursday task report - To prepare
+
+27 Aug
+
+==============
+31 August
+
+TAS000005862757 - Cluster migrate cleanup task to be review
+
+TAS000005862757
+
+Before extending filesystem
+lipga00709vm:~ # df -hT /dev/mapper/dgpc00709app-lvapp
+Filesystem                     Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc00709app-lvapp xfs   113G   58G   55G  52% /global/pc00709
+
+After extending filesystem
+lipga00709vm:~ # df -hT /dev/mapper/dgpc00709app-lvapp
+Filesystem                     Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc00709app-lvapp xfs   225G   58G  168G  26% /global/pc00709
+lipga00709vm:~ #
+
+============================================================================
+
+Before extending filesystem
+
+lipga00709vm:~ # df -hT  /dev/mapper/dgpc00709archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc00709archive-lvarchive xfs   2.4T  991G  1.4T  42% /global/pc00709/archive
+lipga00709vm:~ #
+
+After extending filesystem
+lipga00709vm:~ # df -hT /dev/mapper/dgpc00709archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc00709archive-lvarchive xfs   2.9T  991G  1.9T  35% /global/pc00709/archive
+lipga00709vm:~ #
+
+
+
+=======================================
+
+
+TAS000005671047 
+
+TAS000005641152
+
+========================================
+
+Date - 26 Oct - 
+1. Task in Bin to complete
+2. MD Migration to complete for 2 VM's in exec task completed on Saturday - 
+3. Sanjiv Soraganvi's IP list to complete
+4. Ageing Pending task list to clear
+
+TAS000005912976 - IP (CN) 
+
+
+======================================
+
+Date = 21 Dec
+
+TAS000006135275 - Change the modul in 3 servers 
+
+
+
+=============================================================
+
+1st March
+
+1. 6 tasks of cluster and what issue occurred need to check with Sanjeev Arora
+2. 1 task for showing execution to 4 members
+3. 1 task for VM Move prep to check script with Gowri
+4. Pending error task details to fetch and work on report
+
+
+
+30-31 March , 1 April
+
+LSAN Zoning  - two servers - TBD
+CMDB update - 5 servers - DONE only cmdb output to check 
+PE - 5 tasks - 3 completed - DONE 
+SM Indicents update - 1 high - 5 Low prio , tagging to be done - Done
+Thursday report to prepare - Done 
+1 Own tasks in PE - TBD - DONE 
+As per SM call follow up for all the chased task report to prepare - DONE
+1 Incident for read policy - TBD - DONE 
+TAS000006343349 - Amit Bansal task for cleanup - TBD 
+TAS000006338929 - PE task - TBD
+
+=========================================================================================================================
+
+12 Aprl Tasks - Sudo redistribution tasks to be started - TAS000006373964/CRQ000001903505 - Time 1 week
+
+
+
+
+
+
+
+=======================================================
+
+17-July-2022
+
+
+2 incidents in my bin
+
+Tasks for Pending error and WIP to be performed 
+
+
+
+=================================
+
+27 July
+
+One IPV6 ticket from Gaurav Johri to be updated
+
+one my own incident to close
+
+=============================================================
+
+1 August 2022
+
+=============================================================
+Alert 1 ============ Downtime cleanup
+=============================================================
+
+lp19xenpb2v09.bmwgroup.net	os_linux_ilo_check_https	qxz0tod	INC000039681158	3d 2h 0m 0s	
+Amit Misra (ext.) 
+
+=============================================================
+Alert 2 ============= Linux Top CI
+=============================================================
+
+27.07.22	lpaginfap04vm	Amit Misra (ext.) 	40	
+WIP
+Major count of incident is due to check_systemhealth working on it and doing further investigation
+
+
+========================================================================================================
+
+
+Alert 3 ============= nagios check read policy
+
+====================================================================================================
+
+ltxendb109.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra - As of now no alerts on Nagios	
+
+ltxendb117.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+ltxensdi21.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+ltxensor11.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+ltxensor13.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+ltxensor17.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+ltxensor26.bmwgroup.net	os_linux_fs_check_readpolicy	CRITICAL	Amit Mishra 	
+
+========================================================================================
+Alert 4 - Check mounts cleanup
+========================================================================================
+lpdc47.bmwgroup.net 	Amit Misra	
+os_linux_fs_check_mounts_new alert is red while os_linux_fs_check_mounts is OK
+ lpefp17.bmwgroup.net 	Amit Misra	
+os_linux_fs_check_mounts_new alert is red while os_linux_fs_check_mounts is OK
+ lpkrd01.kr.sub 	Amit Misra	
+Decom CRQ000002017530 10.06.2022
+ lpkrd02.kr.sub 	Amit Misra	
+Decom CRQ000002017530 10.06.2022
+ lpkwomz11.bmwgroup.net 	Amit Misra	
+
+ lpkwomza1.bmwgroup.net 	Amit Misra	
+
+ lpnrp21.bmwgroup.net 	Amit Misra	
+
+ lpnrp22.bmwgroup.net 	Amit Misra	
+
+ lpnwp11.bmwgroup.net 	Amit Misra	
+
+ lpnwp12.bmwgroup.net 	Amit Misra
+
+========================================================
+Alert 5  - Disk consolidation
+========================================================
+
+liawm01	28	ltxensor16	SAP	SAP-BU	Amit Misra	
+
+lirwi03	26	ltxensor21	SAP	SAP-BU	Amit Misra	
+
+litpq03	28	ltxensor28	SAP	SAP-BU	Amit Misra	
+
+lp05pga00072vm	27	lp05xen17	POSTGRES	Postgres-BU	Amit Misra	
+
+lp05pgb00072vm	31	lp05xen14	POSTGRES	Postgres-BU	Amit Misra	
+
+lp10pga01381vm	32	lp10xenppg033	POSTGRES	B2V-US-BU	Amit Misra	
+	
+=========================================
+Alert 6 = RG Cluster - Cleanup
+=========================================
+
+
+Database	Resource Group	Server Name	Assignee	Status
+tdcocw6		tdcocw6		li06d27		Amit 	
+liqmar2i	ildwheu10	libkdbtdesf07	Amit 	
+dblackw1	dblackw1	lp01db002	Amit 	
+dbprofw1	dbprofw1	lp01db005	Amit 	
+dbapdmw1	dbapdmw1	lp01db006	Amit 	
+dbeinsw1	dbeinsw1	lp01db006	Amit 	
+dbidtsam	dbidtsam	lp01db006	Amit 	
+dbimolw1	dbimolw1	lp01db006	Amit 	
+dbktpsw1	dbktpsw1	lp01db006	Amit 	
+dblozew1	dblozew1	lp01db006	Amit 	
+schraub		dbqfksw1	lp01db006	Amit 	
+dbsfacw1	dbsfacw1	lp01db006	Amit 	
+dbslsw1		dbslsw1		lp01db006	Amit 	
+zsif		dbzsora		lp01db006	Amit 	
+dbanw4		dbanw4		lp02db001	Amit
+
+
+===========================================================================
+Alert 7 = SAN - LSAN Zoning - Server connected with multiple SAN device
+=========================================================================== 
+lpxentwa031	EDC306 (19.0 2.1/13.4 1.2) EDC308 (19.0 2.2/13.4 1.1)	Amit Misra	
+lpxentwa032	EDC306 (19.0 2.1/13.4 1.2) EDC308 (19.0 2.2/13.4 1.1)	Amit Misra	
+lpxentwb027	EDC302 (18.4 1.2/19.0 1.2) EDC308 (19.0 2.2/13.4 1.1)	Amit Misra	
+lpxentwb028	EDC302 (18.4 1.2/19.0 1.2) EDC308 (19.0 2.2/13.4 1.1)	Amit Misra	
+
+2nd August
+=====================
+=====================
+Alert 8
+====================
+
+
+
+
+4th August
+
+Rene Graff to be added in Thursday mail 
+
+
+------------------------
+
+23rd August 15:25 
+
+1.4 Incidents , 3 Tasks in bin
+2.1 feedbck to give to Pushti
+3.L3 Tasks as usual 
+---------------------	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

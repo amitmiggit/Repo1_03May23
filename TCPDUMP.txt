@@ -1,0 +1,109 @@
+history.qqlinux.dev-pts-9:tcpdump -vvv host SBKP0312 >> /tmp/INC000039001399/SBKP0313
+history.qqlinux.dev-pts-9:tcpdump -vvv host SBKP0313 >> /tmp/INC000039001399/SBKP0313
+
+
+
+
+tcpdump -vvv host SBKP0312 >> /tmp/INC000040792629/SBKP0312
+
+
+tcpdump -vvv host SBKP0313 >> /tmp/INC000040792629/SBKP0313
+
+
+tcpdump -i eth0 -n host SBKP0312.bmwgroup.net or host SBKP0313.bmwgroup.net -w /tmp/INC000040792629.pcap
+
+
+timeout 28800 tcpdump -vvv -i eth0 -n host SBKP0313.bmwgroup.net -w /tmp/INC000040792629_SBKP0313.pcap
+
+
+
+watch -n1 -d du -sh /tmp/INC000040792629_SBKP0312.pcap
+
+
+[‎10/‎13/‎2022 1:36 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+Hi Amit
+this is regarding INC000040792629 
+have you started tcp dump?
+[‎10/‎13/‎2022 1:38 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Hi Paul
+not yet
+we were testing
+are you sure in 8 hours file system will not be full
+I mean exhaust
+/tmp
+[‎10/‎13/‎2022 1:39 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+/dev/xvda2                  93G   14G   77G  16% /tmp 
+it is ok
+yesterday was a few MB
+[‎10/‎13/‎2022 1:49 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+from 10 AM till 6 CET right ?
+now 10:30 CET
+6 PM CET?
+[‎10/‎13/‎2022 1:50 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+yes it is ok
+[‎10/‎13/‎2022 1:55 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+I am using below command
+[‎10/‎13/‎2022 1:56 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+I can not see the directory created in /tmp
+as your colleague did yesterday
+INC000040777392 
+[‎10/‎13/‎2022 1:56 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+tcpdump -vvv -i eth0 -n host SBKP0312.bmwgroup.net or host SBKP0313.bmwgroup.net -w /tmp/INC000040792629.pcap 
+[‎10/‎13/‎2022 1:56 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+and inside with the name of the two servers
+[‎10/‎13/‎2022 1:56 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+applying
+[‎10/‎13/‎2022 1:56 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+understand
+I would like to have them separeted
+[‎10/‎13/‎2022 1:57 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+you want separate files ?
+[‎10/‎13/‎2022 1:57 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+yes
+and make also a directory please with the INC name
+[‎10/‎13/‎2022 2:01 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+There are two commands 
+ timeout 28800 tcpdump -vvv -i eth0 -n host SBKP0312.bmwgroup.net -w /tmp/INC000040792629_SBKP0312.pcap 
+timeout 28800 tcpdump -vvv -i eth0 -n host SBKP0313.bmwgroup.net -w /tmp/INC000040792629_SBKP0313.pcap 
+after 8 hours it will quit
+[‎10/‎13/‎2022 2:02 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+do you want to capture corporate n/w traffic
+as I see backup is irrelevant for you
+??
+[‎10/‎13/‎2022 2:04 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+what do you mean by backup is irrelevant ?
+[‎10/‎13/‎2022 2:04 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+means the backup traffic is irrelevant for investigation
+so I didn't use eth1
+[‎10/‎13/‎2022 2:05 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+please activate everything maybe it will help us during the investigation
+[‎10/‎13/‎2022 2:05 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+SO I need to stop and start again
+may I
+??
+[‎10/‎13/‎2022 2:06 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+yes is ok
+[‎10/‎13/‎2022 2:07 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok done
+timeout 28800 tcpdump -vvv -i any -n host SBKP0312.bmwgroup.net -w /tmp/INC000040792629_SBKP0312.pcap  
+and
+timeout 28800 tcpdump -vvv -i any -n host SBKP0313.bmwgroup.net -w /tmp/INC000040792629_SBKP0313.pcap 
+[‎10/‎13/‎2022 2:08 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+It will capture all traffic from these host on all interface
+[‎10/‎13/‎2022 2:09 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+perfect than you
+[‎10/‎13/‎2022 2:10 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Kindly reduce the priority to low
+as we have SLA and my shift will be over ad my next shift colleagues will take care
+[‎10/‎13/‎2022 2:11 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+it will be auto quit
+you can check after 8 hours from now
+[‎10/‎13/‎2022 2:12 PM] Mihaila Paul, (Paul.Mihaila@partner.bmw.de): 
+yes sure
+for me you can close it if you wnat
+want
+:)
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎10/‎13/‎2022 2:33 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok Thanks I am closing then
+

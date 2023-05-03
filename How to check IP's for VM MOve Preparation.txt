@@ -1,0 +1,84 @@
+Servername of VM: ltbkdbtde036vm, ltbkdbtde030vm
+Old farmserver: ltbkxendb31_32
+New farmserver: ltbkxendb33_34
+
+VM distribution: yes / no
+
+target host:  ltbkxendb33
+
+Methode: offline
+LSAN-Zoning : To be checked
+
+New IP addresses yes 
+Comment Serverteam
+
+ltbkdbtde030vm
+
+Farm Replacement of ltbkxend31|ltbkxendb32 move the VMs offline to Target Farm: ltbkxendb33.bmwgroup.net, ltbkxendb34.bmwgroup.net. IP addresses remain the same
+
+ltbkdbtde036vm
+
+Farm Replacement of ltbkxend31|ltbkxendb32 move the VMs offline to Target Farm: ltbkxendb33.bmwgroup.net, ltbkxendb34.bmwgroup.net. IP addresses remain the same
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkdbtde036vm
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkdbtde036vm.bmwgroup.net
+Address: 160.46.180.124
+Name:   ltbkdbtde036vm.bmwgroup.net
+Address: 2a03:1e80:a01:504::1:20
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkdbtde036vmb
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkdbtde036vmb.bmwgroup.net
+Address: 10.100.55.41
+Name:   ltbkdbtde036vmb.bmwgroup.net
+Address: 2a03:1e80:a04:556::1:1e
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkxendb33b
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkxendb33b.bmwgroup.net
+Address: 10.100.55.22
+Name:   ltbkxendb33b.bmwgroup.net
+Address: 2a03:1e80:a04:556::1:3
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkdbtde030vm
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkdbtde030vm.bmwgroup.net
+Address: 160.46.180.110
+Name:   ltbkdbtde030vm.bmwgroup.net
+Address: 2a03:1e80:a01:504::1:f
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkdbtde030vmb
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkdbtde030vmb.bmwgroup.net
+Address: 10.100.55.20
+Name:   ltbkdbtde030vmb.bmwgroup.net
+Address: 2a03:1e80:a04:560::1:8
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltbkdbtde030vmb-new
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltbkdbtde030vmb-new.bmwgroup.net
+Address: 2a03:1e80:a04:556::2009
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 -6 -b ltbkxendb33 | grep -i net_id
+ltbkxendb33;IP_BASE;NET_ID;2a03:1e80:a01:504:0:0:0:0/64
+ltbkxendb33b;IP_BASE;NET_ID;2a03:1e80:a04:556:0:0:0:0/64
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+

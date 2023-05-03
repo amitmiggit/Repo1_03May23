@@ -1,0 +1,185 @@
+[INSTSERV][qxz10kv][lpinstiaas10] ~ $ history
+    1  2021-08-26 05:58:08 | export SUDO_USER=qxz10kv
+    2  2021-08-26 05:58:09 | readonly SUDO_USER
+    3  2021-08-26 05:58:29 | rootssh lp10xenppki01
+    4  2021-08-26 08:34:33 | rootssh lp10xenppki02
+    5  2021-08-26 09:59:05 | ls -ltra
+    6  2021-08-26 09:59:13 | cd lp10xenppki02
+    7  2021-08-26 09:59:15 | ls
+    8  2021-08-26 09:59:20 | ls -ltra
+    9  2021-08-26 09:59:25 | pwd
+   10  2021-08-26 09:59:42 | cp -p lp10xenppki02_network.tar.gz /global/instserv/home/qxz10kv/
+   11  2021-08-26 09:59:45 | ls -ltra
+   12  2021-08-26 09:59:57 | gunzip lp10xenppki02_network.tar.gz
+   13  2021-08-26 10:00:34 | ls
+   14  2021-08-26 10:00:57 | tar -xvf lp10xenppki02_network.tar
+   15  2021-08-26 10:01:00 | ls
+   16  2021-08-26 10:01:02 | cd etc
+   17  2021-08-26 10:01:04 | ls
+   18  2021-08-26 10:01:08 | cd sysconfig/
+   19  2021-08-26 10:01:10 | ls
+   20  2021-08-26 10:01:14 | cd network/
+   21  2021-08-26 10:01:16 | ls -ltra
+   22  2021-08-26 10:01:23 | ls -ltra
+   23  2021-08-26 10:01:36 | cat routes
+   24  2021-08-26 10:02:34 | ls -ltra
+   25  2021-08-26 10:02:41 | cat routes
+   26  2021-08-26 10:03:01 | cat ifroute-br_010184105000
+   27  2021-08-26 10:03:40 | cat ifroute-br_010184105000
+   28  2021-08-26 10:04:05 | cat ifcfg-eth3
+   29  2021-08-26 10:04:17 | cat ifcfg-br_010189003000
+   30  2021-08-26 10:04:55 | cat ifcfg-br_010184105000
+   31  2021-08-26 10:05:18 | cat ifcfg-bond0
+   32  2021-08-26 10:05:41 | cat ifcfg-eth1
+   33  2021-08-26 10:05:55 | cat ifcfg-eth0
+   34  2021-08-26 10:06:13 | cat ifcfg-usb0
+   35  2021-08-26 10:07:37 | ls -ltra
+   36  2021-08-26 10:07:47 | cat ifcfg-usb0
+   37  2021-08-26 10:08:51 | cd ../../../
+   38  2021-08-26 10:08:54 | ls -ltra
+   39  2021-08-26 10:09:18 | rootscp vmc-export.2021-08-26.05-41-25.tgz lp10xenppki02:/tmp/
+   40  2021-08-26 10:19:08 | mkdir keys
+   41  2021-08-26 10:19:12 | cd keys
+   42  2021-08-26 10:19:21 | mkdir keys
+   43  2021-08-26 10:19:25 | cd keys/
+   44  2021-08-26 10:21:14 | rootscp lp10xenppki01:/lfs/xen/keys .
+   45  2021-08-26 10:21:24 | ls -ltra
+   46  2021-08-26 10:21:29 | cd keys/
+   47  2021-08-26 10:21:32 | ls -ltra
+   48  2021-08-26 10:23:38 | rootscp * lp10xenppki02:/lfs/xen/keys
+   49  2021-08-26 10:28:30 | ls -ltra
+   50  2021-08-26 10:29:36 | rootscp lp10xenppki01:/tmp/vmc-export.2021-08-26.10-28-20.tgz .
+   51  2021-08-26 10:30:02 | rootscp vmc-export.2021-08-26.10-28-20.tgz lp10xenppki02:/tmp
+   52  2021-08-26 10:33:16 | cmdb lp10vcdtvpw04 -x
+   53  2021-08-26 10:43:43 | cd
+   54  2021-08-26 10:43:51 | update_dcodb_status.py --remove --server lp10xenppki02.bmwgroup.net
+   55  2021-08-26 10:44:03 | cmdb lp10xenppki02 -x
+   56  2021-08-26 12:11:05 | history
+[INSTSERV][qxz10kv][lpinstiaas10] ~ $
+
+
+Jahan Reinstall Hua
+
+lp10xenppki02:~ # history
+    1  2021-08-26 09:57:24 ##############--- 20210826.082833 ---##############
+    2  2021-08-26 09:57:24 ##############--- 20210826.083552 ---##############
+    3  2021-08-26 08:36:21 cat /etc/SuSE-release
+    4  2021-08-26 08:36:26 uptime
+    5  2021-08-26 08:36:29 uname -r
+    6  2021-08-26 08:41:09 vmc list
+    7  2021-08-26 09:57:24 ##############--- 20210826.095723 ---##############
+    8  2021-08-26 09:57:28 uptime
+    9  2021-08-26 09:57:32 uname -r
+   10  2021-08-26 09:57:41 cat /etc/BMW-release
+   11  2021-08-26 09:57:59 rpm -qa xen*
+   12  2021-08-26 09:58:06 uptime
+   13  2021-08-26 09:58:09 date
+   14  2021-08-26 09:58:17 vmc list
+   15  2021-08-26 09:58:51 cd /etc/sysconfig/network/
+   16  2021-08-26 09:58:53 ls -ltra
+   17  2021-08-26 10:02:48 cat routes
+   18  2021-08-26 10:03:08 cat
+   19  2021-08-26 10:03:19 ls -ltra
+   20  2021-08-26 10:03:48 cat ifroute-br_010184105000
+   21  2021-08-26 10:04:11 cat ifcfg-eth3
+   22  2021-08-26 10:04:26 cat ifcfg-br_010189003000
+   23  2021-08-26 10:05:02 cat ifcfg-br_010184105000
+   24  2021-08-26 10:05:25 cat ifcfg-bond0
+   25  2021-08-26 10:05:46 cat ifcfg-eth1
+   26  2021-08-26 10:06:01 cat ifcfg-eth0
+   27  2021-08-26 10:06:22 cat ifcfg-usb0
+   28  2021-08-26 10:06:42 vi ifcfg-usb0
+   29  2021-08-26 10:07:22 ls -ltra
+   30  2021-08-26 10:07:54 cat ifcfg-usb0
+   31  2021-08-26 10:08:11 cd
+   32  2021-08-26 10:08:25 service network reload
+   33  2021-08-26 10:08:37 brctl show
+   34  2021-08-26 10:09:32 cd /tmp
+   35  2021-08-26 10:09:35 ls -ltra
+   36  2021-08-26 10:09:39 cd
+   37  2021-08-26 10:09:55 vmc configimport
+   38  2021-08-26 10:10:12 vmc list
+   39  2021-08-26 10:11:21 cd /lfs/xen/config/
+   40  2021-08-26 10:11:25 cd ..
+   41  2021-08-26 10:13:01 cd keys
+   42  2021-08-26 10:13:04 ls -ltra
+   43  2021-08-26 10:15:03 cd
+   44  2021-08-26 10:15:09 sync
+   45  2021-08-26 10:15:14 vmc list
+   46  2021-08-26 10:19:57 cp -pr /lfs/xen/keys/ /tmp
+   47  2021-08-26 10:20:00 cd /tmp
+   48  2021-08-26 10:20:06 ls -lrta
+   49  2021-08-26 10:20:12 cd ketys
+   50  2021-08-26 10:20:15 cd keys
+   51  2021-08-26 10:20:18 ls -ltra
+   52  2021-08-26 10:22:23 ls -ltra
+   53  2021-08-26 10:22:27 pwd
+   54  2021-08-26 10:22:39 cd /lfs/xen/keys/
+   55  2021-08-26 10:22:42 ls -ltra
+   56  2021-08-26 10:22:44 pwd
+   57  2021-08-26 10:23:00 rm *
+   58  2021-08-26 10:23:03 ls -ltra
+   59  2021-08-26 10:23:50 ls -ltra
+   60  2021-08-26 10:24:43 chown qqxen01:qqbmw lp10xenppki01_lp10xenppki02_rsa.qqxen01.pub
+   61  2021-08-26 10:24:54 chown qqxen01:qqbmw remote_vm_install_key.lpinstiaas10
+   62  2021-08-26 10:25:08 chown qqxen01:qqbmw lp10xenppki01_lp10xenppki02_rsa.qqxen01
+   63  2021-08-26 10:25:23 chown qqxen01:qqbmw lp10xenppki01_lp10xenppki02_rsa.root
+   64  2021-08-26 10:25:38 chown qqxen01:qqbmw remote_vm_install_key.lpinstiaas10
+   65  2021-08-26 10:25:47 chown qqxen01:qqbmw global_vm_install_key
+   66  2021-08-26 10:25:52 ls -ltra
+   67  2021-08-26 10:26:48 chown qqxen01:qqbmw qqxbkp0_id_dsa
+   68  2021-08-26 10:26:52 ls -ltra
+   69  2021-08-26 10:28:38 cd /tmp
+   70  2021-08-26 10:28:40 ls -ltra
+   71  2021-08-26 10:28:48 rm vmc-export.2021-08-26.05-41-25.tgz
+   72  2021-08-26 10:30:15 ls -ltra
+   73  2021-08-26 10:30:32 cd
+   74  2021-08-26 10:31:21 vmc configimport /tmp
+   75  2021-08-26 10:32:23 vmc list
+   76  2021-08-26 10:36:37 vmc define lp10vcdtvpw04
+   77  2021-08-26 10:53:45 df -hT
+   78  2021-08-26 11:04:46 cat /etc/SuSE-release
+   79  2021-08-26 11:04:51 uname -r
+   80  2021-08-26 11:04:56 uname -a
+   81  2021-08-26 11:05:27 rpm -qa *xen
+   82  2021-08-26 11:05:35 rpm -qa xen*
+   83  2021-08-26 11:39:42 vmc list
+   84  2021-08-26 11:40:09 date
+   85  2021-08-26 12:02:05 history
+
+
+
+Existing working server
+
+   89  2021-08-26 10:12:14 ##############--- 20210624.205332 ---##############
+   90  2021-06-24 20:53:41 cat /etc/.donotrescan
+   91  2021-06-24 20:53:59 vi /etc/.donotrescan
+   92  2021-06-24 20:54:17 cat /etc/.donotrescan
+   93  2021-06-24 20:54:23 exit
+   94  2021-08-26 10:12:14 ##############--- 20210826.055837 ---##############
+   95  2021-08-26 05:58:46 cat /etc/SuSE-release
+   96  2021-08-26 05:58:55 vmc list
+   97  2021-08-26 06:02:45 brctl show
+   98  2021-08-26 06:55:57 exit
+   99  2021-08-26 10:12:14 ##############--- 20210826.101214 ---##############
+  100  2021-08-26 10:12:17 vmc list
+  101  2021-08-26 10:12:47 cd /lfs/xen/keys/
+  102  2021-08-26 10:12:50 ls -ltra
+  103  2021-08-26 10:18:23 cd
+  104  2021-08-26 10:24:22 cd /lfs/xen/keys
+  105  2021-08-26 10:24:25 ls -ltra
+  106  2021-08-26 10:28:06 cd
+  107  2021-08-26 10:28:15 vmc configexport
+  108  2021-08-26 10:34:09 vmc list
+  109  2021-08-26 10:35:03 vmc info lp10vcdtvpw04
+  110  2021-08-26 10:35:53 vmc unlock lp10vcdtvpw04
+  111  2021-08-26 10:36:16 vmc list
+  112  2021-08-26 10:37:59 vmc lock lp10vcdtvpw04 TAS000004147698
+  113  2021-08-26 10:38:34 vmc sync /lfs/xen/
+  114  2021-08-26 10:39:04 ssh-keygen -R lp10xenppki02 -f /root/.ssh/known_hosts
+  115  2021-08-26 10:39:10 vmc sync /lfs/xen/
+  116  2021-08-26 10:39:21 vmc list
+  117  2021-08-26 12:02:23 history
+
+
+

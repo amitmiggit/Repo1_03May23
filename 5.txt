@@ -1,0 +1,42 @@
+PBIS Version Update Test and Integration Servers
+
+This is just an information for all server owners.
+
+The activity is required as the issue is regarding PBIS credential login. 
+
+This is an online activity which would not impact any servers. We would only install the latest version of PBIS on each server
+
+1)Please set the downtime on the PBIS/ADclient check service on for the servers you are going to do 
+you can use the bellow command to set down time there is also documentation about downtime in Nagios here 4.9 Downtime in Nagios
+
+Set the downtime for the service "os_linux_default_check_adclient " for all the servers as per the attached list
+
+For example as below:
+downtime -a -h 2 -c "Pieter upgrading PBIS" -s os_linux_default_check_adclient <server list>
+
+2)The PBIS_UPGRADE.yaml can be found under the normal place /global/instserv/ansible/playbooks
+
+ansiblectl apply --playbook=PBIS_UPGRADE.yaml --hostlist=server_list
+
+Note - Ansible Playbook has to be executed from the respective install server
+
+3) Validation: 
+   Afterwards you will go to all the logs under  "/global/instserv/logs/ansible/" file will be like "2020.04.08.16.25.14.q358439.ltrcpcs01.bmwgroup.net.log" on each install server and see how many "failed=1" there are.
+and investigate why there were failures. 
+
+Please don't forget to do your PBIS and Thruk check during the process.
+
+Please follow the confluence link below for reference : 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/7.10.1+PBIS+-+PowerBroker+AD+Bridge
+
+
+List of servers- 
+List attached in work note
+
+
+Scheduled - 27.12.2022 09:00:00 - 30.12.2022 09:00:00 CET
+
+DTP ID- XXXXX
+
+For any queries please reach out to Sanjiv.Soraganvi@partner.bmwgroup.de

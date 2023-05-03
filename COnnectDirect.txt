@@ -1,0 +1,92 @@
+(1) Description of the Task to be done
+
+This template is valid for upgrading the existing Rudder installable software Bundles ( CD installation, MQS, KVOM.. ). It’s not applicable for  SecFS & Oracle Client.
+The application would be down during the Upgrade
+
+Execution task for Upgrade-Rudder-Existing-Software-Bundle
+
+lead time : 1 day
+Run time : 2 hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+System (node1, node2):  li10g3i02.bmwgroup.net
+Version : latest
+Please note the task needs to be implemented in the mentioned timeframe. There will be an implementers chat for the activity.
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: 1 day
+---- Outside office hours: 1 day
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< enter here >>> <contact, tel.>
+---- during change
+<<< enter here >>> <contact, tel.>
+
+__________
+(3) Additional Information (optional)
+
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: 1 day
+---- Outside office hours: 1 day
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< Ndumiso.Mahlalela >>> <Ndumiso.Mahlalela@partner.bmw.co.za>
+---- during change
+<<< Ndumiso.Mahlalela >>> <Ndumiso.Mahlalela@partner.bmw.co.za>
+
+
+========================
+
+
+rpm -qa | grep -i connect
+
+
+lphrp27:~ # rpm -qa | grep connect
+BMW-connectdirect-4.3.0.1-24.x86_64
+lphrp27:~ # zypper up BMW-connectdirect
+Loading repository data...
+Reading installed packages...
+Resolving package dependencies...
+
+The following package is going to be upgraded:
+ BMW-connectdirect
+
+The following package has no support information from it's vendor:
+ BMW-connectdirect
+
+1 package to upgrade.
+Overall download size: 532.9 MiB. Already cached: 0 B. After the operation, additional 52.9 MiB will be used.
+Continue? [y/n/...? shows all options] (y): y
+Retrieving package BMW-connectdirect-4.3.0.1-26.x86_64                                                                                                  (1/1), 532.9 MiB (714.6 MiB unpacked)
+Retrieving: BMW-connectdirect-4.3.0.1-26.x86_64.rpm .....................................................................................................................[done (348.9 MiB/s)]
+
+Checking for file conflicts: ..........................................................................................................................................................[done]
+(1/1) Installing: BMW-connectdirect-4.3.0.1-26.x86_64 .................................................................................................................................[done]
+lphrp27:~ # rpm -qa | grep connect
+BMW-connectdirect-4.3.0.1-26.x86_64
+lphrp27:~ #
+
+
+
+rpm -qa | grep -i cd-server
+
+
+
+
+rudderswinst -t TAS000006230069  install lp19cip02 MW-ConnectDirect

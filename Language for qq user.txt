@@ -1,0 +1,16 @@
+Hi,
+
+As per the process .
+-Technical user not allowed to login to the server.
+-User when configured with *sshkeyonly*, will not accept password while login and by ssh or winscp.
+-you should get the switch user access from your personal user to technical user by sudo request.
+-For information on the Role and Permissions concept on the Linux Servers, please check:
+https://atc.bmwgroup.net/confluence/display/LINUX/Guide+for+BMW+Infrastructure+Linux+Accounts+and+Groups
+https://atc.bmwgroup.net/confluence/display/COMPUTE/BMW+Master+Solution+Linux+SLES+Server+on+Premise
+-Once your personal user added to the IDAS group which is important from your side to identify , then you can setup the SSH keys of the Technical  user, with using below link.
+https://atc.bmwgroup.net/confluence/display/LINUX/I+need+to+setup+my+technical+user+to+be+accessed+from+another+system
+https://atc.bmwgroup.net/confluence/display/IPST/Create+SSH+key+pair+for+direct+login+as+technical+user
+-The Linux Team is not responsible for managing SSH keys of the users.
+-I would request to follow the mention steps/process and also get in touch with you internal team to understand the process if you still have any concern.
+
+-For any direct questions, please reach out to us via <linux-operating@list.bmw.com>.

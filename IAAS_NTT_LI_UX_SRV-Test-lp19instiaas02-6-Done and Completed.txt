@@ -1,0 +1,7 @@
+ServerName	Server Contract 	Install Server
+lt19xen23	IAAS_NTT_LI-UX_SRV	lp19instiaas02
+lt19xen24	IAAS_NTT_LI-UX_SRV	lp19instiaas02
+lt19xen31	IAAS_NTT_LI-UX_SRV	lp19instiaas02
+lt19xen32	IAAS_NTT_LI-UX_SRV	lp19instiaas02
+lt19xens11	IAAS_NTT_LI-UX_SRV	lp19instiaas02
+lt19xens12	IAAS_NTT_LI-UX_SRV	lp19instiaas02

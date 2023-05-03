@@ -1,0 +1,63 @@
+VMC Prep task should be double cheked 
+
+LSAN - NO -- Disks are visible at target
+
+
+
+
+------------------------------------------------
+Source
+
+vmc stop
+vmc mount lpbkdb016vm
+cd /global/lpbkdb016vm/base/mnt/etc/sysconfig/network
+cat ifcfg-eth0X
+cat ifcfg-eth1
+cat routes
+cp -p ifcfg-eth0 old-ifcfg-eth0
+cp -p ifcfg-eth1 old-ifcfg-eth1
+cp -p routes old-routes
+
+cd
+Make changes in config 
+
+vmc umount 
+vmc rmnet vmname vmname 
+vmc rmnet bmname vmnameb
+
+==========================================================
+
+Change IP's in CMDB
+CN
+Service IP only in CMDB
+Backup
+
+
+==================================================================
+
+Target
+
+vmc define <VM)
+vmc addnet vmname vmname 
+vmc addnet bmname vmnameb
+vmc start
+vmc backup <vm>
+
+==================================================================
+
+vmc -p rmconfig vmname 
+
+
+
+-----------
+
+
+LSAN - YES then MD migration is needed 
+
+first we need to 
+stop VM, 
+mount it , 
+change the IP if needed,  
+unmount it, 
+change the IP on CMDB - once DNS synced 
+then need to start VMS on destination node

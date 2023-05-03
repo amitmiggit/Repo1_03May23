@@ -1,0 +1,8 @@
+os_linux_default_check_drbd
+
+
+01.11.2022: Considering as fixed and will coordinate with tools team to disable alert of check_drbd on this server
+
+
+
+INC000041000186 - Very Important Incident by Afraz 

@@ -1,0 +1,41 @@
+for i in `cat`;do echo ===============$i===============;hastatus -sum | grep -i $i;echo ==========================================================;done
+
+tlfasi022
+tlfasi021
+
+Enter
+ctrl+d
+
+for i in `cat`;do echo ===============$i===============;san_shortinfo | grep -i $i;echo ==========================================================;done
+
+for i in `cat`;do echo ===============$i===============;df -hT | grep -i $i;echo ===============================================================;done
+
+for i in `cat`;do echo ===============$i===============;vxdisk -o alldgs list | grep -i $i;echo ================================================;done
+
+
+===========================
+
+Target
+
+
+for i in `cat`;do echo ===============$i===============;san_shortinfo | grep -i $i;echo ===============================================================;done
+
+
+lt02db001:~ # cd /var/tmp/
+lt02db001:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i lt02db001;echo ==========;done
+
+
+lt02db001:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i lt02db001;echo ==========;done
+
+
+for i in `cat`;do echo =================$i====================;ls -l /lfs/cluster/vcs/$i*;echo =================================;done
+
+
+
+================
+
+10.30.34.74  >> TLFASI022-NEW
+10.30.36.64  >> TLFASI021-NEW
+
+
+

@@ -1,0 +1,167 @@
+(1) Description of the Task to be done
+Mount or  Un-mount
+
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+(1) Description of the Task to be done
+Mount or  Un-mount a NAS/Archive NFS filesystem
+
+-> The requester explicitly confirms that the BMW authorized persons have approved this task.
+
+ATTENTION: For Mounts the NFS share MUST already be correctly exported to the requested server(s) *before* task is set to Pending Assignment!
+ISTORE: http://istore.bmwgroup.net/
+Otherwise the task cannot be executed and will be set to Pending Error. 
+
+Please read the ”NFS customer documentation” carefully before requesting:  
+https://atc.bmwgroup.net/confluence/display/LINUX/Requesting+and+Configuring+NFS+Shares+on+Unix+Systems 
+
+Minimum lead time: 4 Hours
+Execution Time: 48 hours
+__________
+(2) Required Information: ensure all REQUIRED Fields A to D have been filled out correctly. 
+
+
+A.	Action [Specify MOUNT or UN-MOUNT]:  UMOUNT (old) and MOUNT (new) 
+
+B.	Server Name(s) where the share is to be [un-]mounted: 
+lpwenagnas1.bmwgroup.net
+lpwenagdz5.bmwgroup.net
+lpwenagdz6.bmwgroup.net
+lpwenagdz7.bmwgroup.net
+lpwenagdz8.bmwgroup.net
+lpwenagdz9.bmwgroup.net
+lpwenagdz10.bmwgroup.net
+lpwenagdz11.bmwgroup.net
+lpwenagdz12.bmwgroup.net
+lpwenagdz13.bmwgroup.net
+lpwenagdz14.bmwgroup.net
+
+
+C.	NFS Source 
+IMPORTANT: Use the ISTORE *NFS* Source in the NFS Export e.g. 
+
+OLD for UMOUNT: nv01502760.bmwgroup.net:/f08441/t080979/instances
+
+NEW for MOUNT: nv01502709.bmwgroup.net:/f07989/t084870/instances
+
+D.	Mount Point:  /nfs/<module>/<mount-point-name>
+/nfs/instances
+
+IMPORTANT: 
+ NFS Mounts must be mounted according to the BMW NFS standard from 2006 in the ”NFS customer documentation” Link above!
+             For servers NOT in the Module WEB, this is always under /nfs/<module-abbreviation>/<mount-point-name>
+If you are migrating an old legacy non standard NFS mount point, you may set a compatibility link where the old mount point was situated before.
+NFS “sub mounts” on existing NFS shares or SAN mounts are *strictly* forbidden and can and have caused massive outages.
+
+E.	Mount options: (optional)
+Normally you should not request any mount options and the default for the OS Version installed will be used.  
+ONLY request addition mount options if  you have a *very* specific need/requirement, e.g. you want the filesystem mounted Read-Only (ro) or you are using NFS Version 4.
+Mount options are not the same between different Linux SLES Versions or on other Unix platforms such as Solaris.
+
+NOTE: Restart the BMWdnsmasq.service on the servers to refresh the nslookup.
+systemctl status BMWdnsmasq.service
+
+lpwenagnas1.bmwgroup.net:
+rw,vers=4,proto=tcp,hard,nosuid,nodev,relatime,sec=sys,local_lock=none,timeo=600,retrans=2,addr=160.46.96.31,clientaddr=160.46.127.37 0 0
+
+lpwenagdz5.bmwgroup.net------------------------D
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.51 0 0
+
+
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances  nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.51 0 0
+
+===================================================================================================================
+lpwenagdz6.bmwgroup.net------------D
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.246.32 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances  nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.246.32 0 0
+
+
+===========================================================================================================
+lpwenagdz7.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.38 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.38 0 0
+=============================================================================
+lpwenagdz8.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.246.51 0 0
+
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.246.51 0 0
+
+
+=====================================
+lpwenagdz9.bmwgroup.net -----------------------D
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.55 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.55 0 0
+======================
+lpwenagdz10.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.57 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.57 0 0
+
+==================================================
+lpwenagdz11.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.61 0 0
+
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.61 0 0
+=========================================
+lpwenagdz12.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.62 0 0
+
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.62 0 0
+
+
+===============================================================
+lpwenagdz13.bmwgroup.net--------------------------------------D
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.46 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.46 0 0
+====================
+lpwenagdz14.bmwgroup.net
+ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.41 0 0
+
+nv01502709.bmwgroup.net:/f07989/t084870/instances /nfs/instances nfs ro,vers=4,proto=tcp,hard,nosuid,nodev,noatime,addr=160.46.96.31,clientaddr=160.46.245.41 0 0
+==========================================================================
+
+Additional Mount Options: 
+
+F.	Ownership for incorrectly requested NEW and EMPTY NFS Shares which have root set as the owner
+
+           NOTE: The OS Admins are normally *not* allowed to modify and Users, Groups or Rights on NFS shares. If you have requested a new share correctly in ISTORE this will also never be necessary. 
+            If you made a mistake and did not specify the owner:  *only* if the share is 100% *empty* and belongs to root:root, may you request that your technical QQ user and group is set. 
+            You are responsible for setting the rights as you require them on the share with your technical User who is the owner. 
+
+            If the share is NOT empty or already has a valid owner/group, the OS Admins strictly forbidden from modifying the share in any manner whatsoever and you must have the correct 
+            share data area owner do this with their user and/or sudo rights. 
+            CAUTION: if a share is mounted on multiple systems, modifying ownerships, groups and rights can cause issues
+            For the other systems. ONLY the data area owners should make such modifications. Such unqualified modifications can and have caused massive outages.
+
+             Set Owner/group for an incorrectly provisioned new, empty  Share, which belongs to root:root:   User: <qq user>  Group: <unix group> 
+             NOTE: The QQ User and the Group must already be available on the server!
+
+__________
+(3) Additional Information (optional)
+
+To prevent application downtime, this task should be done in cooperation with the WEBEAM team one server at a time.
+The change coordinator will get in touch to the task assignee to coordinate this.
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+Samlesh.PA.Panda@partner.bmw.de, +4915118507412
+---- during change
+Samlesh.PA.Panda@partner.bmw.de, +4915118507412

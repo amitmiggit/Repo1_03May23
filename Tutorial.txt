@@ -1,0 +1,48 @@
+ssh -L 8081:127.0.0.1:8081 -i Amit_Misra_PrivateKey.ppk qqsshfwd@lpsudom01.bmwgroup.net
+
+
+ssh -L 8081:127.0.0.1:8081 -i Amit_Misra_PrivateKey.ppk qqsshfwd@lpsudom01.bmwgroup.net
+
+
+ssh -L 8081:127.0.0.1:8081 -i Amit_Misra_PrivateKey.ppk qqsshfwd@lpsudom02.bmwgroup.net 
+
+=========================================================================================================
+
+Test Farm server an VM's
+
+The 'help' command may be used for more information.
+ltiaastest01:/lfs/xen/sbin # exit
+exit
+qxz10kv@ltiaastest01
+
+===========================================
+
+
+lt06ipso2vm:~ # tail -5 /etc/sudoers
+# 18.06.2020 09:25 qxz10kv TAS000004722870
+%osm_gsp \
+           TAS000004722870_HOSTS = \
+           /bin/rootsh -i -u taipsow6
+
+lt06ipso2vm:~ # date
+Thu Jun 18 09:29:49 CEST 2020
+lt06ipso2vm:~ #
+
+
+lp01ctmstd01:~ # xenstore-read /tool/hostname
+lpxen1033
+lp01ctmstd02:~ #  xenstore-read /tool/hostname
+lpxen1022
+lp01ctmstd03:~ #  xenstore-read /tool/hostname
+lpxen1026
+
+
+Access needed for the Link
+
+P:\_IT_Operations\110_2018_IaaS\30_Operation\13_Service Management\Task Templates
+
+
+
+
+
+

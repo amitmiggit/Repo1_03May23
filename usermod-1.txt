@@ -1,0 +1,9 @@
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lieai248
+lieai248:~ # cat /etc/passwd | grep -i qqmqmo0
+qqmqmo0:x:847209:33547:Kreitmeier Christian,FG-712,:/home/qqmqmo0:/bin/bash
+lieai248:~ # cat /etc/shadow | grep -i qqmqmo0
+qqmqmo0:$6$y1BOFYJS$P6OaPQZXi6m/0A/yPwg9qtQpGaAQudF9ZASg87Zo7HHhQN8kOL4PzsRrpmrP3PCnYLIznnHqF0h2T.M7fnMzW/:0:0:99999:7:::
+lieai248:~ # usermod --shell /usr/bin/passwd qqmqmo0
+lieai248:~ # cat /etc/passwd | grep -i qqmqmo0
+qqmqmo0:x:847209:33547:Kreitmeier Christian,FG-712,:/home/qqmqmo0:/usr/bin/passwd
+lieai248:~ #

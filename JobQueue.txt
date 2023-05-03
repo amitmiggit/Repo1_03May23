@@ -1,0 +1,4 @@
+fullcheck --no-sodb --check JobQueue  lpcnproxy12001
+
+
+install_server.sh --rmbcertonly lpcnproxy12001 

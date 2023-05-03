@@ -1,0 +1,23 @@
+ServerName	Server Contract 	Install Server
+lp09xen44	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen45	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen46	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen47	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen51	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen52	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen53	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xen54	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpg003	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpg004	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpwa2020	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpwa2021	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpwb2020	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xenpwb2021	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xensdi13	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xensdi14	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xensor15	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xensor16	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xentwa2020	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xentwa2021	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xentwb2020	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lp09xentwb2021	IAAS_NTT_LI-UX_SRV	lp09instiaas02

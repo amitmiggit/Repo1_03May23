@@ -1,0 +1,107 @@
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ id -a qxz0mzg
+uid=833895(qxz0mzg) gid=33546(qxbmw) groups=33546(qxbmw),872285(guisapadmins),90922(mqadmin),804272(guiibaa),897107(guisapadmins_nonprod)
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ cmdb limq111vm -x
+
+
+
+We are getting error on Production servers
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+SSO Password:
+Servers:
+limq111vm.bmwgroup.net
+limq111vm.bmwgroup.net
+lp03mq111vm.bmwgroup.net
+lp07mq111vm.bmwgroup.net
+li10mqb2v01vm.bmwgroup.net
+lp10mqb2v03vm.bmwgroup.net
+lpmq116vm.bmwgroup.net
+lpmq175vm.bmwgroup.net
+limq172vm.bmwgroup.net
+
+
+
+limq111vm.bmwgroup.net
+limq111vm.bmwgroup.net
+lp03mq111vm.bmwgroup.net
+lp07mq111vm.bmwgroup.net
+li10mqb2v01vm.bmwgroup.net
+lp10mqb2v03vm.bmwgroup.net
+lpmq116vm.bmwgroup.net
+lpmq175vm.bmwgroup.net
+limq172vm.bmwgroup.net
+li06mq07vm.bmwgroup.net
+mqi10a03m.bmwgroup.net
+mqi10a04m.bmwgroup.net
+li10mq18vm.bmwgroup.net
+li12mq01vm.bmwgroup.net
+li19mq50vm.bmwgroup.net
+li34mq07vm.bmwgroup.net
+li34mqw5003vm.bmwgroup.net
+li19mq113vm.bmwgroup.net
+limq115vm.bmwgroup.net
+li09mq06vm.bmwgroup.net
+lpmq121vm.bmwgroup.net
+lpmq177vm.bmwgroup.net
+lp10mq115vm.bmwgroup.net
+lpmq120vm.bmwgroup.net
+lp10mqb2v05vm.bmwgroup.net
+lp10mq16vm.bmwgroup.net
+lp10szmq01vm.bmwgroup.net
+lp10mq20vm.bmwgroup.net
+lp10szmq02vm.bmwgroup.net
+lp12mq01vm.bmwgroup.net
+lp34mq07vm.bmwgroup.net
+lpmq128vm.bmwgroup.net
+lp30mq112vm.bmwgroup.net
+
+
+
+limq111vm:~ #
+limq111vm:~ #
+limq111vm:~ # logger qxz10kv Switching to user qxz0mzg as per inc number INC000039812157
+limq111vm:~ # su - qxz0mzg
+qxz0mzg@limq111vm:~> /bin/rootsh -i -u qqmqmo0
+/var/log/rootsh/qplinux.20220805142559.012d1: Permission denied
+qxz0mzg@limq111vm:~> sudo /bin/rootsh -i -u qqmqmo0
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+SSO Password:
+sudo: a password is required
+qxz0mzg@limq111vm:~> exit
+logout
+limq111vm:~ #
+
+
+
+
+=================================
+
+
+logger qxz10kv Switching to user qqnppv0 as per the incident number INC000041348926
+logger qxz10kv Switching to user qqdsap0 as per the incident number INC000041348926
+
+logger qxz10kv Switching to user qqnppv0 as per the incident number INC000041348926
+
+
+mar5 ke id_rsa.pub ko move kiya /var main
+mar4 se scp  to .ssh user qqnppv0  ----  id_rsa.pub=====================================
+cat id_rsa.pub  >> authorized_keys --- mar5 main karna hai
+cat authorized_keys on mar5 for verification it will show 2 entries
+after verification id_rsa.pub ko /tmp main move karna hai
+from /var id_rsa.pub ko move karna hai wapas .ssh keys main
+afterwards from 5 to 4 it should be passwordless
+
+
+

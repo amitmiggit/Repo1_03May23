@@ -1,0 +1,61 @@
+19 December 2022
+======================
+Job - 1 (Assigned on 16th) - San Cleanup - Hash Data Migration
+======================================================================================================================================
+#data migration on assigned server
+
+As per below table you need to find the number of Luns from source Array . 
+Need to order a NWS Luns from target array. 
+While placing e a NEW Lun request mention in comment target array names. (we need a Luns from target Array )  
+Once the NEW Luns assigned do a MD migration from source array LUNS to target Array Luns
+After migration done return the source array Luns
+Document the PKE with status 
+If you have any queries or doubts connect with Sanjiv Or Parminder 
+PBI000000452676	lp02kdp13 lp02kdp14	VSP_97173 VSP_97146	VSM_10772 VSM_10841	Amit M
+PBI000000452959	lp02xen51 lp02xen52	VSM_10772 VSM_10841	VSP_97173 VSP_97146	Amit M--------------------------------------Done 
+
+=======================================================================================================================================
+
+Job - 2 (SM Call Data gather and Analysis follow up with defaulters) - Daily
+
+Ageing Task 
+Ageing Incident
+PE TASKS
+
+=======================================================================================================================================
+
+Job - 3 ( Task and Incients ) --------------  Currently None
+
+=======================================================================================================================================
+
+Job - 4 (Act on Linux Cleanup Page)  - Work In Progress
+
+Linux : Top CI
+
+Date	                 CI Name	Assignee	   No.of INC	Status 	Alert Description	        Comments	
+8	21 Nov 2022 	lp10xendk03	Amit Misra (ext.) 	18	WIP		                        29-11-2022 - os_linux_default_check_drbd alert working on it
+17	14 Nov 2022 	ltbkxendb41	Amit Misra (ext.) 	19	WIP	os_linux_perf_check_thres	29-11-2022 - Check_thresh alert not coming working on os_linux_default_check_drbd alert
+61	10 Oct 2022 	li19b2vdbs04	Amit Misra (ext.) 	13	WIP	os_linux_ilo_check_https	10-10-2022 -  There was a firewall issue for ILO HTTPS checks to some networks in W19.Tufin request was opened by Markus for                                                                                                                               those networks .os_linux_default_check_shell 	
+                                                                                                                18-10-2022 -  There are no check_https and check shell alert as of now ,monitoring the alerts.
+							                                                        02.11. 2022 - Working on two warning alerts check adclient and check mailq
+							                                                        29.11.2022 -  mailq is fixed ,working on adclient warning
+66	17 Oct 2022 	lpsbwww12001	Amit Misra (ext.)	11	WIP					31-10-22      Current status in Nagios in green searching earlier raised alerts and incidents for this CI
+														02.11.2022 -  As of now nagios is green but earlier we received 15 incidents for  Check system health and check syslogd .
+														22.11.2022 -  No alerts and incidents since last 2 weeks
+
+=========================================================================================================================================
+
+Job - 5  --  Job 1 and Job 4 Continuous monitor
+
+=========================================================================================================================================
+
+Date - 3rd March 2023
+
+
+Task 1 ----> 4 tasks in my Bin
+
+Task 2 ----> 2 SAN CLEANUP one in cluster node SAP one in standalone 
+
+Task 3 ----> Ansible playbook for 
+
+

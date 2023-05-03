@@ -1,0 +1,52 @@
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 4:32 PM: 
+hi
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?spaceKey=IAAS18&title=11.1.2.13+Vormetric+Coreguard
+Wait for vomertic team to disable guard point 
+After their confirmation 
+1.           rudderctl properties-del --key tag_MW-SecFS_installed --force --hostname lpbkcfc2.bmwgroup.net 
+2.           /opt/rudder/bin/cf-promises --show-classes | grep -i secfs 
+Then wait until above command output disappear 
+lpbkcfc2:~ #  /opt/rudder/bin/cf-promises --show-classes | grep -i secfs
+group_l__api_mw_secfs                                        source=promise,inventory,attribute_name=rudder_groups
+lpbkcfc2:~ #
+1.             /opt/vormetric/DataSecurityExpert/agent/secfs/bin/uninstall  
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 4:37 PM: 
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=649667884 
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 4:44 PM: 
+sed -i  "s/baseurl=.*/baseurl=https:\/\/cm-repo-emea.bmwgroup.net\/active-P-${MR}-BMW-SLES12-SP5/g" /etc/zypp/repos.d/rudder-BMW-SLES12-SP5.repo
+zypper refresh BMW-SLES12-SP5
+zypper dist-upgrade --from BMW-Custom --from BMW-Internal --from BMW-SLES12-SP5
+rudder agent enable 
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 4:52 PM: 
+ssh ${SERVER} "cat /etc/rudder_vars.lst"
+rudderctl properties-get --hostname=${SERVER} --key=RUDDER_MR_VERSION
+ 
+ 
+fullcheck ${SERVER}
+ 
+sed -i 's/CURRENT_MR_VERSION/HISTORY_MR_VERSION+/g' /etc/BMW-release
+sed -i 's/CURRENT_MR_DATE/HISTORY_MR_DATE+/g' /etc/BMW-release
+echo -e "CURRENT_MR_VERSION=\"2022Q04.00\"" >> /etc/BMW-release
+echo -e "CURRENT_MR_DATE=\"$(date '+%s %Y-%m-%d %H:%m:%S %z')\"" >> /etc/BMW-release 
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 4:55 PM: 
+call_hook.sh ${SERVER} finish 02-90-set-master-release-dcodb 
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 5:45 PM: 
+[INSTSERV][qxz0toe][lpinstiaas02] ~ $ rudderswinst -t TAS000006670387 install libkinfavwi04vm.bmwgroup.net MW-SecFS
+software 'MW-SecFS' has been successfully activated at server 'libkinfavwi04vm.bmwgroup.net'
+[INSTSERV][qxz0toe][lpinstiaas02] ~ $
+[INSTSERV][qxz0toe][lpinstiaas02] ~ $ rudderswinst -t TAS000006670387 install lpbkinfavwp04vm.bmwgroup.net MW-SecFS
+ 
+Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de) 5:51 PM: 
+Task Exception
+===========
+Task Work Info Type - “Extension”
+Reasons to use in Summary section:
+Delayed due to Application Team
+Delayed due to Third Party
+Delayed due to Awaiting Customer Information
+Delayed due to Incorrect/Incomplete Template
+Delayed due to BMW tool  
+rudder agent run -D allow_secfs_install 
+rudder agent run -iu 
+Misra Amit, (Amit.Misra@partner.bmw.de) 5:59 PM: 
+ll /opt/vormetric/DataSecurityExpert/agent/secfs/.sec/conf/configuration 

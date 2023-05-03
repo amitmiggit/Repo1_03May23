@@ -1,0 +1,11 @@
+Line 8: Notes	 [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ cat << EOF > TAS_PBIS_UPGRADE_TAS000006783736_LIST
+	Line 19: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST`;do rootssh $i hostname -f | awk '{print $1}' | tee -a TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN ; done
+	Line 29: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; downtime -a -h 2 -s os_linux_default_check_adclient -c "qxz1mw2 upgrading pbis TAS000006783736" $i ; done
+	Line 66: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i rpm -qa "pbis-enterprise";done
+	Line 85: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ ansiblectl apply --playbook=PBIS_UPGRADE.yaml --hostlist=TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+	Line 208: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ ansiblectl apply --playbook=PBIS_UPGRADE.yaml --hostlist=TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+	Line 339: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i rpm -qa "pbis-enterprise";done
+	Line 358: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i systemctl status lwsmd;done
+	Line 649: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i systemctl is-active lwsmd;done
+	Line 668: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i /opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}';done
+	Line 687: [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $

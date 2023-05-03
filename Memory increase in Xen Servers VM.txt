@@ -1,0 +1,29 @@
+
+downtime -a -h 1 -c "TAS000006750595 qxz10kv" lpchdees04.bmwgroup.net
+ 
+setp 1 vmc mem-max lpchdees04 65536
+
+step-2 vmc mem-set lpchdees04 32768
+
+step-3 vmc savetodb lpchdees04
+
+step-4 vmc stop lpchdees04
+
+Step4a vmc list lpchdees04
+
+Step4b vmc info lpchdees04
+
+Step-5 vmc define lpchdees04
+
+Step-6 VMC start lpchdees04
+
+
+ 
+setp 1 - vmc mem-max <vmname> 32768
+step-2 vmc savetodb <vmname> 
+step-3 vmc reboot <vmname>
+step-4 vmc mem-set <vmname> 32768
+
+
+
+

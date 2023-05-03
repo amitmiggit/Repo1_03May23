@@ -1,0 +1,29 @@
+#I#Source_App-ID#Destination_App-ID#To put the server in compliance mode# (To put the server in compliance mode )
+
+
+10.30.74.209  - Destination
+
+160.46.147.188 ----- Destination
+
+Repository server 
+
+
+160.50.59.150 - source 
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lpbkrun02vm nmap -p 443,5309 cm-relay-bss-sles12-emea.bmwgroup.net
+
+Starting Nmap 6.46 ( http://nmap.org ) at 2022-10-06 15:18 CEST
+Nmap scan report for cm-relay-bss-sles12-emea.bmwgroup.net (10.30.73.33)
+Host is up (0.0013s latency).
+PORT     STATE  SERVICE
+443/tcp  open   https
+5309/tcp closed unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.53 seconds
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ date
+Thu Oct  6 15:18:54 CEST 2022
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+

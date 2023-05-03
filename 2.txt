@@ -1,0 +1,176 @@
+qplinux@lpbkinfavwp04vm:~> sudo -s
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ # cd /opt/pbis/
+bin/     data/    lib/     lib64/   libexec/ sbin/    share/
+lpbkinfavwp04vm:~ # cd /opt/pbis/
+bin/     data/    lib/     lib64/   libexec/ sbin/    share/
+lpbkinfavwp04vm:~ # cd /opt/pbis/bin/
+lpbkinfavwp04vm:/opt/pbis/bin # ls
+ad-cache   del-group       enum-members  find-group-by-id    get-dc-list  gp-admin      kinit       list-groups-for-user  lwsm         query-member-of        snmptrap      ypmatch
+add-group  del-user        enum-objects  find-group-by-name  get-dc-name  gporefresh    klist       lsa                   mod-group    regshell               sqlite3
+add-user   domainjoin-cli  enum-users    find-objects        get-dc-time  gprsrtmnt.sh  ktutil      lwautoenroll-test     mod-user     samba-interop-install  uninstall.sh
+adtool     edit-reg        eventlog-cli  find-user-by-id     get-metrics  gpupdate      kvno        lwio-copy             passwd       sc-test                update-dns
+config     enum-groups     find-by-sid   find-user-by-name   get-status   kdestroy      ldapsearch  lwio-driver           pbis-status  setkey-cli             ypcat
+lpbkinfavwp04vm:/opt/pbis/bin # find-user-by-id^C
+lpbkinfavwp04vm:/opt/pbis/bin # find-user-by-name qqabic0
+bash: find-user-by-name: command not found
+lpbkinfavwp04vm:/opt/pbis/bin # ./find-user-by-name qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # find
+find       find-jar   find2perl  findfs     findmnt
+lpbkinfavwp04vm:/opt/pbis/bin # find
+find       find-jar   find2perl  findfs     findmnt
+lpbkinfavwp04vm:/opt/pbis/bin # /opt/pbis/bin/find-user-by-name qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # opt/pbis/bin/find-user-by-name --level 0 "qqabic0"
+bash: opt/pbis/bin/find-user-by-name: No such file or directory
+lpbkinfavwp04vm:/opt/pbis/bin # opt/pbis/bin/find-user-by-name --level 0 qqabic0
+bash: opt/pbis/bin/find-user-by-name: No such file or directory
+lpbkinfavwp04vm:/opt/pbis/bin # /opt/pbis/bin/find-user-by-name --level 0 qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # exit
+exit
+qplinux@lpbkinfavwp04vm:~> sudo -s
+lpbkinfavwp04vm:~ # getent passwd qqabic0
+qqabic0:x:275898:275898:SF_PROD4_V104:/home/qqabic0:/bin/bash
+lpbkinfavwp04vm:~ # cat /etc/passwd | grep -i qqabic0
+qqabic0:x:275898:275898:SF_PROD4_V104:/home/qqabic0:/bin/bash
+lpbkinfavwp04vm:~ # cat /etc/groups | grep -i qqabic0
+cat: /etc/groups: No such file or directory
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i qqabic0
+gusshkey:x:98271:qqcicb6,qqbankeu,qqirbp1,qprtam01,qqabic0,qqsfatp,qqsfchp,qqdwhsw,qqodsat,qqodsch,qqdwheu,qqbktp0,qqsfeup,qqsfesp,qqodsnl,qqodsfr,qqecapr,qqsffrp,qqsfnlp
+uabicpt:x:94404:qqabic0
+qqabic0:x:275898:qqabic0,qqbktp0,qqanagi
+qqanagi:x:87442:qqabic0,qqodsfr
+lpbkinfavwp04vm:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 5
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ #
+lpbkinfavwp04vm:~ # groupmod
+Usage: groupmod [options] GROUP
+
+Options:
+  -g, --gid GID                 change the group ID to GID
+  -h, --help                    display this help message and exit
+  -n, --new-name NEW_GROUP      change the name to NEW_GROUP
+  -o, --non-unique              allow to use a duplicate (non-unique) GID
+  -p, --password PASSWORD       change the password to this (encrypted)
+                                PASSWORD
+  -R, --root CHROOT_DIR         directory to chroot into
+
+lpbkinfavwp04vm:~ # usermod
+Usage: usermod [options] LOGIN
+
+Options:
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                him/her from other groups
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ # usermod -G gusshkey qqabic0
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i qqabic0
+gusshkey:x:98271:qqcicb6,qqbankeu,qqirbp1,qprtam01,qqabic0,qqsfatp,qqsfchp,qqdwhsw,qqodsat,qqodsch,qqdwheu,qqbktp0,qqsfeup,qqsfesp,qqodsnl,qqodsfr,qqecapr,qqsffrp,qqsfnlp
+qqabic0:x:275898:qqbktp0,qqanagi
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey)
+lpbkinfavwp04vm:~ # id gusshkey
+id: ‘gusshkey’: no such user
+lpbkinfavwp04vm:~ # usermod -aG qqabic0 uabicpt
+usermod: user 'uabicpt' does not exist
+lpbkinfavwp04vm:~ # usermod -aG uabicpt qqabic0
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt)
+lpbkinfavwp04vm:~ # usermod -aG qqanagi qqabic0
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ # gpasswd -d qqabic0 gusshkey
+Removing user qqabic0 from group gusshkey
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ # exit
+exit
+qplinux@lpbkinfavwp04vm:~> exit
+logout
+Connection to lpbkinfavwp04vm.bmwgroup.net closed.
+Connection to lpagpam008.bmwgroup.net. closed.
+===================================================================================================================
+
+ Your Session Information was:
+  * session_started=Tue Nov 15 15:46:00 CET 2022
+  * real_user=qxz10kv
+  * target_user=qplinux
+  * target_server=lpbkinfavwp04vm.bmwgroup.net
+  * psmp_server=lpagpam008.bmwgroup.net. (10.30.17.18)
+  * session_ended=Tue Nov 15 16:04:43 CET 2022
+  * session_duration=0d:0h:18m:43s (1123 sec)
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lpbkinfavwp04vm
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i qqabic0
+uabicpt:x:94404:qqabic0
+qqabic0:x:275898:qqbktp0,qqanagi
+qqanagi:x:87442:qqodsfr,qqabic0
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i gusshkey
+gusshkey:x:98271:qqcicb6,qqbankeu,qqirbp1,qprtam01,qqsfatp,qqsfchp,qqdwhsw,qqodsat,qqodsch,qqdwheu,qqbktp0,qqsfeup,qqsfesp,qqodsnl,qqodsfr,qqecapr,qqsffrp,qqsfnlp
+lpbkinfavwp04vm:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+=====================================================================================================
+
+
+This session is being recorded
+Last login: Tue Nov 15 15:41:59 2022 from 10.30.17.36
+++ Login directly via PAM System
+++ This session is for administrative purposes only and is completely recorded
+++ Auto-logout after 240 minutes of inactivity is ENABLED
+[INSTSERV][lpinstiaas02] ~ $ export SUDO_USER=qxz10kv
+[INSTSERV][lpinstiaas02] ~ $ readonly SUDO_USER
+++ User home directory set up as: /global/instserv/home/qxz10kv
+++ Note: You have an own HOME directory, but it is accessible by other admins.
+++       Do not use it to store credentials or secret things!
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ /bin/logger PAM: User $SUDO_USER logged in as $USER on $SSH_TTY
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ getenet passwd qqabic0
+-bash: getenet: command not found
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ getent passwd qqabic0
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ uuv -gu qqabic0
+una=qqabic0 usr=407469(Nikitin Elisabeth,FG-341,+49-89-382-51989,) uid=275898
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+

@@ -1,0 +1,500 @@
+(1) Description of the Task to be done
+
+Perform update of Linux server with current Master Release
+
+ATTENTION: This task must be ordered / approved by the operations responsible. 
+ATTENTION: Please ensure that your operating system is not older the SLES11SP4 if SecFS is installed. For more details please see: https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL 
+
+lead time :
+---- During office hours: 1 working day
+---- Outside office hours: 3 working days
+Run time :
+VMs:    2 hours/ VM
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+__________
+(2) Required Information
+
+Servername:lp34ipsib1w50vm.w34
+
+
+
+downtime -a -h 2 -c 'TAS000006785310 qxz10kv-MasterReleaseVM' lp34ipsib1w50vm.w34
+
+
+
+rudderswinst -t TAS000006785310 update lp34ipsib1w50vm.w34
+
+===========================================================================================================
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # uptime
+ 08:36am  up 128 days 13:02,  3 users,  load average: 0.84, 1.16, 0.77
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # rpm -qa | grep -i vee
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # secfsd -status guard
+bash: secfsd: command not found
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # df -hT
+Filesystem                      Type      Size  Used Avail Use% Mounted on
+devtmpfs                        devtmpfs  7.7G  8.0K  7.7G   1% /dev
+tmpfs                           tmpfs     7.7G     0  7.7G   0% /dev/shm
+tmpfs                           tmpfs     7.7G  884K  7.7G   1% /run
+tmpfs                           tmpfs     7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/xvda2                      btrfs     107G   30G   66G  31% /
+/dev/xvda2                      btrfs     107G   30G   66G  31% /opt
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/log
+/dev/xvda2                      btrfs     107G   30G   66G  31% /global/local
+/dev/xvda2                      btrfs     107G   30G   66G  31% /.snapshots
+/dev/xvda1                      ext3      976M   69M  856M   8% /boot
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/cache
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/spool
+/dev/xvda2                      btrfs     107G   30G   66G  31% /home
+/dev/xvda2                      btrfs     107G   30G   66G  31% /tmp
+/dev/xvda2                      btrfs     107G   30G   66G  31% /lfs
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/opt
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/tmp
+/dev/mapper/dgapipsib179-lvapps xfs       225G   41G  185G  18% /global/apipsib179/apps/apipsib179
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/66159
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/48952
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/44035
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/846785
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/0
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # xenstore-read /tool/hostname
+lp34xen32
+lp34ipsib1w50vm:~ # uptime;cat /etc/issue;df -hT;cat /etc/issue;cat /etc/fstab;lsblk;pvs;vgs;lvs;pvdisplay;vgdisplay;lvdisplay;ifconfig -a;netstat -nrv;route -n;cd /etc/sysconfig/network/;ls;cat ifcfg-eth0;cat ifcfg-eth1;cat ifroute-eth1;cat routes;cd;df -h | grep -i sec;cat /etc/rudder_vars.lst;rpm -qa | grep -i vee;ls -l /etc/BMW-release; cat /etc/BMW-release | grep -i current
+ 09:10am  up 128 days 13:37,  4 users,  load average: 0.05, 0.12, 0.21
+
+Welcome to SUSE Linux Enterprise Server 12 SP5  (x86_64) - Kernel \r (\l).
+
+
+Filesystem                      Type      Size  Used Avail Use% Mounted on
+devtmpfs                        devtmpfs  7.7G  8.0K  7.7G   1% /dev
+tmpfs                           tmpfs     7.7G     0  7.7G   0% /dev/shm
+tmpfs                           tmpfs     7.7G  936K  7.7G   1% /run
+tmpfs                           tmpfs     7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/xvda2                      btrfs     107G   30G   66G  31% /
+/dev/xvda2                      btrfs     107G   30G   66G  31% /opt
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/log
+/dev/xvda2                      btrfs     107G   30G   66G  31% /global/local
+/dev/xvda2                      btrfs     107G   30G   66G  31% /.snapshots
+/dev/xvda1                      ext3      976M   69M  856M   8% /boot
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/cache
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/spool
+/dev/xvda2                      btrfs     107G   30G   66G  31% /home
+/dev/xvda2                      btrfs     107G   30G   66G  31% /tmp
+/dev/xvda2                      btrfs     107G   30G   66G  31% /lfs
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/opt
+/dev/xvda2                      btrfs     107G   30G   66G  31% /var/tmp
+/dev/mapper/dgapipsib179-lvapps xfs       225G   40G  185G  18% /global/apipsib179/apps/apipsib179
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/66159
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/48952
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/44035
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/846785
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/602272
+tmpfs                           tmpfs     1.6G     0  1.6G   0% /run/user/0
+
+Welcome to SUSE Linux Enterprise Server 12 SP5  (x86_64) - Kernel \r (\l).
+
+
+###
+### OS mounts
+###
+LABEL=ROOT_91609                    /                             btrfs     defaults                      0 0
+LABEL=BOOT_91609                    /boot                         ext3      defaults                      1 2
+LABEL=ROOT_91609                    /lfs                          btrfs     subvol=@/lfs                  0 0
+LABEL=ROOT_91609                    /home                         btrfs     subvol=@/home                 0 0
+LABEL=ROOT_91609                    /opt                          btrfs     subvol=@/opt                  0 0
+LABEL=ROOT_91609                    /tmp                          btrfs     subvol=@/tmp                  0 0
+LABEL=ROOT_91609                    /var/log                      btrfs     subvol=@/var/log              0 0
+LABEL=ROOT_91609                    /var/opt                      btrfs     subvol=@/var/opt              0 0
+LABEL=ROOT_91609                    /var/spool                    btrfs     subvol=@/var/spool            0 0
+LABEL=ROOT_91609                    /var/cache                    btrfs     subvol=@/var/cache            0 0
+LABEL=ROOT_91609                    /global/local                 btrfs     subvol=@/global/local         0 0
+LABEL=ROOT_91609                    /var/tmp                      btrfs     subvol=@/var/tmp              0 0
+LABEL=ROOT_91609                    /.snapshots                   btrfs     subvol=@/.snapshots           0 0
+LABEL=SWAP_91609                    swap                          swap      pri=42                        0 0
+
+###
+### Application mounts
+### Mandatory mount options for SAN/NAS: nofail,x-systemd.device-timeout=20
+###
+
+/dev/dgapipsib179/lvapps /global/apipsib179/apps/apipsib179 xfs defaults,nofail,x-systemd.device-timeout=20 0 0
+NAME                  MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+xvda                  202:0    0 97.5G  0 disk
+├─xvda1               202:1    0    1G  0 part /boot
+├─xvda2               202:2    0 92.5G  0 part /
+└─xvda3               202:3    0    4G  0 part [SWAP]
+xvdb                  202:16   0  225G  0 disk
+└─dgapipsib179-lvapps 254:0    0  225G  0 lvm  /global/apipsib179/apps/apipsib179
+xvdc                  202:32   0 14.1G  0 disk
+  PV         VG           Fmt  Attr PSize   PFree
+  /dev/xvdb  dgapipsib179 lvm2 a--  224.96g    0
+  VG           #PV #LV #SN Attr   VSize   VFree
+  dgapipsib179   1   1   0 wz--n- 224.96g    0
+  LV     VG           Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lvapps dgapipsib179 -wi-ao---- 224.96g
+  --- Physical volume ---
+  PV Name               /dev/xvdb
+  VG Name               dgapipsib179
+  PV Size               224.96 GiB / not usable 0
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              57590
+  Free PE               0
+  Allocated PE          57590
+  PV UUID               sZBz8V-jxRd-K65q-Vvuh-XYAt-O7z8-swycdc
+
+  --- Volume group ---
+  VG Name               dgapipsib179
+  System ID
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               224.96 GiB
+  PE Size               4.00 MiB
+  Total PE              57590
+  Alloc PE / Size       57590 / 224.96 GiB
+  Free  PE / Size       0 / 0
+  VG UUID               91iZ1d-fIHO-rIwZ-R6WM-H0Yw-d12T-3dLwJQ
+
+  --- Logical volume ---
+  LV Path                /dev/dgapipsib179/lvapps
+  LV Name                lvapps
+  VG Name                dgapipsib179
+  LV UUID                w5zk5d-yAw5-C6lI-Omsn-NmHT-3lon-uagP0b
+  LV Write Access        read/write
+  LV Creation host, time lp34ipsib1w50vm, 2021-01-19 16:27:38 +0000
+  LV Status              available
+  # open                 1
+  LV Size                224.96 GiB
+  Current LE             57590
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     1024
+  Block device           254:0
+
+eth0      Link encap:Ethernet  HWaddr 4A:69:AF:87:ED:58
+          inet addr:172.24.150.27  Bcast:172.24.150.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e82:9003:51d::1:22/64 Scope:Global
+          inet6 addr: fe80::4869:afff:fe87:ed58/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:23136965238 errors:0 dropped:11 overruns:0 frame:0
+          TX packets:22246275104 errors:0 dropped:44 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3160343053441 (3013938.0 Mb)  TX bytes:5982733625435 (5705579.4 Mb)
+
+eth1      Link encap:Ethernet  HWaddr 1A:1D:91:9A:5A:52
+          inet addr:172.24.151.53  Bcast:172.24.151.255  Mask:255.255.255.0
+          inet6 addr: fe80::181d:91ff:fe9a:5a52/64 Scope:Link
+          inet6 addr: 2a03:1e82:900b:50b::1:1e/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:52920765 errors:0 dropped:10 overruns:0 frame:0
+          TX packets:69288 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3722924524 (3550.4 Mb)  TX bytes:16322018 (15.5 Mb)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:130748847 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:130748847 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:10793915832 (10293.8 Mb)  TX bytes:10793915832 (10293.8 Mb)
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         172.24.150.1    0.0.0.0         UG        0 0          0 eth0
+172.24.150.0    0.0.0.0         255.255.255.0   U         0 0          0 eth0
+172.24.151.0    0.0.0.0         255.255.255.0   U         0 0          0 eth1
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         172.24.150.1    0.0.0.0         UG    0      0        0 eth0
+172.24.150.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
+172.24.151.0    0.0.0.0         255.255.255.0   U     0      0        0 eth1
+config  dhcp  if-down.d  if-up.d  ifcfg-eth0  ifcfg-eth1  ifcfg-lo  ifcfg.template  ifroute-eth1  providers  routes  routes.2021-01-19_16-02-04.5258  scripts
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="172.24.150.27"
+NETMASK="255.255.255.0"
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e82:9003:51d:0:0:1:22"
+PREFIXLEN_0="64"
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="172.24.151.53"
+NETMASK="255.255.255.0"
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e82:900b:50b:0:0:1:1e"
+PREFIXLEN_0="64"
+172.24.151.0/24 172.24.151.1 - eth1
+2a03:1e82:900b:50b:0:0:0:0/64 2a03:1e82:900b:50b:0:0:0:1 - eth1
+default 172.24.150.1 - eth0
+default 2a03:1e82:9003:51d:0:0:0:1 - eth0
+# All backup routes are removed by backupconf script, as this is put under control of RUDDER
+# In order to remove backup routes automatically again, delete this comment line out and re-run backupconf script with configure parameter.
+#########################
+## Whole File Generated by Rudder Rule APP-CMS-Variables
+## *** DO NOT EDIT ***
+## Directive: File CMS Rudder Variables
+## CMDVAR: sys.policy_hub, var_REPO, var_REPO_IP, var_REPO_FQDN, var_RUDDER_MR_VERSION, var_RUDDER_MR_DEFAULT
+
+
+RELAY="172.24.150.42"
+
+REPO="cm-repo-emea"
+REPO_IP="10.30.73.43"
+REPO_FQDN="cm-repo-emea.bmwgroup.net"
+RUDDER_MR_VERSION="2022Q02.00"
+RUDDER_MR_DEFAULT="2022Q04.00"
+-rw-r--r-- 1 root root 392 May 21  2022 /etc/BMW-release
+CURRENT_MR_VERSION="2022Q02.00"
+lp34ipsib1w50vm:~ #
+
+==============================
+lp34xen31:~ # vmc list lp34ipsib1w50vm
+08:50:59 Gathering VM and Storage data, please wait                                                                                                                                                                                    OK
+
+                                     lp34xen31                   lp34xen32
+                                --------------              --------------
+lp34ipsib1w50vm                        -------    running( 33)(  4/16384M)
+lp34xen31:~ #
+lp34xen31:~ #
+lp34xen31:~ #
+lp34xen31:~ # vmc info lp34ipsib1w50vm
+Name                      : lp34ipsib1w50vm
+Comment                   : N/A
+Domain ID                 : 33
+Status                    : Running on lp34xen32
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+DM/SAN+MD
+Image                     : sles12sp4
+Last Backup (UTC)         : 2022-12-27 00:34:54
+
+Cur. VCPUs                : 4
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 16384
+Max. Mem [MB]             : 32768
+
+XML - Cur. VCPUs          : 4
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 16384
+XML - Max. Mem [MB]       : 32768
+
+Network Device 1          : 4a:69:af:87:ed:58 (br:br_172024150000 ipname:lp34ipsib1w50vm)
+Network Device 2          : 1a:1d:91:9a:5a:52 (br:br_172024151000 ipname:lp34ipsib1w50vmb)
+
+Block Device xvda         : /dev/md/lp34ipsib1w50vm
+Block Device xvdb         : /dev/md/lp34ipsib1w50vm_1
+Block Device xvdc         : /dev/md/lp34ipsib1w50vm_2
+lp34xen31:~ #
+lp34xen31:~ #
+lp34xen31:~ #
+lp34xen31:~ # vmc storage lp34ipsib1w50vm
+09:12:30 Gathering VM and Storage data, please wait                                                                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName                VMDev                         VMName
+
+360060e8007292a000030292a0000026f 10538 026f   112G  dm-146  SAN:lp34ipsib1w50vm   md/lp34ipsib1w50vm   lp34ipsib1w50vm
+360060e8007292a000030292a000002e4 10538 02e4   225G  dm-156  SAN:lp34ipsib1w50vm_1 md/lp34ipsib1w50vm_1 lp34ipsib1w50vm
+360060e8007294500003029450000026f 10565 026f   112G  dm-67   SAN:lp34ipsib1w50vm   md/lp34ipsib1w50vm   lp34ipsib1w50vm
+360060e800729450000302945000002e4 10565 02e4   225G  dm-77   SAN:lp34ipsib1w50vm_1 md/lp34ipsib1w50vm_1 lp34ipsib1w50vm
+lp34xen31:~ #
+lp34xen31:~ #
+lp34xen31:~ # san_shortinfo | grep -i lp34ipsib1w50vm
+dm-103  | sddg  00:34   7F   10538    14405 | sdaf  00:34   8F   10538    14405 | SAN:lp34ipsib1w50vm_2 -
+dm-146  | sdil  02:6F   7F   10538   115245 | sdcj  02:6F   8F   10538   115245 | SAN:lp34ipsib1w50vm   -
+dm-156  | sdim  02:E4   7F   10538   230490 | sdck  02:E4   8F   10538   230490 | SAN:lp34ipsib1w50vm_1 -
+dm-24   | sdcs  00:34   7F   10565    14405 | sdr   00:34   8F   10565    14405 | SAN:lp34ipsib1w50vm_2 -
+dm-67   | sdfk  02:6F   7F   10565   115245 | sdi   02:6F   8F   10565   115245 | SAN:lp34ipsib1w50vm   -
+dm-77   | sdfl  02:E4   7F   10565   230490 | sdj   02:E4   8F   10565   230490 | SAN:lp34ipsib1w50vm_1 -
+lp34xen31:~ # vmc pvinfo lp34ipsib1w50vm
+/dev/dm-146            00 00 00 SAN:lp34ipsib1w50vm      02:6f NA 00010538
+/dev/dm-67             00 00 00 SAN:lp34ipsib1w50vm      02:6f NA 00010565
+/dev/dm-156            00 00 00 SAN:lp34ipsib1w50vm_1    02:e4 NA 00010538
+/dev/dm-77             00 00 00 SAN:lp34ipsib1w50vm_1    02:e4 NA 00010565
+lp34xen31:~ #
+
+===============================
+* Please select at least one of these Checkboxes: 
+
+[ X ] Server can be booted without consultation
+[  ] another Task Group must be informed before reboot
+[  ] a Contact Person must be informed before reboot
+
+* Mandatory if your system is using SEC-FS / Vormetric CoreGuard:
+
+[  ] Server has SEC-FS / an encrypted filesystem
+---- Accompanying task to Vormetric during the update is mandatory!
+---- Additional task to Vormetric for changing environment might be necessary!
+----
+---- Please contact <vormetric@list.bmw.com> for any queries or have a look at the website:
+---- https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL
+--- if needed please kill the coreguard process from applications user (contact assignee from vormetric task regarding to PID and user ID) 
+
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+
+__________
+(4) Lead and execution time
+
+Check header
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rudderswinst -t TAS000006785310 update lp34ipsib1w50vm.w34
+info   prep: mr-versions taken from command line: 2022Q02.00 2022Q04.00
+info   prep: found BMW repo 'BMW-Custom'
+info   prep: found BMW repo 'BMW-Internal'
+info   prep: found OS repo 'BMW-SLES12-SP4'
+error  prep: multiple BMW OS repos found in /etc/zypp/repos.d
+info   prep: found OS repo 'BMW-SLES12-SP5'
+info   prep: 7 repos skipped. Use option --repo= to include on of 'BMW-Patch-CVE-2021-3156' 'BMW-Patch-CVE' 'BMW-Software-IPS_PCS' 'BMW-Software-Splunk' 'BMW-Software-UserSyncAgent' 'PBIS' 'Veritas-netbackup-client'
+info   prep: end of run_zypper_mr_up.sh, run status was error
+rudderswinst.pl: Master Release update failed on lp34ipsib1w50vm.w34, result was 512
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lp34ipsib1w50vm.w34
+lp34ipsib1w50vm:~ # zypper lr
+Repository priorities are without effect. All enabled repositories share the same priority.
+
+#  | Alias                      | Name                       | Enabled | GPG Check | Refresh
+---+----------------------------+----------------------------+---------+-----------+--------
+ 1 | BMW-Custom                 | BMW-Custom                 | Yes     | (r ) Yes  | Yes
+ 2 | BMW-Internal               | BMW-Internal               | Yes     | (r ) Yes  | Yes
+ 3 | BMW-Patch-CVE              | BMW-Patch-CVE              | Yes     | (r ) Yes  | Yes
+ 4 | BMW-Patch-CVE-2021-3156    | BMW-Patch-CVE-2021-3156    | Yes     | (r ) Yes  | Yes
+ 5 | BMW-SLES12-SP4             | BMW-SLES12-SP4             | Yes     | (r ) Yes  | No
+ 6 | BMW-SLES12-SP5             | BMW-SLES12-SP5             | Yes     | (r ) Yes  | No
+ 7 | BMW-Software-IPS_PCS       | BMW-Software-IPS_PCS       | Yes     | (r ) Yes  | No
+ 8 | BMW-Software-Splunk        | BMW-Software-Splunk        | Yes     | (r ) Yes  | Yes
+ 9 | BMW-Software-UserSyncAgent | BMW-Software-UserSyncAgent | Yes     | (r ) Yes  | Yes
+10 | PBIS                       | PBIS                       | Yes     | (r ) Yes  | Yes
+11 | Veritas-netbackup-client   | Veritas-netbackup-client   | Yes     | (r ) Yes  | Yes
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 5
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+lp34ipsib1w50vm:~ # cd /etc/zypp/repos.d
+lp34ipsib1w50vm:/etc/zypp/repos.d # ls -lrta
+total 44
+-rw-r--r-- 1 root root 233 Jan 19  2021 rudder-BMW-Software-UserSyncAgent.repo
+-rw-r--r-- 1 root root 224 Jan 19  2021 rudder-Veritas-netbackup-client.repo
+-rw-r--r-- 1 root root 270 Feb  8  2021 rudder-BMW-Patch-CVE-2021-3156.repo
+-rw-r--r-- 1 root root 240 Apr  5  2022 rudder-BMW-Patch-CVE.repo
+drwxr-xr-x 1 root root 206 May 21  2022 ..
+-rw-r--r-- 1 root root 208 May 21  2022 rudder-BMW-SLES12-SP4.repo
+-rw-r--r-- 1 root root 208 May 21  2022 rudder-BMW-SLES12-SP5.repo
+-rw-r--r-- 1 root root 236 Oct  6 15:16 rudder-BMW-Software-Splunk.repo
+-rw-r--r-- 1 root root 238 Oct  6 15:16 rudder-BMW-Software-IPS_PCS.repo
+-rw-r--r-- 1 root root 215 Oct  6 15:16 rudder-BMW-Internal.repo
+-rw-r--r-- 1 root root 209 Oct  6 15:16 rudder-BMW-Custom.repo
+-rw-r--r-- 1 root root 192 Nov  8 15:32 rudder-PBIS.repo
+drwxr-xr-x 1 root root 622 Nov  8 15:32 .
+lp34ipsib1w50vm:/etc/zypp/repos.d # ls -lrth
+total 44K
+-rw-r--r-- 1 root root 233 Jan 19  2021 rudder-BMW-Software-UserSyncAgent.repo
+-rw-r--r-- 1 root root 224 Jan 19  2021 rudder-Veritas-netbackup-client.repo
+-rw-r--r-- 1 root root 270 Feb  8  2021 rudder-BMW-Patch-CVE-2021-3156.repo
+-rw-r--r-- 1 root root 240 Apr  5  2022 rudder-BMW-Patch-CVE.repo
+-rw-r--r-- 1 root root 208 May 21  2022 rudder-BMW-SLES12-SP4.repo
+-rw-r--r-- 1 root root 208 May 21  2022 rudder-BMW-SLES12-SP5.repo
+-rw-r--r-- 1 root root 236 Oct  6 15:16 rudder-BMW-Software-Splunk.repo
+-rw-r--r-- 1 root root 238 Oct  6 15:16 rudder-BMW-Software-IPS_PCS.repo
+-rw-r--r-- 1 root root 215 Oct  6 15:16 rudder-BMW-Internal.repo
+-rw-r--r-- 1 root root 209 Oct  6 15:16 rudder-BMW-Custom.repo
+-rw-r--r-- 1 root root 192 Nov  8 15:32 rudder-PBIS.repo
+lp34ipsib1w50vm:/etc/zypp/repos.d # mv rudder-BMW-SLES12-SP4.repo /var/tmp/
+lp34ipsib1w50vm:/etc/zypp/repos.d #
+lp34ipsib1w50vm:/etc/zypp/repos.d #
+lp34ipsib1w50vm:/etc/zypp/repos.d # zypper ref
+Repository 'BMW-Custom' is up to date.
+Repository 'BMW-Internal' is up to date.
+Repository 'BMW-Patch-CVE' is up to date.
+Repository 'BMW-Patch-CVE-2021-3156' is up to date.
+Repository 'BMW-SLES12-SP5' is up to date.
+Repository 'BMW-Software-IPS_PCS' is up to date.
+Repository 'BMW-Software-Splunk' is up to date.
+Repository 'BMW-Software-UserSyncAgent' is up to date.
+Repository 'PBIS' is up to date.
+Repository 'Veritas-netbackup-client' is up to date.
+All repositories have been refreshed.
+lp34ipsib1w50vm:/etc/zypp/repos.d # zypper lr
+Repository priorities are without effect. All enabled repositories share the same priority.
+
+#  | Alias                      | Name                       | Enabled | GPG Check | Refresh
+---+----------------------------+----------------------------+---------+-----------+--------
+ 1 | BMW-Custom                 | BMW-Custom                 | Yes     | (r ) Yes  | Yes
+ 2 | BMW-Internal               | BMW-Internal               | Yes     | (r ) Yes  | Yes
+ 3 | BMW-Patch-CVE              | BMW-Patch-CVE              | Yes     | (r ) Yes  | Yes
+ 4 | BMW-Patch-CVE-2021-3156    | BMW-Patch-CVE-2021-3156    | Yes     | (r ) Yes  | Yes
+ 5 | BMW-SLES12-SP5             | BMW-SLES12-SP5             | Yes     | (r ) Yes  | No
+ 6 | BMW-Software-IPS_PCS       | BMW-Software-IPS_PCS       | Yes     | (r ) Yes  | No
+ 7 | BMW-Software-Splunk        | BMW-Software-Splunk        | Yes     | (r ) Yes  | Yes
+ 8 | BMW-Software-UserSyncAgent | BMW-Software-UserSyncAgent | Yes     | (r ) Yes  | Yes
+ 9 | PBIS                       | PBIS                       | Yes     | (r ) Yes  | Yes
+10 | Veritas-netbackup-client   | Veritas-netbackup-client   | Yes     | (r ) Yes  | Yes
+lp34ipsib1w50vm:/etc/zypp/repos.d # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rudderswinst -t TAS000006785310 update lp34ipsib1w50vm.w34
+info   prep: mr-versions taken from command line: 2022Q04.00 2022Q04.00
+info   prep: found BMW repo 'BMW-Custom'
+info   prep: found BMW repo 'BMW-Internal'
+info   prep: found OS repo 'BMW-SLES12-SP5'
+info   prep: 7 repos skipped. Use option --repo= to include on of 'BMW-Patch-CVE-2021-3156' 'BMW-Patch-CVE' 'BMW-Software-IPS_PCS' 'BMW-Software-Splunk' 'BMW-Software-UserSyncAgent' 'PBIS' 'Veritas-netbackup-client'
+info   run : Rudder agent state: Agent is enabled
+info   run : trying to update. found 442 downloaded rpm(s) in cache.
+info   run : update was installed, output at /var/log/run_zypper_mr_up.sh.log
+info   run : reboot required
+info   run : no more upgrades found.
+info   post: Rudder agent enable: ok: Rudder agent has been enabled but not started, wait for next cron run.
+info   post: Please don't forget to reboot the system
+info   post: end of run_zypper_mr_up.sh, run status was good
+Info[1]: Skipping on Xen VM
+Info[1]: Skipping on Xen VM
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lp34ipsib1w50vm
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ #
+lp34ipsib1w50vm:~ # cat /etc/BMW-release
+IMAGE_KIWI_NAME="BMW-SLES12SP4"
+IMAGE_KIWI_PROFILE="VMC"

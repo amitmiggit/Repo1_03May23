@@ -1,0 +1,41 @@
+Order Positions:
+Order Position ID	Storage Class	LUN Size	LUN Amount	Total Size [GB]	Consumer	Usage	Special Layout
+000407720	B1_GS3	225 GB	1	225.088	APP-103027	DB-Data	No
+000407721	B1_GS3	112 GB	1	112.544	APP-103027	DB-Backup	No
+1 		
+Assigned LUNs
+Order Position ID	Array Name / Alias	Array Serial	LDEV	LUN Size [GB]	Assign Date	Remove Date	Secured Servers
+000407720	VSM_40198/SGMA313BG1	40198	00:01:01	225.088	20.09.2022	 	ltdbstde111,ltdbstde112
+000407720	VSM_40206/SGMA313BG2	40206	00:01:01	225.088	20.09.2022	 	ltdbstde111,ltdbstde112
+000407721	VSM_40198/SGMA313BG1	40198	00:01:02	112.544	20.09.2022	 	ltdbstde111,ltdbstde112
+000407721	VSM_40206/SGMA313BG2	40206	00:01:02	112.544	20.09.2022	 	ltdbstde111,ltdbstde112
+
+
+san_shortinfo | egrep -i '01:01|01:02' | sort -k3
+
+ltdbstde111:~ # san_shortinfo | egrep -i '01:01|01:02' | sort -k3
+hitachi_vsp50000_0101 | sdgn  01:01   5A   40198   230490 | sdgf  01:01   6A   40198   230490 |
+hitachi_vsp50000_0102 | sdgo  01:02   5A   40198   115245 | sdgg  01:02   6A   40198   115245 |
+hitachi_vsp50001_0101 | sdgr  01:01   5A   40206   230490 | sdgj  01:01   6A   40206   230490 |
+hitachi_vsp50001_0102 | sdgs  01:02   5A   40206   115245 | sdgk  01:02   6A   40206   115245 |
+ltdbstde111:~ #
+
+============================================================================================================================================
+
+
+
+
+
+  342  2022-09-21 14:41:02 ##############--- 20220921.131020 ---##############
+  343  2022-09-21 13:10:33 hastatus -sum |grep -i pkgmmip
+  344  2022-09-21 13:10:45 hagrp -online pkgmmip -sys lpdbs108
+  345  2022-09-21 13:11:01 hastatus -sum |grep -i pkgmmip
+  346  2022-09-21 13:11:12 df -hTP |grep -i pkgmmip
+  347  2022-09-21 13:11:34 hagrp -switch pkgmmip -to lpdbs107
+  348  2022-09-21 13:11:55 hastatus -sum |grep -i pkgmmip
+  349  2022-09-21 13:12:04 hastatus -sum |grep -i pkgmmip
+  350  2022-09-21 13:12:15 df -hTP |grep -i pkgmmip
+  351  2022-09-21 13:12:27 hagrp -switch pkgmmip -to lpdbs108
+  352  2022-09-21 13:14:27 hastatus -sum |grep -i pkgmmip
+  353  2022-09-21 14:41:02 ##############--- 20220921.144102 ---##############
+  354  2022-09-21 14:41:07 history

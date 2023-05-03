@@ -1,0 +1,36 @@
+ df -hT
+ df -h /
+ df -hi /
+ btrfs fi usage -b /| grep unallocated
+ btrfs fi df /
+ /usr/local/sbin/btrfs-balance --check 
+ 
+ 
+lp05ksil3vm:~ # df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda2       93G   17G   75G  19% /
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #
+lp05ksil3vm:~ # df -hi /
+Filesystem     Inodes IUsed IFree IUse% Mounted on
+/dev/xvda2          0     0     0     - /
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #
+lp05ksil3vm:~ # btrfs fi usage -b /| grep unallocated
+    Device unallocated:                    1048576
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #
+lp05ksil3vm:~ # btrfs fi df /
+Data, single: total=89.93GiB, used=15.72GiB
+System, DUP: total=32.00MiB, used=16.00KiB
+Metadata, DUP: total=1.24GiB, used=347.14MiB
+GlobalReserve, single: total=512.00MiB, used=0.00B
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #
+lp05ksil3vm:~ # /usr/local/sbin/btrfs-balance --check
+>> [2022-07-17 10:01:11 CEST] [INFO]   Starting logging to logfile /var/log/btrfs-balance/btrfs-balance_2022-07-17.log ...
+>> [2022-07-17 10:01:11 CEST] [INFO]   Called script: /usr/local/sbin/btrfs-balance --check
+>> [2022-07-17 10:01:11 CEST] [INFO]   NOK: Cleanup necessary - BTRFS usage: 89.93G, Real usage: 15.72G, Delta: 74.21G >= 2G (Threshold)
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #
+lp05ksil3vm:~ #

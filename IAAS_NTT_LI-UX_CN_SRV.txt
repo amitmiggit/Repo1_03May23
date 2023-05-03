@@ -1,0 +1,13 @@
+Server Name 	Install Server 	Contract 
+li19sfintra12004vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19sfapp12003vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+lt19dcmservicedev01vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+lt19dkqcsit02vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19mpuat03vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19sfapp12004vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19sfintra12003vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+lt19dcmcicdvm01.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19mpuat02vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+lt19dcmmongodev01.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19kwombci2.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV
+li19mpuat01vm.bmwgroup.net	              lpinstiaassfcn19	IAAS_NTT_LI-UX_CN_SRV

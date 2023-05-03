@@ -1,0 +1,44 @@
+lpdbaibir1.bmwgroup.net
+
+lpdbaibir2.bmwgroup.net
+
+
+
+downtime -a -h 6 -c TAS000006393065 qxz10kv-MRVCSCluster' lpdbaibir1.bmwgroup.net
+
+
+downtime -a -h 6 -c 'TAS000006393065 qxz10kv-MRVCSCluster' lpdbaibir2.bmwgroup.net
+
+
+
+
+rudderswinst -t TAS000006393065 update lpdbaibir1.bmwgroup.net
+
+rudderswinst -t TAS000006393065 update lpdbaibir2.bmwgroup.net
+
+
+
+===============================================================================
+
+
+
+
+downtime -a -h 9 -c 'TAS000006377958 qxz10kv-ClusterMigrate' li02d07.w2
+
+
+downtime -a -h 9 -c 'TAS000006377958 qxz10kv-ClusterMigrate' li02d08.w2
+
+
+
+downtime -a -h 4 -c 'TAS000006387672 qxz10kv-VMOfflineMigration' lpbkappnf02vm.bmwgroup.net
+
+downtime -a -h 4 -c 'TAS000006387672 qxz10kv-VMOfflineMigration' lpbkappnf06vm.bmwgroup.net
+
+downtime -a -h 4 -c 'TAS000006387672 qxz10kv-VMOfflineMigration' lpbkappnf08vm.bmwgroup.net
+
+
+
+
+
+
+

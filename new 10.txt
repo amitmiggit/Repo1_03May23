@@ -1,0 +1,32 @@
+lpxenpwa016:~ # vmc -p -d "360060e80072aad0000302aad00000147 360060e80072ab20000302ab200000147" migratemd lpsbapp419vm /dev/md/lpsbapp419vm
+13:19:05 Checking Libvirt access on lpxenpwa015                                                                                                        OK
+13:19:05 Checking Libvirt access on lpxenpwa016                                                                                                        OK
+13:19:05 Locking VM lpsbapp419vm: Automatic Lock - migratemd                                                                                           OK
+13:19:08 Preparing pvinfo output for visibility removal...
+--------------------------------------------------------------------------
+/dev/dm-41             00 00 00 SAN:lpsbapp419vm         0c:f2 NA 00010650
+/dev/dm-44             00 00 00 SAN:lpsbapp419vm         0c:f2 NA 00010652
+--------------------------------------------------------------------------
+13:19:08 Adding /dev/disk/by-id/dm-uuid-mpath-360060e80072aad0000302aad00000147 /dev/disk/by-id/dm-uuid-mpath-360060e80072ab20000302ab200000147 to
+ /dev/md/lpsbapp419vm                                                                                                                                  OK
+13:19:09 Waiting for /dev/md/lpsbapp419vm to finish synchronizing                                                                                    100%
+13:24:08 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007299a000030299a00000cf2 from /dev/md/lpsbapp419vm                                            OK
+13:24:08 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007299c000030299c00000cf2 from /dev/md/lpsbapp419vm                                            OK
+13:24:09 Setting writemostly flag for dm-49(10930) in /dev/md/lpsbapp419vm on lpxenpwa016                                                              OK
+13:24:09 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007299a000030299a00000cf2 from lpxenpwa015                                                     FAILED
+13:24:09 Unable to find /dev/disk/by-id/dm-uuid-mpath-360060e8007299a000030299a00000cf2 on lpxenpwa015
+13:24:09 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007299c000030299c00000cf2 from lpxenpwa015                                                     FAILED
+13:24:09 Unable to find /dev/disk/by-id/dm-uuid-mpath-360060e8007299c000030299c00000cf2 on lpxenpwa015
+13:24:09 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007299a000030299a00000cf2 from lpxenpwa016                                                     OK
+13:24:09 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007299c000030299c00000cf2 from lpxenpwa016                                                     OK
+13:24:09 Writing /etc/.donotrescan on lpxenpwa015                                                                                                      OK
+13:24:10 Writing /etc/.donotrescan on lpxenpwa016                                                                                                      OK
+13:24:11 Unlocking VM lpsbapp419vm                                                                                                                     OK
+You have new mail in /var/mail/root
+lpxenpwa016:~ #
+lpxenpwa016:~ #
+lpxenpwa016:~ # vmc storage | grep -i lpsbapp419vm
+360060e80072aad0000302aad00000147 10925 0147    56G  dm-45   SAN:lpsbapp419vm  md/lpsbapp419vm   lpsbapp419vm
+360060e80072ab20000302ab200000147 10930 0147    56G  dm-49   SAN:lpsbapp419vm  md/lpsbapp419vm   lpsbapp419vm
+lpxenpwa016:~ #
+lpxenpwa016:~ #

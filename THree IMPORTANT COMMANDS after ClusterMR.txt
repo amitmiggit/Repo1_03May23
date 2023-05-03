@@ -1,0 +1,720 @@
+(1) Description of the Task to be done
+
+
+A Master release Upgrade updated the system to the most recent quartely pacthes for the SLES-SP[n] release currently in use. 
+
+NOTE: A Master Realese Upgrade must *always* be done on all VERITAS Cluster Nodes in a Veritas Cluster. It is *not* possible or supported to  upgrade only one server in a cluster. Downtime is thus required for *all* ResourceGroups (aka "Packages") in the Cluster.
+
+Note: SAPHANA Scaleout Clusters are treated as Standalone Nodes and must be requested with "server-unix-std:global|06|101a-MasterRelease Update(Physical)"
+
+The Change Manager/Co-Ordinator is responsible to also open any relevant tasks to the applications teams (e.g. Oracle/SAP) so the appropriate downtime before and post upgrade checks are executed after the MR upgrade.  
+
+Perform update of Linux server with current Master Release on BOTH Nodes 
+ATTENTION: This task must be ordered / approved by the operations responsible. 
+ATTENTION: Please ensure that your operating system is using the updated version of SLES(SLES upgrade is done via IPU) if SecFS is installed. For more details please see: https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL
+https://atc.bmwgroup.net/confluence/display/IPSCOPS/Linux+Server+Lifecycle
+
+
+lead times 
+---- During office hours: 1 day
+Run time : 6 Hours
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+CLUSTER Servernames: lp06dbipsq001/002
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXX
+
+downtime -a -h 6 -c "TAS000006733128 qxz10kv" lp06dbipsq001.w6.bmwgroup.net
+
+
+
+rudderswinst -t TAS000006733128 update lp06dbipsq001.w6.bmwgroup.net
+
+
+
+
+
+downtime -a -h 6 -c "TAS000006733128 qxz10kv" lp06dbipsq002.w6.bmwgroup.net
+
+
+
+rudderswinst -t TAS000006733128 update lp06dbipsq002.w6.bmwgroup.net
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+****************************************************************
+NOTE1:-Please contact ora task assignee TAS000006733129.
+NOTE2:-Please install latest MR+VERITAS(minimum version - VRTSvcs: 7.4.2.2500).
+NOTE3:-Please perform SWITCH TEST after the update.
+*****************************************************************
+
+* Please select at least one of these Checkboxes: 
+
+[ ] Servers can be booted without consultation
+[x ] another Task Group must be informed before reboot
+[ ] a Contact Person must be informed before reboot
+
+* Mandatory if your system is using SEC-FS / Vormetric CoreGuard:
+
+[ ] Server has SEC-FS / an encrypted filesystem
+---- Accompanying task to Vormetric during the update is mandatory!
+---- Additional task to Vormetric for changing environment might be necessary!
+----
+---- Please contact <vormetric@list.bmw.com> for any queries or have a look at the website:
+---- https://atc.bmwgroup.net/confluence/display/SECFS/Upgrade+Linux+Server+for+Client+EOL
+
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+
+__________
+(4) Lead and execution time
+
+Check Header
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+==============================================
+
+  153  2022-11-27 10:22:48 vxconfigd -k
+  154  2022-11-27 10:24:32 vxdisk scandisks
+  155  2022-11-27 10:25:33 vxdctl enable
+  156  2022-11-27 10:28:04 hastatus -sum
+  157  2022-11-27 10:28:18 cat /etc/BMW-release
+  158  2022-11-27 10:53:37 rpm -qa --last | grep -i vrts*
+  159  2022-11-27 10:53:47 date
+  160  2022-11-27 11:46:10 history
+
+
+lp06dbipsq001:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp06dbipsq001        RUNNING              0
+A  lp06dbipsq002        RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp06dbipsq001        Y          N               ONLINE
+B  NIC             lp06dbipsq002        Y          N               ONLINE
+B  dbauqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbauqaw6        lp06dbipsq002        Y          N               OFFLINE
+B  dbe00w6         lp06dbipsq001        Y          N               OFFLINE
+B  dbe00w6         lp06dbipsq002        Y          N               ONLINE
+B  dbhiqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbhiqaw6        lp06dbipsq002        Y          N               OFFLINE
+B  dbkiqaw6        lp06dbipsq001        Y          N               OFFLINE
+B  dbkiqaw6        lp06dbipsq002        Y          N               ONLINE
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+
+B  NIC             lp06dbipsq001        Y          N               ONLINE
+B  NIC             lp06dbipsq002        Y          N               ONLINE
+B  dbauqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbauqaw6        lp06dbipsq002        Y          N               OFFLINE
+B  dbe00w6         lp06dbipsq001        Y          N               OFFLINE
+B  dbe00w6         lp06dbipsq002        Y          N               ONLINE
+B  dbhiqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbhiqaw6        lp06dbipsq002        Y          N               OFFLINE
+B  dbkiqaw6        lp06dbipsq001        Y          N               OFFLINE
+B  dbkiqaw6        lp06dbipsq002        Y          N               ONLINE
+
+
+hagrp -online dbauqaw6 -sys lp06dbipsq001
+
+hagrp -online dbe00w6 -sys lp06dbipsq002
+
+hagrp -online dbhiqaw6 -sys lp06dbipsq001
+
+hagrp -online dbkiqaw6 -sys lp06dbipsq002
+
+
+
+lp06dbipsq001:~ # rpm -qa --last | grep -i vrts
+VRTSfsadv-7.4.2.0000-SLES12.x86_64            Thu Feb 17 18:53:58 2022
+VRTSodm-7.4.2.2200-SLES12.x86_64              Thu Feb 17 18:53:57 2022
+VRTSaslapm-7.4.2.2200-SLES12.x86_64           Thu Feb 17 18:53:56 2022
+VRTSvxvm-7.4.2.2200-SLES12.x86_64             Thu Feb 17 18:53:52 2022
+VRTSvxfs-7.4.2.2200-SLES12.x86_64             Thu Feb 17 18:53:36 2022
+VRTSsfmh-7.4.0.200-0.x86_64                   Thu Feb 17 18:53:31 2022
+VRTSspt-7.4.2.0000-SLES12.noarch              Thu Feb 17 18:53:27 2022
+VRTSvcsag-7.4.2.2100-SLES12.x86_64            Thu Feb 17 18:53:14 2022
+VRTSvcs-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:53:05 2022
+VRTSvlic-4.01.742.300-SLES.x86_64             Thu Feb 17 18:53:00 2022
+VRTSpython-3.7.4.35-SLES12.x86_64             Thu Feb 17 18:53:00 2022
+VRTSperl-5.30.0.0-SLES12.x86_64               Thu Feb 17 18:52:56 2022
+VRTSvxfen-7.4.2.2100-SLES12.x86_64            Thu Feb 17 18:52:50 2022
+VRTSgab-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:52:49 2022
+VRTSllt-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:52:48 2022
+VRTSveki-7.4.2.0000-SLES12.x86_64             Thu Feb 17 18:52:46 2022
+VRTSnbcfg-8.2.0.0-1561464065.x86_64           Fri Dec 10 08:02:39 2021
+VRTSnbclt-8.2.0.0-1561464178.x86_64           Fri Dec 10 08:02:24 2021
+VRTSpbx-1.11.17.1-1.x86_64                    Fri Dec 10 08:02:06 2021
+VRTSnbpck-8.2.0.0-1561464233.x86_64           Fri Dec 10 08:02:05 2021
+VRTSpddea-12.0.0.0-0140.x86_64                Fri Dec 10 08:02:02 2021
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ # rpm -qa --last | grep -i vrts | wc -l
+21
+lp06dbipsq001:~ #
+
+lp06dbipsq002:~ # rpm -qa --last | grep -i vrts
+VRTSfsadv-7.4.2.0000-SLES12.x86_64            Thu Feb 17 18:54:19 2022
+VRTSodm-7.4.2.2200-SLES12.x86_64              Thu Feb 17 18:54:18 2022
+VRTSaslapm-7.4.2.2200-SLES12.x86_64           Thu Feb 17 18:54:17 2022
+VRTSvxvm-7.4.2.2200-SLES12.x86_64             Thu Feb 17 18:54:13 2022
+VRTSvxfs-7.4.2.2200-SLES12.x86_64             Thu Feb 17 18:53:57 2022
+VRTSsfmh-7.4.0.200-0.x86_64                   Thu Feb 17 18:53:52 2022
+VRTSspt-7.4.2.0000-SLES12.noarch              Thu Feb 17 18:53:48 2022
+VRTSvcsag-7.4.2.2100-SLES12.x86_64            Thu Feb 17 18:53:34 2022
+VRTSvcs-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:53:26 2022
+VRTSvlic-4.01.742.300-SLES.x86_64             Thu Feb 17 18:53:21 2022
+VRTSpython-3.7.4.35-SLES12.x86_64             Thu Feb 17 18:53:21 2022
+VRTSperl-5.30.0.0-SLES12.x86_64               Thu Feb 17 18:53:16 2022
+VRTSvxfen-7.4.2.2100-SLES12.x86_64            Thu Feb 17 18:53:11 2022
+VRTSgab-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:53:10 2022
+VRTSllt-7.4.2.2100-SLES12.x86_64              Thu Feb 17 18:53:09 2022
+VRTSveki-7.4.2.0000-SLES12.x86_64             Thu Feb 17 18:53:07 2022
+VRTSnbcfg-8.2.0.0-1561464065.x86_64           Fri Dec 10 08:02:39 2021
+VRTSnbclt-8.2.0.0-1561464178.x86_64           Fri Dec 10 08:02:24 2021
+VRTSpbx-1.11.17.1-1.x86_64                    Fri Dec 10 08:02:06 2021
+VRTSnbpck-8.2.0.0-1561464233.x86_64           Fri Dec 10 08:02:05 2021
+VRTSpddea-12.0.0.0-0140.x86_64                Fri Dec 10 08:02:02 2021
+lp06dbipsq002:~ #
+lp06dbipsq002:~ #
+lp06dbipsq002:~ # rpm -qa --last | grep -i vrts | wc -l
+21
+lp06dbipsq002:~ #
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ get_rmb_password lp06dbipsq001k
+Administrator|A288468892F7
+Administrator2|1985E9806BDE
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 lp06dbipsq001k
+.------------------------------------------------.
+|                 lp06dbipsq001k                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                 lp06dbipsq001k |
+| DOMAIN        |                w6.bmwgroup.net |
+| LOG_SERVER_ID |  lp06dbipsq001.w6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  160.51.201.80 |
+| NSI           |                          110BV |
+| SUBNETMASK    |                255.255.255.128 |
+| GATEWAY       |                   160.51.201.1 |
+| NET_ID        |                   160.51.201.0 |
+| INT_VLAN      |                             23 |
+| SUB_AREA      |                                |
+| BROADCAST     |                 160.51.201.127 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ ping lp06dbipsq001k
+PING lp06dbipsq001k (160.51.201.80) 56(84) bytes of data.
+64 bytes from lp06dbipsq001k.w6.bmwgroup.net (160.51.201.80): icmp_seq=1 ttl=56 time=6.05 ms
+64 bytes from lp06dbipsq001k.w6.bmwgroup.net (160.51.201.80): icmp_seq=2 ttl=56 time=5.60 ms
+64 bytes from lp06dbipsq001k.w6.bmwgroup.net (160.51.201.80): icmp_seq=3 ttl=56 time=5.96 ms
+64 bytes from lp06dbipsq001k.w6.bmwgroup.net (160.51.201.80): icmp_seq=4 ttl=56 time=5.81 ms
+^C
+--- lp06dbipsq001k ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 5.608/5.858/6.050/0.191 ms
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ get_rmb_password lp06dbipsq002k
+Administrator|2B842715EB55
+Administrator2|51EB080D5148
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 lp06dbipsq002k
+.------------------------------------------------.
+|                 lp06dbipsq002k                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                 lp06dbipsq002k |
+| DOMAIN        |                w6.bmwgroup.net |
+| LOG_SERVER_ID |  lp06dbipsq002.w6.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  160.51.201.81 |
+| NSI           |                                |
+| SUBNETMASK    |                255.255.255.128 |
+| GATEWAY       |                   160.51.201.1 |
+| NET_ID        |                   160.51.201.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                 160.51.201.127 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ ping lp06dbipsq002k
+PING lp06dbipsq002k (160.51.201.81) 56(84) bytes of data.
+64 bytes from lp06dbipsq002k.w6.bmwgroup.net (160.51.201.81): icmp_seq=1 ttl=56 time=4.86 ms
+64 bytes from lp06dbipsq002k.w6.bmwgroup.net (160.51.201.81): icmp_seq=2 ttl=56 time=4.81 ms
+64 bytes from lp06dbipsq002k.w6.bmwgroup.net (160.51.201.81): icmp_seq=3 ttl=56 time=5.35 ms
+^C
+--- lp06dbipsq002k ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 4.816/5.011/5.358/0.258 ms
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+
+================================================
+
+
+lp06dbipsq001:~ # hastatus -sum | grep -i online
+B  NIC             lp06dbipsq001        Y          N               ONLINE
+B  NIC             lp06dbipsq002        Y          N               ONLINE
+B  dbauqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbe00w6         lp06dbipsq002        Y          N               ONLINE
+B  dbhiqaw6        lp06dbipsq001        Y          N               ONLINE
+B  dbkiqaw6        lp06dbipsq002        Y          N               ONLINE
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+lp06dbipsq001:~ #
+
+
+====================================================
+
+Step 1 
+===================
+hagrp -offline dbauqaw6 -sys lp06dbipsq001
+
+hagrp -offline dbe00w6 -sys lp06dbipsq002
+
+hagrp -offline dbhiqaw6 -sys lp06dbipsq001
+
+hagrp -offline dbkiqaw6 -sys lp06dbipsq002
+
+
+Step 2 
+================
+haconf -makerw
+
+hagrp -freeze dbauqaw6 -persistent
+
+hagrp -freeze dbe00w6 -persistent
+
+hagrp -freeze dbhiqaw6 -persistent
+
+hagrp -freeze dbkiqaw6 -persistent
+
+haconf -dump -makero
+
+
+Step 3
+================= 
+
+hastatus -sum
+
+Step 4  
+===================
+Unmount all vxfs filesystem
+df -hTP | grep -i vxfs
+
+Step 5
+=====================
+stop syslog and rsyslog 
+
+systemctl stop syslog.socket
+systemctl stop syslog 
+systemctl stop rsyslog.socket
+systemctl stop rsyslog
+
+
+Unmount the 2 mount points
+
+lsof /lfs/oracle_audit
+lsof /lfs/oracle_audit
+umount /lfs/oracle_audit
+umount /lfs/oracle
+
+
+Check using fuser, lsof if FS are still in use. ask application to stop them. If still in use Kill them.
+example:
+#for i in `lsof /lfs/oracle/ | awk '{print $2}' | sort -u` ; do echo $i; done
+
+Cross verify then kill those processes - some time process getting started automatically that create problem while unmounting. in that case you only comment in fstab after killing all the process and make sure before reboot you uncomment it.
+
+
+#for i in `lsof /lfs/oracle/ | awk '{print $2}' sort -u` ; do kill -9 $i; done
+#for i in `lsof /lfs/oracle_audit/ | awk '{print $2}'` ; do kill -9 $i; done
+
+
+Step 6
+===================
+
+Stop All Veritas Infoscale process and modules 
+
+Stop cluster management
+
+hastop -local -force 
+
+
+Stop low level daemons
+
+vxdctl stop
+systemctl stop vcs
+systemctl stop gab
+systemctl stop vxfen
+systemctl stop llt
+systemctl stop veki
+systemctl stop vxfs.service
+systemctl stop fsdedupschd.service
+systemctl stop vxodm.service
+lltconfig -U
+
+
+Unload modules
+
+rmmod vxfen
+rmmod gab
+rmmod llt
+
+Step 7 
+
+-===================
+
+Do VCS package upgrades
+
+Step 8
+======================
+Do MR
+
+Step 9
+=========================
+
+Reboot
+
+
+Step 10
+==================
+When servers are up after MR
+
+Unfreeze the package
+
+
+haconf -makerw
+
+hagrp -unfreeze dbauqaw6 -persistent
+
+hagrp -unfreeze dbe00w6 -persistent
+
+hagrp -unfreeze dbhiqaw6 -persistent
+
+hagrp -unfreeze dbkiqaw6 -persistent
+
+haconf -dump -makero
+
+
+Step 11
+
+=====================
+
+Bring online the packages as they were running on nodes
+
+hagrp -online dbauqaw6 -sys lp06dbipsq001
+
+hagrp -offline dbe00w6 -sys lp06dbipsq002
+
+hagrp -offline dbhiqaw6 -sys lp06dbipsq001
+
+hagrp -offline dbkiqaw6 -sys lp06dbipsq002
+
+
+===============================
+
+
+Switch Test
+
+
+hagrp -switch <package_name> -to <Partner_Cluster_Node>
+
+
+===============================================
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ fullcheck lp06dbipsq001
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : 97N2XF3
+ Node name    : lp06dbipsq001
+ Local time   : Sat Nov 26 16:26:50 CET 2022
+====================================================================================================
+ FQDN: lp06dbipsq001.w6.bmwgroup.net
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 12 (x86_64)
+ OSVer: VERSION = 12
+ OSVer: PATCHLEVEL = 5
+ OSVer: # This file is deprecated and will be removed in a future service pack or release.
+ OSVer: # Please check /etc/os-release for details about this release.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2022.06.01. 07:26:08
+ Uptime: Uptime: 178d 10h 42s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M22-Q2-12.5                                                                        [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: 4.12.14-122.106-default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.22-114.15.1.x86_64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BootL: /dev/sda: GRUB (GRUB)                                                                 [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LPFC: Driver module version: 14.0.0.4
+ LPFC:  HOST     MODEL          WWN                 STATE                   SPEED    SLOT  FW Rev       FW Target   FWOK
+ LPFC:   host15  LPe35002-M2-D  0x100000109bcd3b3f  Link Down               unknown  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host16  LPe35002-M2-D  0x100000109bcd3b40  Link Up - Ready Fabric  16 Gbit  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host17  LPe35002-M2-D  0x100000109bcd3a1e  Link Down               unknown  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host18  LPe35002-M2-D  0x100000109bcd3a1f  Link Up - Ready Fabric  16 Gbit  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC: Firmware upgrade needed                                                               [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID                 DRIVER     DRVVER   SPEED      DPLX  LINK  MAC ADDRESS        IP / SUBNET       IPV6 / PREFIX
+ ETH:  eth0   0000:17:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:4c  <bond0>
+ ETH:  eth1   0000:17:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:4d  10.245.166.81/25  2a03:1e82:8805:503::1:7/64
+ ETH:  eth2   0000:18:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:4e  160.51.201.83/25  2a03:1e82:8805:504::1:15/64
+ ETH:  eth3   0000:65:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   b4:96:91:c3:92:b2  <bond0>
+ ETH:  eth4   0000:18:00.1           ixgbe      5.1.0-k  -          -     no    78:ac:44:47:e2:4f
+ ETH:  eth5   0000:65:00.0           ixgbe      5.1.0-k  -          -     no    b4:96:91:c3:92:b0
+ ETH:  eth6   usb-0000:00:14.0-14.3  cdc_ether  -        -          -     yes   b0:7b:25:da:df:bb  169.254.0.2/16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BOND: Version: 3.7.1
+ BOND:   BONDDEV  OSDEV/IP           IPV6                        ACTIVE  PRIMARY  STATUS  FAILCOUNT  MAC ADDRESS
+ BOND:    bond0   160.51.200.160/24  2a03:1e82:8803:507::1:6/64
+ BOND:            eth0                                              +             up      0          78:ac:44:47:e2:4c
+ BOND:            eth3                                                            up      0          b4:96:91:c3:92:b2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LLDP: Interface  Link state  Speed      Duplex  Switch Chassis              Switch Port  VLAN ID
+ LLDP: eth0       UP          10000Mb/s  Full    ASW06DHA01.w6.bmwgroup.net  Ethernet1/4  21
+ LLDP: eth1       UP          10000Mb/s  Full    ASW06DDB01.w6.bmwgroup.net  Ethernet1/6  22
+ LLDP: eth2       UP          10000Mb/s  Full    ASW06DAD01.w6.bmwgroup.net  Ethernet1/5  23
+ LLDP: eth3       UP          10000Mb/s  Full    ASW06DHA02.w6.bmwgroup.net  Ethernet1/4  21
+ LLDP: eth4       DOWN        -          -       -                           -            -
+ LLDP: eth5       DOWN        -          -       -                           -            -
+ LLDP: eth6       UNKNOWN     -          -       -                           -            -
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ServiceTag: 97N2XF3 (20053072047)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BIOS: 2.13.3 (2.15.1)                                                                  [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAID: 25.5.9.0001 (25.5.9.0001)                                                        [ACT] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ IDRAC: 5.10.10.00 (Build 26) (5.10.50.00 (Build 32))                                   [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ PSU: Redundancy overall status: Full (Full)                                                  [OK]
+ PSU: Power supplies:
+ PSU: Loc      S/N              Manufacturer         Type     Rev      FW         Wattage    Status
+ PSU: PS1      PHARP0013K0216   Unknown!             0G6CCK   A00      00.24.64   750 W      Ok
+ PSU: PS2      PHARP0013K022G   Unknown!             0G6CCK   A00      00.24.64   750 W      Ok
+ PSU: All PSUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAM: Memory overall status: Ok (Ok)                                                          [OK]
+ RAM: Memory:
+ RAM:    Total: 393216  MB (384 GB)
+ RAM:    Slots: 12/24
+ RAM: Modules:
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM: All DIMMs good                                                                          [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ CPU: CPU overall status: Ok (Ok)                                                             [OK]
+ CPU:   Location  Speed      State    No.Cores  Status
+ CPU:   CPU1      3300  MHz  Present  8         Ok
+ CPU:   CPU2      -          -        -         -
+ CPU: All CPUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ FAN: Fan overall status: Full (Full)                                                         [OK]
+ FAN:   Name               Current Speed  Status
+ FAN:   System Board Fan1  6720 RPM       Ok
+ FAN:   System Board Fan2  6720 RPM       Ok
+ FAN:   System Board Fan3  6720 RPM       Ok
+ FAN:   System Board Fan4  6720 RPM       Ok
+ FAN:   System Board Fan5  7080 RPM       Ok
+ FAN:   System Board Fan6  6720 RPM       Ok
+ FAN: All FANs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ HDD: Controller:
+ HDD:      Type:  PERC H730P Mini
+ HDD: Disks:
+ HDD: Loc    Status  State   Power    Media  Rev   Capacity   Vendor    ProdID        S/N           PartNr
+ HDD: 0:1:0  Ok      Online  Spun Up  HDD    EE07  558.38 GB  DELL(tm)  AL14SXB60ENY  3170A1P8FEHE  PH01W7HCTB200137BEYZA03
+ HDD: 0:1:1  Ok      Online  Spun Up  HDD    EE07  558.38 GB  DELL(tm)  AL14SXB60ENY  3170A1PFFEHE  PH01W7HCTB200137BEYRA03
+ HDD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ JobQueue: iDRAC jobs: 0 (0)                                                                  [OK]
+ JobQueue: Pending BIOS Settings: 0 (0)                                                       [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#F NOTE: DCODB returned empty string on CriticalEvent/lp06dbipsq001 (no critical events)
+# Firmware (S)tatus:
+#S1     CLUSTER 7.4.2.2100 unsupported for #data
+#S1     STORAGE 7.4.2.2200 unsupported for #data
+# SODB end (1 FW Status notes, no remarks, 0 special configs, 0 events, 0 tags, host:lp06dbipsq001)
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ fullcheck lp06dbipsq002
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : B7N2XF3
+ Node name    : lp06dbipsq002
+ Local time   : Sat Nov 26 16:27:58 CET 2022
+====================================================================================================
+ FQDN: lp06dbipsq002.w6.bmwgroup.net
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 12 (x86_64)
+ OSVer: VERSION = 12
+ OSVer: PATCHLEVEL = 5
+ OSVer: # This file is deprecated and will be removed in a future service pack or release.
+ OSVer: # Please check /etc/os-release for details about this release.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2022.05.31. 17:18:18
+ Uptime: Uptime: 179d 9m 40s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M22-Q2-12.5                                                                        [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: 4.12.14-122.106-default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.22-114.15.1.x86_64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BootL: /dev/sda: GRUB (GRUB)                                                                 [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LPFC: Driver module version: 14.0.0.4
+ LPFC:  HOST     MODEL          WWN                 STATE                   SPEED    SLOT  FW Rev       FW Target   FWOK
+ LPFC:   host15  LPe35002-M2-D  0x100000109bcd3a1b  Link Down               unknown  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host16  LPe35002-M2-D  0x100000109bcd3a1c  Link Up - Ready Fabric  16 Gbit  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host17  LPe35002-M2-D  0x100000109bcd3b4b  Link Down               unknown  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC:   host18  LPe35002-M2-D  0x100000109bcd3b4c  Link Up - Ready Fabric  16 Gbit  ?     12.8.522.20  14.0.539.6  NOK
+ LPFC: Firmware upgrade needed                                                               [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID                 DRIVER     DRVVER   SPEED      DPLX  LINK  MAC ADDRESS        IP / SUBNET       IPV6 / PREFIX
+ ETH:  eth0   0000:17:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:58  <bond0>
+ ETH:  eth1   0000:17:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:59  10.245.166.83/25  2a03:1e82:8805:503::1:e/64
+ ETH:  eth2   0000:18:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   78:ac:44:47:e2:5a  160.51.201.84/25  2a03:1e82:8805:504::1:17/64
+ ETH:  eth3   0000:65:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   b4:96:91:c3:92:d6  <bond0>
+ ETH:  eth4   0000:18:00.1           ixgbe      5.1.0-k  -          -     no    78:ac:44:47:e2:5b
+ ETH:  eth5   0000:65:00.0           ixgbe      5.1.0-k  -          -     no    b4:96:91:c3:92:d4
+ ETH:  eth6   usb-0000:00:14.0-14.3  cdc_ether  -        -          -     yes   b0:7b:25:da:df:8b  169.254.0.2/16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BOND: Version: 3.7.1
+ BOND:   BONDDEV  OSDEV/IP           IPV6                         ACTIVE  PRIMARY  STATUS  FAILCOUNT  MAC ADDRESS
+ BOND:    bond0   160.51.200.161/24  2a03:1e82:8803:507::1:23/64
+ BOND:            eth0                                               +             up      0          78:ac:44:47:e2:58
+ BOND:            eth3                                                             up      0          b4:96:91:c3:92:d6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LLDP: Interface  Link state  Speed      Duplex  Switch Chassis              Switch Port   VLAN ID
+ LLDP: eth0       UP          10000Mb/s  Full    ASW06DHA03.w6.bmwgroup.net  Ethernet1/9   21
+ LLDP: eth1       UP          10000Mb/s  Full    ASW06DDB02.w6.bmwgroup.net  Ethernet1/6   22
+ LLDP: eth2       UP          10000Mb/s  Full    ASW06DAD02.w6.bmwgroup.net  Ethernet1/11  23
+ LLDP: eth3       UP          10000Mb/s  Full    ASW06DHA04.w6.bmwgroup.net  Ethernet1/9   21
+ LLDP: eth4       DOWN        -          -       -                           -             -
+ LLDP: eth5       DOWN        -          -       -                           -             -
+ LLDP: eth6       UNKNOWN     -          -       -                           -             -
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ServiceTag: B7N2XF3 (24406636719)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BIOS: 2.13.3 (2.15.1)                                                                  [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAID: 25.5.9.0001 (25.5.9.0001)                                                        [ACT] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ IDRAC: 5.10.10.00 (Build 26) (5.10.50.00 (Build 32))                                   [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ PSU: Redundancy overall status: Full (Full)                                                  [OK]
+ PSU: Power supplies:
+ PSU: Loc      S/N              Manufacturer         Type     Rev      FW         Wattage    Status
+ PSU: PS1      PHARP0013K02LZ   Unknown!             0G6CCK   A00      00.24.64   750 W      Ok
+ PSU: PS2      PHARP0013K02M0   Unknown!             0G6CCK   A00      00.24.64   750 W      Ok
+ PSU: All PSUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAM: Memory overall status: Ok (Ok)                                                          [OK]
+ RAM: Memory:
+ RAM:    Total: 393216  MB (384 GB)
+ RAM:    Slots: 12/24
+ RAM: Modules:
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM: All DIMMs good                                                                          [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ CPU: CPU overall status: Ok (Ok)                                                             [OK]
+ CPU:   Location  Speed      State    No.Cores  Status
+ CPU:   CPU1      3300  MHz  Present  8         Ok
+ CPU:   CPU2      -          -        -         -
+ CPU: All CPUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ FAN: Fan overall status: Full (Full)                                                         [OK]
+ FAN:   Name               Current Speed  Status
+ FAN:   System Board Fan1  6720 RPM       Ok
+ FAN:   System Board Fan2  6720 RPM       Ok
+ FAN:   System Board Fan3  6720 RPM       Ok
+ FAN:   System Board Fan4  6720 RPM       Ok
+ FAN:   System Board Fan5  6720 RPM       Ok
+ FAN:   System Board Fan6  6720 RPM       Ok
+ FAN: All FANs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ HDD: Controller:
+ HDD:      Type:  PERC H730P Mini
+ HDD: Disks:
+ HDD: Loc    Status  State   Power    Media  Rev   Capacity   Vendor    ProdID        S/N           PartNr
+ HDD: 0:1:0  Ok      Online  Spun Up  HDD    EE07  558.38 GB  DELL(tm)  AL14SXB60ENY  3170A1PLFEHE  PH01W7HCTB200137BEYTA03
+ HDD: 0:1:1  Ok      Online  Spun Up  HDD    EE07  558.38 GB  DELL(tm)  AL14SXB60ENY  3170A1P1FEHE  PH01W7HCTB200137BEYCA03
+ HDD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ JobQueue: iDRAC jobs: 0 (0)                                                                  [OK]
+ JobQueue: Pending BIOS Settings: 0 (0)                                                       [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#F NOTE: DCODB returned empty string on CriticalEvent/lp06dbipsq002 (no critical events)
+# Firmware (S)tatus:
+#S1     CLUSTER 7.4.2.2100 unsupported for #data
+#S1     STORAGE 7.4.2.2200 unsupported for #data
+# SODB end (1 FW Status notes, no remarks, 0 special configs, 0 events, 0 tags, host:lp06dbipsq002)
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+

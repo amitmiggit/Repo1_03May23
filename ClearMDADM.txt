@@ -1,0 +1,108 @@
+lp19xen14:~ # vmc stop lp19cncdp7
+00:04:08 Checking free config space on lp19xen13                                                                                                       OK
+00:04:08 Checking free config space on lp19xen14                                                                                                       OK
+00:04:08 Locking VM lp19cncdp7: Automatic Lock - stop                                                                                                  OK
+00:04:13 Stopping VM lp19cncdp7 on lp19xen14                                                                                                           OK
+00:05:13 Waiting for udev to settle on lp19xen14                                                                                                       OK
+00:05:14 Stopping MD device /dev/md/lp19cncdp7_1 on lp19xen14                                                                                          FAILED
+00:05:14 mdadm: Cannot get exclusive access to /dev/md/lp19cncdp7_1:Perhaps a running process, mounted filesystem or active volume group?
+00:05:14 Waiting for udev to settle on lp19xen14                                                                                                       OK
+00:05:14 Unlocking VM lp19cncdp7                                                                                                                       OK
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ # vmc list lp19cncdp7 lp19cncdp8
+00:05:38 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                     lp19xen13                   lp19xen14
+                                --------------              --------------
+lp19cncdp7                             -------                  md_partial
+lp19cncdp8                             -------    running( 12)(  8/32768M)
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ # mdadm -S /dev/md/lp19cncdp7_1
+mdadm: Cannot get exclusive access to /dev/md/lp19cncdp7_1:Perhaps a running process, mounted filesystem or active volume group?
+lp19xen14:~ #
+lp19xen14:~ # vmc info lp19cncdp7
+Name                      : lp19cncdp7
+Comment                   : N/A
+Domain ID                 : NR
+Status                    : Offline
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles12sp2
+Last Backup (UTC)         : 2022-11-04 19:11:10
+
+Cur. VCPUs                : NR
+Max. VCPUs                : 16
+Cur. Mem [MB]             : 32768
+Max. Mem [MB]             : 65536
+
+XML - Cur. VCPUs          : 8
+XML - Max. VCPUs          : 16
+XML - Cur. Mem [MB]       : 32768
+XML - Max. Mem [MB]       : 65536
+
+Network Device 1          : 62:78:f7:7a:4e:62 (br:br_010186095000 ipname:lp19cncdp7)
+Network Device 2          : ca:ca:7d:35:de:24 (br:br_010186003000 ipname:lp19cncdp7b)
+
+Block Device xvda         : /dev/md/lp19cncdp7
+Block Device xvdb         : /dev/md/lp19cncdp7_1
+lp19xen14:~ # pvs |grep -I lp19cncdp7
+  /dev/md/lp19cncdp7_1        dglp19cncdp7wechat   lvm2 a--   506.32g      0
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ # df -hT | grep -i dglp19cncdp3wechat
+lp19xen14:~ # df -hT | grep -i dglp19cncdp7wechat
+lp19xen14:~ # vmc list lp19cncdp7 lp19cncdp8
+00:11:38 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                     lp19xen13                   lp19xen14
+                                --------------              --------------
+lp19cncdp7                             -------                  md_partial
+lp19cncdp8                             -------    running( 12)(  8/32768M)
+lp19xen14:~ # vgchange -an dglp19cncdp7wechat
+  0 logical volume(s) in volume group "dglp19cncdp7wechat" now active
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ # ls -l /dev/md/lp19cncdp7_1
+lrwxrwxrwx 1 root root 8 Sep 10 21:58 /dev/md/lp19cncdp7_1 -> ../md106
+lp19xen14:~ # mdadm -S /dev/md
+md/    md103  md106  md112  md115  md118  md121  md124  md127  md74   md77   md80   md83   md86   md89   md92   md95   md98
+md100  md104  md110  md113  md116  md119  md122  md125  md72   md75   md78   md81   md84   md87   md90   md93   md96   md99
+md101  md105  md111  md114  md117  md120  md123  md126  md73   md76   md79   md82   md85   md88   md91   md94   md97
+lp19xen14:~ # mdadm -S /dev/md
+md/    md103  md106  md112  md115  md118  md121  md124  md127  md74   md77   md80   md83   md86   md89   md92   md95   md98
+md100  md104  md110  md113  md116  md119  md122  md125  md72   md75   md78   md81   md84   md87   md90   md93   md96   md99
+md101  md105  md111  md114  md117  md120  md123  md126  md73   md76   md79   md82   md85   md88   md91   md94   md97
+lp19xen14:~ # mdadm -S /dev/
+Display all 1148 possibilities? (y or n)
+lp19xen14:~ # mdadm -S /dev/md
+md/    md103  md106  md112  md115  md118  md121  md124  md127  md74   md77   md80   md83   md86   md89   md92   md95   md98
+md100  md104  md110  md113  md116  md119  md122  md125  md72   md75   md78   md81   md84   md87   md90   md93   md96   md99
+md101  md105  md111  md114  md117  md120  md123  md126  md73   md76   md79   md82   md85   md88   md91   md94   md97
+lp19xen14:~ # mdadm -S /dev/md
+md/    md103  md106  md112  md115  md118  md121  md124  md127  md74   md77   md80   md83   md86   md89   md92   md95   md98
+md100  md104  md110  md113  md116  md119  md122  md125  md72   md75   md78   md81   md84   md87   md90   md93   md96   md99
+md101  md105  md111  md114  md117  md120  md123  md126  md73   md76   md79   md82   md85   md88   md91   md94   md97
+lp19xen14:~ # mdadm -S /dev/
+Display all 1148 possibilities? (y or n)
+lp19xen14:~ # mdadm -S /dev/md
+md/    md103  md106  md112  md115  md118  md121  md124  md127  md74   md77   md80   md83   md86   md89   md92   md95   md98
+md100  md104  md110  md113  md116  md119  md122  md125  md72   md75   md78   md81   md84   md87   md90   md93   md96   md99
+md101  md105  md111  md114  md117  md120  md123  md126  md73   md76   md79   md82   md85   md88   md91   md94   md97
+lp19xen14:~ # mdadm -S md106
+mdadm: stopped md106
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ #
+lp19xen14:~ # vmc list lp19cncdp7 lp19cncdp8
+00:14:45 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                     lp19xen13                   lp19xen14
+                                --------------              --------------
+lp19cncdp7                             -------                     -------
+lp19cncdp8                             -------    running( 12)(  8/32768M)
+lp19xen14:~ #

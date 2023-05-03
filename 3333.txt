@@ -1,0 +1,18 @@
+for i in lp19cncdp7 lp19cncdp8; do echo "******************$i*******************"; vmc info $i; echo; echo; done 
+for i in lp19cncdp7 lp19cncdp8; do echo "******************$i*******************"; vmc storage $i; echo; echo; done 
+for i in lp19cncdp7 lp19cncdp8; do echo "******************$i*******************"; vmc pvinfo $i; echo; echo; done 
+for i in lp19cncdp7 lp19cncdp8; do echo "******************$i*******************"; san_shortinfo | grep -i $i; echo; echo; done 
+
+
+
+rootscp -q /lfs/scripts/vm_grub_fix.pl lp19pga00891vm:/tmp/
+
+
+[INSTSERV][qxz099h][lpinstiaas19] ~ $ rootssh lp19xenppg005 san_shortinfo | egrep -i "lp19cncdp7 lp19cncdp8" | wc -l
+62
+[INSTSERV][qxz099h][lpinstiaas19] ~ $
+[INSTSERV][qxz099h][lpinstiaas19] ~ $ rootssh lp19xenppg025 san_shortinfo | egrep -i "lp19pga00891vm|lp19pga00894vm|lp19pga00899vm|lp19pga00903vm" | wc -l
+62
+[INSTSERV][qxz099h][lpinstiaas19] ~ $ rootssh lp19xenppg026 san_shortinfo | egrep -i "lp19pga00891vm|lp19pga00894vm|lp19pga00899vm|lp19pga00903vm" | wc -l
+62
+[INSTSERV][qxz099h][lpinstiaas19] ~ $

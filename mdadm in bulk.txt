@@ -1,0 +1,9 @@
+for i in `egrep -B1 -A2 '__|_U|U_|\.\.\.' /proc/mdstat |grep -i md |awk '{print $1}'`
+do  
+a=`mdadm --detail /dev/$i  |grep -i faulty |awk '{print $NF}'`
+mdadm --manage /dev/$i -r $a
+mdadm --manage /dev/$i -a $a
+done  
+
+
+INC000039354205

@@ -1,0 +1,62 @@
+RMB Reconfiguration (only for Physical server)
+==================================================
+login to server lpinstw19b2v  and be su to root 
+
+run the command to get the RMB credentials 
+
+#/global/instserv/bin/get_rmb_password lp19app301k
+
+-----------once you get the credentials login to install server 19 
+lpinstiaas19
+
+[INSTSERV][qxw9324][lpinstiaas19] ~ $ pwd
+/global/instserv/home/qxw9324
+[INSTSERV][qxw9324][lpinstiaas19] ~ $
+
+
+Reconfigure the RMB with credentials 
+[INSTSERV][qxw9324][lpinstiaas19] ~ $install_server.sh --rmbonly -u <user name> -P <server name>
+
+User name: you get from install server lpinstw19b2v  
+and it will prompt for password and provide the password. RMB will be reconfigured. 
+ 
+once RMB reconfigured you check access from 19 install server 
+
+[INSTSERV][qxw9324][lpinstiaas19] ~ $get_rmb_password   <server name>k
+with credenatils login to server console
+s3rvert3@m
+
+install_server.sh --rmbonly -u Administrator -P s3rvert3@m lpbjcdpapp02
+
+s3rvert3@m
+s3rvert3@m
+s3rvert3@m
+Matrix|#Matrixidr4c!
+
+INC000029127312
+#Matrixidr4c!
+
+
+TAS000005015386
+TAS000005032509
+
+
+install_server.sh --rmbonly -u Administrator -P lp19xenpb2v06
+
+lp19xenpb2v06
+
+
+
+
+
+===========================
+
+
+install_server.sh --rmbonly -u Administrator -P lp19xenpcdpa02
+
+CAQ,CMP,OMD,SMT,SJT SAP System - SAP OS AB DB_IMPORT Migration exec
+
+
+
+
+

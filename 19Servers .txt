@@ -1,0 +1,107 @@
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $ rootscp -r * lp19xen21:/lfs/xen/config/lp19cncdp7/
+lp19cncdp7.xml                                                                                                             100% 1829     1.8KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 1865     1.8KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $ rootscp -r * lp19xen22:/lfs/xen/config/lp19cncdp7/
+lp19cncdp7.xml                                                                                                             100% 1829     1.8KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 1865     1.8KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $ ls -lrta
+total 20
+-rw-r--r--  1 qqinstserv qqbmw     233 Jan 24  2020 mdadm.conf.save
+-rw-r--r--  1 qqinstserv qqbmw     233 Jul 20 17:48 mdadm.conf
+-rw-r--r--  1 qqinstserv qqbmw    1865 Nov  6 00:29 lp19cncdp7.xml.save
+-rw-r--r--  1 qqinstserv qqbmw    1829 Nov  6 00:29 lp19cncdp7.xml
+drwxr-x--- 12 qqinstserv instserv 4096 Nov  6 00:33 ..
+drwxr-xr-x  2 qqinstserv qqbmw      96 Nov  6 00:34 .
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $ rootscp -rp * lp19xen21:/lfs/xen/config/lp19cncdp7/
+lp19cncdp7.xml                                                                                                             100% 1829     1.8KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 1865     1.8KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/lp19cncdp7 $ cd..
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ mkdir 5nov
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ cd 5nov/
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ rootscp -rp lp19xen14:/lfs/xen/config/lp19cncdp7/ .
+lp19cncdp7.xml                                                                                                             100% 1998     2.0KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 2035     2.0KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ rootscp -rp ^Cp19xen21:/lfs/xen/config/lp19cncdp7/
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ ls -l
+total 0
+drwxr-xr-x 2 qqinstserv qqbmw 96 Jan 24  2020 lp19cncdp7
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ rootscp -rp lp19cncdp7 lp19xen21:/lfs/xen/config/
+lp19cncdp7.xml                                                                                                             100% 1998     2.0KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 2035     2.0KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ rootscp -rp lp19cncdp7 lp19xen22:/lfs/xen/config/
+lp19cncdp7.xml                                                                                                             100% 1998     2.0KB/s   00:00
+mdadm.conf                                                                                                                 100%  233     0.2KB/s   00:00
+lp19cncdp7.xml.save                                                                                                        100% 2035     2.0KB/s   00:00
+mdadm.conf.save                                                                                                            100%  233     0.2KB/s   00:00
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ c6000 -b  lp19xen14 | grep -i net_id
+lp19xen14;IP_BASE;NET_ID;160.48.237.0
+lp19xen14b;IP_BASE;NET_ID;10.186.3.0
+lp19xen14c2;IP_BASE;NET_ID;10.186.95.0
+lp19xen14k;IP_BASE;NET_ID;10.186.93.0
+lp19xen14vl1;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ c6000 -b 19xen21 | grep -i net_id
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ c6000 -b lp19xen21 | grep -i net_id
+lp19xen21;IP_BASE;NET_ID;10.186.41.0
+lp19xen21b;IP_BASE;NET_ID;10.186.102.0
+lp19xen21k;IP_BASE;NET_ID;10.186.15.0
+lp19xen21vl1;IP_BASE;NET_ID;10.186.95.0
+lp19xen21vl2;IP_BASE;NET_ID;10.186.23.0
+lp19xen21vl3;IP_BASE;NET_ID;160.48.236.0
+lp19xen21vl4;IP_BASE;NET_ID;160.48.237.0
+lp19xen21vl5;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ c6000 -b lp19xen22 | grep -i net_id
+lp19xen22;IP_BASE;NET_ID;10.186.41.0
+lp19xen22b;IP_BASE;NET_ID;10.186.102.0
+lp19xen22k;IP_BASE;NET_ID;10.186.15.0
+lp19xen22vl1;IP_BASE;NET_ID;10.186.95.0
+lp19xen22vl2;IP_BASE;NET_ID;10.186.23.0
+lp19xen22vl3;IP_BASE;NET_ID;160.48.236.0
+lp19xen22vl4;IP_BASE;NET_ID;160.48.237.0
+lp19xen22vl5;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~/5nov $ rootssh lp19cncdp7
+lp19cncdp7:~ # ifconfig
+eth0      Link encap:Ethernet  HWaddr 62:78:F7:7A:4E:62
+          inet addr:10.186.95.192  Bcast:10.186.95.255  Mask:255.255.255.0
+          inet6 addr: 2400:cb80:8103:517::1:63/64 Scope:Global
+          inet6 addr: fe80::6078:f7ff:fe7a:4e62/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:5906 errors:0 dropped:7 overruns:0 frame:0
+          TX packets:1771 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:721343 (704.4 Kb)  TX bytes:582258 (568.6 Kb)
+
+eth1      Link encap:Ethernet  HWaddr CA:CA:7D:35:DE:24
+          inet addr:10.186.102.134  Bcast:10.186.102.255  Mask:255.255.255.0
+          inet6 addr: 2400:cb80:8104:511::2002/64 Scope:Global
+          inet6 addr: fe80::c8ca:7dff:fe35:de24/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:858 errors:0 dropped:7 overruns:0 frame:0
+          TX packets:11 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:66481 (64.9 Kb)  TX bytes:854 (854.0 b)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:726 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:726 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:75245 (73.4 Kb)  TX bytes:75245 (73.4 Kb)
+

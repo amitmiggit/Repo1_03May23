@@ -1,0 +1,85 @@
+rootssh lp34d35 /sbin/san_shortinfo | egrep -i "dbanw50" | wc -l
+
+
+lp34d51:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i lp34d51;echo ==========;done
+dbanw50
+hagrp -modify dbanw50 SystemList  lp34d52 0 lp34d51 1
+hagrp -modify dbanw50 AutoStartList  lp34d52 lp34d51
+==========
+lp34d51:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i ip;echo ==========;done
+dbanw50
+hares -add dbanw50_dbanw50_ip IP dbanw50
+hares -modify dbanw50_dbanw50_ip Device bond0
+hares -modify dbanw50_dbanw50_ip Address "172.25.196.10"
+hares -modify dbanw50_dbanw50_ip NetMask "255.255.255.0"
+hares -modify dbanw50_dbanw50_ip Options "broadcast 172.25.196.255"
+hares -modify dbanw50_dbanw50_ip PrefixLen 1000
+hares -modify dbanw50_dbanw50_ip PingTimeout 10
+hares -modify dbanw50_dbanw50_ip Enabled 1
+hares -link dbanw50_dbanw50_ip dbanw50_nic_proxy
+hares -link dbanw50_oracle_app dbanw50_dbanw50_ip
+==========
+lp34d51:/var/tmp # exit
+lp34d52:~ # cd /var/tmp/
+lp34d52:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i lp34d51;echo ==========;done
+dbanw50
+hagrp -modify dbanw50 SystemList  lp34d52 0 lp34d51 1
+hagrp -modify dbanw50 AutoStartList  lp34d52 lp34d51
+==========
+lp34d52:/var/tmp # for i in `cat`;do cat $i.cmd | grep -i ip;echo ==========;done
+dbanw50
+hares -add dbanw50_dbanw50_ip IP dbanw50
+hares -modify dbanw50_dbanw50_ip Device bond0
+hares -modify dbanw50_dbanw50_ip Address "172.25.196.10"
+hares -modify dbanw50_dbanw50_ip NetMask "255.255.255.0"
+hares -modify dbanw50_dbanw50_ip Options "broadcast 172.25.196.255"
+hares -modify dbanw50_dbanw50_ip PrefixLen 1000
+hares -modify dbanw50_dbanw50_ip PingTimeout 10
+hares -modify dbanw50_dbanw50_ip Enabled 1
+hares -link dbanw50_dbanw50_ip dbanw50_nic_proxy
+hares -link dbanw50_oracle_app dbanw50_dbanw50_ip
+=============================================
+Name:   dbanw50-new.w34
+Address: 172.25.196.10
+
+
+========================================
+
+lp34d52:/var/tmp # for i in `cat`;do echo =================$i====================;ls -l /lfs/cluster/vcs/$i*;echo =================================;done
+dbanw50
+=================dbanw50====================
+-rwxr-xr-x 1 root root 1548 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_start
+-rwxr-xr-x 1 root root 3149 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_stop
+=================================
+lp34d51:~ # for i in `cat`;do echo =================$i====================;ls -l /lfs/cluster/vcs/$i*;echo =================================;done
+dbanw50
+=================dbanw50====================
+-rwxr-xr-x 1 root root 1548 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_start
+-rwxr-xr-x 1 root root 3149 Aug  9  2021 /lfs/cluster/vcs/dbanw50_oracle_stop
+=================================
+lp34d51:~ # exit
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lp34d35 /sbin/san_shortinfo | egrep -i "dbanw50" | wc -l
+8
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lp34d51 /sbin/san_shortinfo | egrep -i "dbanw50" | wc -l
+8
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lp34d52 /sbin/san_shortinfo | egrep -i "dbanw50" | wc -l
+8
+
+===========================
+
+downtime -a -h 2 -c "TAS000006454938 qxz10kv-ClusterMigratePackage" lp34d35.w34
+
+downtime -a -h 2 -c "TAS000006454938 qxz10kv-ClusterMigratePackage" lp34d36.w34
+
+==========================================================================================
+
+downtime -a -h 2 -c "TAS000006454938 qxz10kv-ClusterMigratePackage" lp34d51.w34
+
+downtime -a -h 2 -c "TAS000006454938 qxz10kv-ClusterMigratePackage" lp34d36.w34
+
+
+

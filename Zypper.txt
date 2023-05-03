@@ -1,0 +1,142 @@
+[INSTSERV][qxz10kv][lp10instiaas02] ~ $ cmdb linwi08 -x
+******************************************
+Server: linwi08.bmwgroup.net
+******************************************
+machine type:          XEN-Guest
+OS version:            SP4
+OS name:               SLES 12
+Rollout type:          DELEGATE
+serial number:         D7Z4BR2
+Instserv:              lpinstiaas02
+Logical ID:            SLOG-67520
+Rudder UUID:           9835db14-71d3-4aa6-8a3f-dc4241b5539e
+Rudder PolSrv:         cm-relay-bss-sles12-emea-sap.bmwgroup.net
+location:              01.50 / 019.0 / -3 / RZ3-RA1
+lampe:                 Y3
+rack ID:               RZ-004506
+description:
+modul:                 SAP
+usage:
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .bmwgroup.net
+nagios:                Y
+virtual server:        Y
+farm name:             ltxenshdi63.bmwgroup.net|ltxenshdi64.bmwgroup.net
+farmservers:           ltxenshdi63; ltxenshdi64
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           -
+warranty until:        30-SEP-22
+BU-Name:               SAP-BU
+BU-EMail:              krisztina.horvath@partner.bmw.de
+accountable BU-EMail:  Jan.Enseleit@bmw.de,Dieter.Klingbeil@bmw.de
+criticality:           Uncritical
+[INSTSERV][qxz10kv][lp10instiaas02] ~ $
+
+
+downtime -a -h 3 -c "TAS000006529940 qxz10kv-VMMR" linwi08.bmwgroup.net
+
+
+rudderswinst -t TAS000006529940 update linwi08.bmwgroup.net
+
+
+linwi08:~ # cat /etc/SuSE-release
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 4
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+linwi08:~ # zypper lr
+Repository priorities are without effect. All enabled repositories share the same priority.
+
+#  | Alias                      | Name                       | Enabled | GPG Check | Refresh
+---+----------------------------+----------------------------+---------+-----------+--------
+ 1 | BMW-Custom                 | BMW-Custom                 | Yes     | (r ) Yes  | Yes
+ 2 | BMW-Internal               | BMW-Internal               | Yes     | (r ) Yes  | Yes
+ 3 | BMW-Patch-CVE              | BMW-Patch-CVE              | Yes     | (r ) Yes  | Yes
+ 4 | BMW-Patch-CVE-2021-3156    | BMW-Patch-CVE-2021-3156    | Yes     | (r ) Yes  | Yes
+ 5 | BMW-SLES12-SP2             | BMW-SLES12-SP2             | Yes     | (r ) Yes  | No
+ 6 | BMW-SLES12-SP4             | BMW-SLES12-SP4             | Yes     | (r ) Yes  | No
+ 7 | BMW-Software-Splunk        | BMW-Software-Splunk        | Yes     | (r ) Yes  | Yes
+ 8 | BMW-Software-UCMD          | BMW-Software-UCMD          | Yes     | (r ) Yes  | Yes
+ 9 | BMW-Software-UserSyncAgent | BMW-Software-UserSyncAgent | Yes     | (r ) Yes  | Yes
+10 | PBIS                       | PBIS                       | Yes     | (r ) Yes  | No
+11 | Veritas-netbackup-client   | Veritas-netbackup-client   | Yes     | (r ) Yes  | Yes
+12 | active-P-SAP-Custom        | active-P-SAP-Custom        | Yes     | (r ) Yes  | Yes
+linwi08:~ # zypper rr BMW-SLES12-SP2
+Removing repository 'BMW-SLES12-SP2' .......................................................................[done]
+Repository 'BMW-SLES12-SP2' has been removed.
+linwi08:~ #
+linwi08:~ #
+linwi08:~ # zypper ref
+Repository 'BMW-Custom' is up to date.
+Repository 'BMW-Internal' is up to date.
+Repository 'BMW-Patch-CVE' is up to date.
+Repository 'BMW-Patch-CVE-2021-3156' is up to date.
+Repository 'BMW-SLES12-SP4' is up to date.
+Repository 'BMW-Software-Splunk' is up to date.
+Repository 'BMW-Software-UCMD' is up to date.
+Repository 'BMW-Software-UserSyncAgent' is up to date.
+Repository 'PBIS' is up to date.
+Repository 'Veritas-netbackup-client' is up to date.
+Repository 'active-P-SAP-Custom' is up to date.
+All repositories have been refreshed.
+linwi08:~ #
+linwi08:~ #
+linwi08:~ # zypper lr
+Repository priorities are without effect. All enabled repositories share the same priority.
+
+#  | Alias                      | Name                       | Enabled | GPG Check | Refresh
+---+----------------------------+----------------------------+---------+-----------+--------
+ 1 | BMW-Custom                 | BMW-Custom                 | Yes     | (r ) Yes  | Yes
+ 2 | BMW-Internal               | BMW-Internal               | Yes     | (r ) Yes  | Yes
+ 3 | BMW-Patch-CVE              | BMW-Patch-CVE              | Yes     | (r ) Yes  | Yes
+ 4 | BMW-Patch-CVE-2021-3156    | BMW-Patch-CVE-2021-3156    | Yes     | (r ) Yes  | Yes
+ 5 | BMW-SLES12-SP4             | BMW-SLES12-SP4             | Yes     | (r ) Yes  | No
+ 6 | BMW-Software-Splunk        | BMW-Software-Splunk        | Yes     | (r ) Yes  | Yes
+ 7 | BMW-Software-UCMD          | BMW-Software-UCMD          | Yes     | (r ) Yes  | Yes
+ 8 | BMW-Software-UserSyncAgent | BMW-Software-UserSyncAgent | Yes     | (r ) Yes  | Yes
+ 9 | PBIS                       | PBIS                       | Yes     | (r ) Yes  | No
+10 | Veritas-netbackup-client   | Veritas-netbackup-client   | Yes     | (r ) Yes  | Yes
+11 | active-P-SAP-Custom        | active-P-SAP-Custom        | Yes     | (r ) Yes  | Yes
+linwi08:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rudderswinst -t TAS000006529940 update linwi08.bmwgroup.net
+info   prep: mr-versions taken from command line: 2022Q03.00 2022Q03.00
+info   prep: found BMW repo 'BMW-Custom'
+info   prep: found BMW repo 'BMW-Internal'
+info   prep: found OS repo 'BMW-SLES12-SP4'
+info   prep: 8 repos skipped. Use option --repo= to include on of 'active-P-SAP-Custom' 'BMW-Patch-CVE-2021-3156' 'BMW-Patch-CVE' 'BMW-Software-Splunk' 'BMW-Software-UCMD' 'BMW-Software-UserSyncAgent' 'PBIS' 'Veritas-netbackup-client'
+info   run : Rudder agent state: Agent is enabled
+info   run : trying to update. found 44 downloaded rpm(s) in cache.
+info   run : update was installed, output at /var/log/run_zypper_mr_up.sh.log
+info   run : reboot required
+info   run : no more upgrades found.
+info   post: Rudder agent enable: ok: Rudder agent has been enabled but not started, wait for next cron run.
+info   post: Please don't forget to reboot the system
+info   post: end of run_zypper_mr_up.sh, run status was good
+Info[1]: Skipping on Xen VM
+Info[1]: Skipping on Xen VM
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rshut -r linwi08.bmwgroup.net
+
+##### linwi08.bmwgroup.net #####
+
+searching host-downtime for server:     OK
+
+there is a host-downtime set between Fri Jul 29 18:02:48 2022 and Fri Jul 29 21:02:48 2022 for this server
+
+136 minutes are left
+
+module:                                 SAP
+hardware type:                          XEN-VM
+checking ssh:                           OK
+
+link to manual downtime check:          https://lpnaggui.bmwgroup.net/gui/thruk/#cgi-bin/status.cgi?hidesearch=2&s0_op=~&s0_type=search&s0_value=linwi08
+
+
+        IMPORTANT: do not forget to monitor server reboot process
+
+fetching list of XEN DOM0s from DCODB   OK
+state of XEN-VM                         RUNNING
+
+link to manual downtime check:          https://

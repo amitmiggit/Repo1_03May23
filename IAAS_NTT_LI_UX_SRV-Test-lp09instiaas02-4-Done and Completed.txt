@@ -1,0 +1,5 @@
+ServerName	Server Contract 	Install Server
+lt09xensdi09	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lt09xensdi10	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lt09xensor07	IAAS_NTT_LI-UX_SRV	lp09instiaas02
+lt09xensor08	IAAS_NTT_LI-UX_SRV	lp09instiaas02

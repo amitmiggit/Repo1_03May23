@@ -1,0 +1,21 @@
+27 Sept.
+======================
+
+1. os_linux_cluster_veritas_check_integrity check two servers (lpdbsapex100.bmwgroup.net)
+
+2. 1 sudo task to complete
+
+3. On wednesday report of critical tasks to prepare and on Thursday too - Gambhi 
+
+4. Check mount_new by Ashwini Tendulkar
+
+5. Top CI ---------------------------------------------------------------------------------- D
+
+6. Task PE and WIP's in Apex as well as Incident too
+
+7. Andreas wolf mail for Rajendra request him to get it answered
+
+
+
+
+

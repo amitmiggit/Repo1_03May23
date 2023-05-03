@@ -1,0 +1,471 @@
+Hello
+
+Please Create new package pkgallp4312.bmwgroup.net
+
+Package 1 - pkgallp4312.bmwgroup.net
+==============================
+Server 1 : lpdbs108.bmwgroup.net
+
+Default Server : lpdbs108.bmwgroup.net
+Cluster partner : lpdbs107.bmwgroup.net
+
+
+Env:PROD 
+
+APP-115426
+
+Package-Name:pkgallp4312.bmwgroup.net
+ 
+Action: Create
+Filesystem (Right 755 oracle:dba)
+
+with the file systems 
+/global/pkgallp4312/db      56 GB
+/global/pkgallp4312/bkup    56 GB
+/global/pkgallp4312/redo1   14 GB
+/global/pkgallp4312/redo2   14 GB
+
+
+Please enter the package in the CMDB. 
+
+Please write a mail to Grinteniya.Thombra@partner.bmw.de  in case of any issue/clarification.
+
+Thanks in Advance,
+Oracle operations
+
+
+RG-18691
+
+
+==========================
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh TAS000006638556_lpdbs108_create_all
+
+  _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+  |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+   \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+ Processing file 'TAS000006638556_lpdbs108_create_all'
+
+-> Checking File validity                        [OK]    file exist: TAS000006638556_lpdbs108_create_all
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on lpdbs108 lpdbs107
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [OK]    found pkgallp4312
+-> Fetching module for Apps                      [OK]    fetched
+
+
+ Running remote sanity check
+
+-> Copy template to remote host 'lpdbs108'       [OK]    copied
+-> Running sanity check on 'lpdbs108'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package pkgallp4312...
+17:23:34 Sanity checking IP 160.46.125.31
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/pkgallp4312_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/pkgallp4312/db
+Sanity checking mount /global/pkgallp4312/bkup
+Sanity checking mount /global/pkgallp4312/redo1
+Sanity checking mount /global/pkgallp4312/redo2
+***************************************
+
+-> Sanity check                                  [OK]    success
+-> Copy template to remote host 'lpdbs107'       [OK]    copied
+-> Running sanity check on 'lpdbs107'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package pkgallp4312...
+17:23:55 Sanity checking IP 160.46.125.31
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/pkgallp4312_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/pkgallp4312/db
+Sanity checking mount /global/pkgallp4312/bkup
+Sanity checking mount /global/pkgallp4312/redo1
+Sanity checking mount /global/pkgallp4312/redo2
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+ Deploying application scripts
+
+-> Preparing files                               [OK]    staged
+-> Distributing files                            [OK]    distributed
+
+
+ Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on lpdbs108
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+17:24:13 Initializing disk hitachi_vspg1k0_01d8                           OK
+17:24:13 Disabling thin provisioning on disk hitachi_vspg1k0_01d8         OK
+17:24:13 Initializing disk hitachi_vspg1k1_01d8                           OK
+17:24:13 Disabling thin provisioning on disk hitachi_vspg1k1_01d8         OK
+17:24:13 Creating disk group with name dgpkgallp4312bkup and disks
+ hitachi_vspg1k0_01d8 hitachi_vspg1k1_01d8                                OK
+17:24:15 Renaming disk hitachi_vspg1k0_01d8 in diskgroup
+ dgpkgallp4312bkup to 13_10804_01d8                                       OK
+17:24:15 Renaming disk hitachi_vspg1k1_01d8 in diskgroup
+ dgpkgallp4312bkup to 19_10844_01d8                                       OK
+17:24:15 Creating volume lvbkup in diskgroup dgpkgallp4312bkup with size
+ 57575M                                                                   OK
+17:24:17 Renaming plex lvbkup-03 in diskgroup dgpkgallp4312bkup to
+ lvbkup_drl-10804                                                         OK
+17:24:17 Renaming plex lvbkup-02 in diskgroup dgpkgallp4312bkup to
+ lvbkup-10844                                                             OK
+17:24:17 Renaming plex lvbkup-01 in diskgroup dgpkgallp4312bkup to
+ lvbkup-10804                                                             OK
+17:24:17 Renaming plex lvbkup-04 in diskgroup dgpkgallp4312bkup to
+ lvbkup_drl-10844                                                         OK
+17:24:17 Renaming plex lvbkup_dcl-01 in diskgroup dgpkgallp4312bkup to
+ lvbkup_dcl-10804                                                         OK
+17:24:17 Renaming plex lvbkup_dcl-02 in diskgroup dgpkgallp4312bkup to
+ lvbkup_dcl-10844                                                         OK
+17:24:17 Setting read policy for volume lvbkup in diskgroup
+ dgpkgallp4312bkup to plex lvbkup-10844                                   OK
+17:24:17 Exec: /sbin/mkfs.vxfs -o bsize=8192
+ /dev/vx/dsk/dgpkgallp4312bkup/lvbkup 2>&1 >/dev/null                     OK
+17:24:18 Exec: /bin/mount -t vxfs /dev/vx/dsk/dgpkgallp4312bkup/lvbkup
+ /global/pkgallp4312/bkup                                                 OK
+17:24:18 Exec: /bin/chown oracle:dba /global/pkgallp4312/bkup             OK
+17:24:18 Exec: /bin/chmod 755 /global/pkgallp4312/bkup                    OK
+17:24:18 Exec: /bin/umount /global/pkgallp4312/bkup                       OK
+17:24:18 Initializing disk hitachi_vspg1k0_01c9                           OK
+17:24:18 Disabling thin provisioning on disk hitachi_vspg1k0_01c9         OK
+17:24:18 Initializing disk hitachi_vspg1k1_01c9                           OK
+17:24:19 Disabling thin provisioning on disk hitachi_vspg1k1_01c9         OK
+17:24:19 Creating disk group with name dgpkgallp4312db and disks
+ hitachi_vspg1k0_01c9 hitachi_vspg1k1_01c9                                OK
+17:24:20 Renaming disk hitachi_vspg1k0_01c9 in diskgroup dgpkgallp4312db
+ to 13_10804_01c9                                                         OK
+17:24:20 Renaming disk hitachi_vspg1k1_01c9 in diskgroup dgpkgallp4312db
+ to 19_10844_01c9                                                         OK
+17:24:20 Creating volume lvdb in diskgroup dgpkgallp4312db with size
+ 57575M                                                                   OK
+17:24:22 Renaming plex lvdb-03 in diskgroup dgpkgallp4312db to
+ lvdb_drl-10844                                                           OK
+17:24:22 Renaming plex lvdb-04 in diskgroup dgpkgallp4312db to
+ lvdb_drl-10804                                                           OK
+17:24:23 Renaming plex lvdb-02 in diskgroup dgpkgallp4312db to lvdb-10844 OK
+17:24:23 Renaming plex lvdb-01 in diskgroup dgpkgallp4312db to lvdb-10804 OK
+17:24:23 Renaming plex lvdb_dcl-01 in diskgroup dgpkgallp4312db to
+ lvdb_dcl-10804                                                           OK
+17:24:23 Renaming plex lvdb_dcl-02 in diskgroup dgpkgallp4312db to
+ lvdb_dcl-10844                                                           OK
+17:24:23 Setting read policy for volume lvdb in diskgroup dgpkgallp4312db
+ to plex lvdb-10844                                                       OK
+17:24:23 Exec: /sbin/mkfs.vxfs -o bsize=8192
+ /dev/vx/dsk/dgpkgallp4312db/lvdb 2>&1 >/dev/null                         OK
+17:24:23 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+ /dev/vx/dsk/dgpkgallp4312db/lvdb /global/pkgallp4312/db                  OK
+17:24:23 Exec: /bin/chown oracle:dba /global/pkgallp4312/db               OK
+17:24:23 Exec: /bin/chmod 755 /global/pkgallp4312/db                      OK
+17:24:23 Exec: /bin/umount /global/pkgallp4312/db                         OK
+17:24:23 Initializing disk hitachi_vspg1k0_01c4                           OK
+17:24:24 Disabling thin provisioning on disk hitachi_vspg1k0_01c4         OK
+17:24:24 Initializing disk hitachi_vspg1k1_01c4                           OK
+17:24:24 Disabling thin provisioning on disk hitachi_vspg1k1_01c4         OK
+17:24:24 Creating disk group with name dgpkgallp4312redo1 and disks
+ hitachi_vspg1k0_01c4 hitachi_vspg1k1_01c4                                OK
+17:24:25 Renaming disk hitachi_vspg1k0_01c4 in diskgroup
+ dgpkgallp4312redo1 to 13_10804_01c4                                      OK
+17:24:25 Renaming disk hitachi_vspg1k1_01c4 in diskgroup
+ dgpkgallp4312redo1 to 19_10844_01c4                                      OK
+17:24:26 Creating volume lvredo1 in diskgroup dgpkgallp4312redo1 with
+ size 14359M                                                              OK
+17:24:28 Renaming plex lvredo1-02 in diskgroup dgpkgallp4312redo1 to
+ lvredo1-10844                                                            OK
+17:24:28 Renaming plex lvredo1-03 in diskgroup dgpkgallp4312redo1 to
+ lvredo1_drl-10804                                                        OK
+17:24:28 Renaming plex lvredo1-01 in diskgroup dgpkgallp4312redo1 to
+ lvredo1-10804                                                            OK
+17:24:28 Renaming plex lvredo1-04 in diskgroup dgpkgallp4312redo1 to
+ lvredo1_drl-10844                                                        OK
+17:24:28 Renaming plex lvredo1_dcl-01 in diskgroup dgpkgallp4312redo1 to
+ lvredo1_dcl-10804                                                        OK
+17:24:28 Renaming plex lvredo1_dcl-02 in diskgroup dgpkgallp4312redo1 to
+ lvredo1_dcl-10844                                                        OK
+17:24:28 Setting read policy for volume lvredo1 in diskgroup
+ dgpkgallp4312redo1 to plex lvredo1-10844                                 OK
+17:24:28 Exec: /sbin/mkfs.vxfs -o bsize=1024
+ /dev/vx/dsk/dgpkgallp4312redo1/lvredo1 2>&1 >/dev/null                   OK
+17:24:28 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+ /dev/vx/dsk/dgpkgallp4312redo1/lvredo1 /global/pkgallp4312/redo1         OK
+17:24:28 Exec: /bin/chown oracle:dba /global/pkgallp4312/redo1            OK
+17:24:28 Exec: /bin/chmod 755 /global/pkgallp4312/redo1                   OK
+17:24:28 Exec: /bin/umount /global/pkgallp4312/redo1                      OK
+17:24:28 Initializing disk hitachi_vspg1k0_01c5                           OK
+17:24:29 Disabling thin provisioning on disk hitachi_vspg1k0_01c5         OK
+17:24:29 Initializing disk hitachi_vspg1k1_01c5                           OK
+17:24:29 Disabling thin provisioning on disk hitachi_vspg1k1_01c5         OK
+17:24:29 Creating disk group with name dgpkgallp4312redo2 and disks
+ hitachi_vspg1k0_01c5 hitachi_vspg1k1_01c5                                OK
+17:24:31 Renaming disk hitachi_vspg1k0_01c5 in diskgroup
+ dgpkgallp4312redo2 to 13_10804_01c5                                      OK
+17:24:31 Renaming disk hitachi_vspg1k1_01c5 in diskgroup
+ dgpkgallp4312redo2 to 19_10844_01c5                                      OK
+17:24:31 Creating volume lvredo2 in diskgroup dgpkgallp4312redo2 with
+ size 14359M                                                              OK
+17:24:33 Renaming plex lvredo2-01 in diskgroup dgpkgallp4312redo2 to
+ lvredo2-10804                                                            OK
+17:24:33 Renaming plex lvredo2-03 in diskgroup dgpkgallp4312redo2 to
+ lvredo2_drl-10804                                                        OK
+17:24:33 Renaming plex lvredo2-02 in diskgroup dgpkgallp4312redo2 to
+ lvredo2-10844                                                            OK
+17:24:33 Renaming plex lvredo2-04 in diskgroup dgpkgallp4312redo2 to
+ lvredo2_drl-10844                                                        OK
+17:24:33 Renaming plex lvredo2_dcl-02 in diskgroup dgpkgallp4312redo2 to
+ lvredo2_dcl-10844                                                        OK
+17:24:33 Renaming plex lvredo2_dcl-01 in diskgroup dgpkgallp4312redo2 to
+ lvredo2_dcl-10804                                                        OK
+17:24:33 Setting read policy for volume lvredo2 in diskgroup
+ dgpkgallp4312redo2 to plex lvredo2-10844                                 OK
+17:24:33 Exec: /sbin/mkfs.vxfs -o bsize=1024
+ /dev/vx/dsk/dgpkgallp4312redo2/lvredo2 2>&1 >/dev/null                   OK
+17:24:33 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+ /dev/vx/dsk/dgpkgallp4312redo2/lvredo2 /global/pkgallp4312/redo2         OK
+17:24:33 Exec: /bin/chown oracle:dba /global/pkgallp4312/redo2            OK
+17:24:33 Exec: /bin/chmod 755 /global/pkgallp4312/redo2                   OK
+17:24:33 Exec: /bin/umount /global/pkgallp4312/redo2                      OK
+17:24:36 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:36 Exec: /opt/VRTS/bin/hagrp -add pkgallp4312                       VCS NOTICE V-16-1-10136 Group added; populating SystemList and setting the Parallel attribute recommended before adding resources
+OK
+17:24:36 Exec: /opt/VRTS/bin/hagrp -modify pkgallp4312 SystemList -add
+ lpdbs108 0                                                               OK
+17:24:36 Exec: /opt/VRTS/bin/hagrp -modify pkgallp4312 SystemList -add
+ lpdbs107 1                                                               OK
+17:24:36 Exec: /opt/VRTS/bin/hagrp -modify pkgallp4312 AutoStartList -add
+ lpdbs108                                                                 OK
+17:24:36 Exec: /opt/VRTS/bin/hagrp -modify pkgallp4312 AutoStartList -add
+ lpdbs107                                                                 OK
+17:24:36 Exec: /opt/VRTS/bin/hares -add pkgallp4312_nic_proxy Proxy
+ pkgallp4312                                                              VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:36 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_nic_proxy
+ TargetResName NIC_monitor                                                OK
+17:24:36 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_nic_proxy Enabled
+ 1                                                                        OK
+17:24:36 Exec: sleep 1                                                    OK
+17:24:37 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:40 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:40 Exec: /opt/VRTS/bin/hares -add pkgallp4312_pkgallp4312_ip IP
+ pkgallp4312                                                              VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ Address 160.46.125.31                                                    OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ NetMask 255.255.255.0                                                    OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ Options "broadcast 160.46.125.255"                                       OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ Device bond0                                                             OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ Critical 1                                                               OK
+17:24:40 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_pkgallp4312_ip
+ Enabled 1                                                                OK
+17:24:40 Exec: /opt/VRTS/bin/hares -link pkgallp4312_pkgallp4312_ip
+ pkgallp4312_nic_proxy                                                    OK
+17:24:40 Exec: sleep 1                                                    OK
+17:24:41 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:43 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:43 Exec: /opt/VRTS/bin/hares -add pkgallp4312_oracle_app
+ Application pkgallp4312                                                  VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:43 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_oracle_app
+ StartProgram /lfs/cluster/vcs/pkgallp4312_oracle_start                   OK
+17:24:43 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_oracle_app
+ StopProgram /lfs/cluster/vcs/pkgallp4312_oracle_stop                     OK
+17:24:43 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_oracle_app
+ MonitorProgram /lfs/cluster/vcs/pkgallp4312_oracle_monitor               OK
+17:24:43 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_oracle_app Enabled
+ 1                                                                        OK
+17:24:43 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_oracle_app
+ Critical 1                                                               OK
+17:24:43 Exec: hares -link pkgallp4312_oracle_app
+ pkgallp4312_pkgallp4312_ip                                               OK
+17:24:43 Exec: sleep 1                                                    OK
+17:24:44 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:45 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:45 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/pkgallp4312/db" OK
+17:24:45 Exec: /opt/VRTS/bin/hares -add pkgallp4312_dgpkgallp4312db
+ DiskGroup pkgallp4312                                                    VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312db
+ DiskGroup dgpkgallp4312db                                                OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312db
+ StartVolumes 1                                                           OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312db
+ StopVolumes 1                                                            OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312db
+ Enabled 1                                                                OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312db
+ Critical 1                                                               OK
+17:24:45 Exec: /opt/VRTS/bin/hares -add
+ pkgallp4312_global_pkgallp4312_db_mount Mount pkgallp4312                VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount BlockDevice
+ /dev/vx/dsk/dgpkgallp4312db/lvdb                                         OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount MountPoint
+ /global/pkgallp4312/db                                                   OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount FsckOpt %-y                      OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount FSType vxfs                      OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount Enabled 1                        OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount Critical 1                       OK
+17:24:45 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_db_mount MountOpt
+ mincache=direct,convosync=direct                                         OK
+17:24:45 Exec: /opt/VRTS/bin/hares -link
+ pkgallp4312_global_pkgallp4312_db_mount pkgallp4312_dgpkgallp4312db      OK
+17:24:45 Exec: /opt/VRTS/bin/hares -link pkgallp4312_oracle_app
+ pkgallp4312_global_pkgallp4312_db_mount                                  OK
+17:24:45 Exec: sleep 1                                                    OK
+17:24:46 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:47 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:47 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p
+ /global/pkgallp4312/bkup"                                                OK
+17:24:47 Exec: /opt/VRTS/bin/hares -add pkgallp4312_dgpkgallp4312bkup
+ DiskGroup pkgallp4312                                                    VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312bkup
+ DiskGroup dgpkgallp4312bkup                                              OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312bkup
+ StartVolumes 1                                                           OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312bkup
+ StopVolumes 1                                                            OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312bkup
+ Enabled 1                                                                OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312bkup
+ Critical 1                                                               OK
+17:24:47 Exec: /opt/VRTS/bin/hares -add
+ pkgallp4312_global_pkgallp4312_bkup_mount Mount pkgallp4312              VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount BlockDevice
+ /dev/vx/dsk/dgpkgallp4312bkup/lvbkup                                     OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount MountPoint
+ /global/pkgallp4312/bkup                                                 OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount FsckOpt %-y                    OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount FSType vxfs                    OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount Enabled 1                      OK
+17:24:47 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_bkup_mount Critical 1                     OK
+17:24:47 Exec: /opt/VRTS/bin/hares -link
+ pkgallp4312_global_pkgallp4312_bkup_mount pkgallp4312_dgpkgallp4312bkup  OK
+17:24:47 Exec: /opt/VRTS/bin/hares -link pkgallp4312_oracle_app
+ pkgallp4312_global_pkgallp4312_bkup_mount                                OK
+17:24:47 Exec: sleep 1                                                    OK
+17:24:48 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:50 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:50 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p
+ /global/pkgallp4312/redo1"                                               OK
+17:24:50 Exec: /opt/VRTS/bin/hares -add pkgallp4312_dgpkgallp4312redo1
+ DiskGroup pkgallp4312                                                    VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo1
+ DiskGroup dgpkgallp4312redo1                                             OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo1
+ StartVolumes 1                                                           OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo1
+ StopVolumes 1                                                            OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo1
+ Enabled 1                                                                OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo1
+ Critical 1                                                               OK
+17:24:50 Exec: /opt/VRTS/bin/hares -add
+ pkgallp4312_global_pkgallp4312_redo1_mount Mount pkgallp4312             VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount BlockDevice
+ /dev/vx/dsk/dgpkgallp4312redo1/lvredo1                                   OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount MountPoint
+ /global/pkgallp4312/redo1                                                OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount FsckOpt %-y                   OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount FSType vxfs                   OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount Enabled 1                     OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount Critical 1                    OK
+17:24:50 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo1_mount MountOpt
+ mincache=direct,convosync=direct                                         OK
+17:24:50 Exec: /opt/VRTS/bin/hares -link
+ pkgallp4312_global_pkgallp4312_redo1_mount
+ pkgallp4312_dgpkgallp4312redo1                                           OK
+17:24:50 Exec: /opt/VRTS/bin/hares -link pkgallp4312_oracle_app
+ pkgallp4312_global_pkgallp4312_redo1_mount                               OK
+17:24:50 Exec: sleep 1                                                    OK
+17:24:51 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+17:24:52 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+17:24:52 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p
+ /global/pkgallp4312/redo2"                                               OK
+17:24:52 Exec: /opt/VRTS/bin/hares -add pkgallp4312_dgpkgallp4312redo2
+ DiskGroup pkgallp4312                                                    VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo2
+ DiskGroup dgpkgallp4312redo2                                             OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo2
+ StartVolumes 1                                                           OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo2
+ StopVolumes 1                                                            OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo2
+ Enabled 1                                                                OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify pkgallp4312_dgpkgallp4312redo2
+ Critical 1                                                               OK
+17:24:52 Exec: /opt/VRTS/bin/hares -add
+ pkgallp4312_global_pkgallp4312_redo2_mount Mount pkgallp4312             VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount BlockDevice
+ /dev/vx/dsk/dgpkgallp4312redo2/lvredo2                                   OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount MountPoint
+ /global/pkgallp4312/redo2                                                OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount FsckOpt %-y                   OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount FSType vxfs                   OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount Enabled 1                     OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount Critical 1                    OK
+17:24:52 Exec: /opt/VRTS/bin/hares -modify
+ pkgallp4312_global_pkgallp4312_redo2_mount MountOpt
+ mincache=direct,convosync=direct                                         OK
+17:24:52 Exec: /opt/VRTS/bin/hares -link
+ pkgallp4312_global_pkgallp4312_redo2_mount
+ pkgallp4312_dgpkgallp4312redo2                                           OK
+17:24:52 Exec: /opt/VRTS/bin/hares -link pkgallp4312_oracle_app
+ pkgallp4312_global_pkgallp4312_redo2_mount                               OK
+17:24:52 Exec: sleep 1                                                    OK
+17:24:53 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $

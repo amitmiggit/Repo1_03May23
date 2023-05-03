@@ -1,0 +1,75 @@
+pvcreate /dev/sdb ; vgcreate vgdocker /dev/sdb ; lvcreate -l +100%FREE -n lvdockermgmt vgdocker ; mkfs.btrfs /dev/vgdocker/lvdockermgmt ; mkdir -p /global/docker
+echo /dev/vgdocker/lvdockermgmt /global/docker btrfs defaults,nofail,x-systemd.device-timeout=20 0 0 >> /etc/fstab
+mount -a
+chown -R root:docker /global/docker
+pvcreate /dev/sdc ; vgcreate vgdockerdata /dev/sdc
+===============================================POST INSTALLATION ==============================================================
+systemctl status docker
+systemctl enable docker
+systemctl start docker
+systemctl status docker
+===========================================================================POST CHECK====================================
+rudder agent inventory ; rudder agent update ; rudder agent info ; rudder agent run
+cat /etc/os-release
+lscpu
+free -g
+id -a qqpscc4
+ip a
+ 
+backupconf check
+host lpdkpgb00785vm
+ping -c 3 lpdkpga00785vm ; ping6 -c 3 lpdkpga00785vm ; ping -c 3 lpdkpga00785vmb ; ping6 -c 3 lpdkpga00785vmb
+cd /etc/sysconfig/network/ ; ls -l ; cat routes; cat ifroute-eth1
+ping -c 3 10.31.40.1 ; ping6 -c 3 2a03:1e80:a15:60f:0:0:0:1 ; ping -c 3 10.231.192.1 ; ping6 -c 3 2a03:1e80:a16:52b:0:0:0:1
+ ls -ld /global/docker/
+ 
+ chown -R root:docker /global/docker/
+ 
+ ls -ld /global/docker/
+ 
+ df -Th
+ 
+  ls -ldrt /global/docker/
+  
+  vgs
+  
+  systemctl status docker
+  
+  ls -ld /global/docker/
+  
+   fullcheck lp19dkpga0176vm
+   
+   
+   appinstance_id    APPD-11652
+   
+   
+lpdkpga00783vm: epmuc1218    01.50 / 018.4 / -1 / RZ1-RA1    SOI-296332
+lpdkpgb00783vm: epmuc1219    01.93 / 002.0 / 00.0 / RZ3      SOI-296333
+
+
+lpdkpga00817vm  - epmuc1202.bmwgroup.net  - 01.50 / 018.4 / -1 / RZ1-RA1 -- SOI-296332
+lpdkpgb00817vm  - epmuc1221.bmwgroup.net  - 01.93 / 002.0 / 00.0 / RZ3  -- SOI-296333
+
+
+lpdkpga00817vm  - epmuc1202 - SOI-296332
+lpdkpgb00817vm  - epmuc1221 - SOI-296333
+
+
+==================================================================================================
+
+
+lp10dkpga0128vm - epw100260.bmwgroup.net - 10.10 / 013.5 / 00.0 / ServerRoom
+
+lp10dkpgb0128vm - epmuc1221.bmwgroup.net - 01.93 / 002.0 / 00.0 / RZ3
+
+
+============================
+
+
+appinstance_id    APPD-11652
+lp10dkpga0128vm:    epw100260    10.10 / 013.5 / 00.0 / ServerRoom    SOI-290796    
+lp10dkpgb0128vm:    epw100263    10.10 / 018.0 / 00.0 / ServerRoom    SOI-290797
+  
+  
+  
+  

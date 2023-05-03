@@ -1,0 +1,688 @@
+Work Info History
+Task ID	 TAS000006783736
+Submit Date	 12.12.2022 13:12:53
+Submitter	 qxz1mw2
+Source	 
+View Access	 Internal
+Summary	 PBIS upgrading successfully finished
+Notes	 [INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ cat << EOF > TAS_PBIS_UPGRADE_TAS000006783736_LIST
+> li19sfintra12004vm
+> li19sfapp12003vm
+> lt19dcmservicedev01vm
+> lt19dkqcsit02vm
+> li19sfapp12004vm
+> li19sfintra12003vm
+> lt19dcmcicdvm01
+> lt19dcmmongodev01
+> li19kwombci2
+> EOF
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST`;do rootssh $i hostname -f | awk '{print $1}' | tee -a TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN ; done
+li19sfintra12004vm.bmwgroup.net
+li19sfapp12003vm.bmwgroup.net
+lt19dcmservicedev01vm.bmwgroup.net
+lt19dkqcsit02vm.bmwgroup.net
+li19sfapp12004vm.bmwgroup.net
+li19sfintra12003vm.bmwgroup.net
+lt19dcmcicdvm01.bmwgroup.net
+lt19dcmmongodev01.bmwgroup.net
+li19kwombci2.bmwgroup.net
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; downtime -a -h 2 -s os_linux_default_check_adclient -c "qxz1mw2 upgrading pbis TAS000006783736" $i ; done
+===========li19sfintra12004vm.bmwgroup.net============
+Argument: li19sfintra12004vm.bmwgroup.net
+[1670846574] SCHEDULE_SVC_DOWNTIME;li19sfintra12004vm.bmwgroup.net;os_linux_default_check_adclient;1670846574;1670853774;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========li19sfapp12003vm.bmwgroup.net============
+Argument: li19sfapp12003vm.bmwgroup.net
+[1670846578] SCHEDULE_SVC_DOWNTIME;li19sfapp12003vm.bmwgroup.net;os_linux_default_check_adclient;1670846578;1670853778;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========lt19dcmservicedev01vm.bmwgroup.net============
+Argument: lt19dcmservicedev01vm.bmwgroup.net
+[1670846583] SCHEDULE_SVC_DOWNTIME;lt19dcmservicedev01vm.bmwgroup.net;os_linux_default_check_adclient;1670846583;1670853783;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========lt19dkqcsit02vm.bmwgroup.net============
+Argument: lt19dkqcsit02vm.bmwgroup.net
+[1670846587] SCHEDULE_SVC_DOWNTIME;lt19dkqcsit02vm.bmwgroup.net;os_linux_default_check_adclient;1670846587;1670853787;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========li19sfapp12004vm.bmwgroup.net============
+Argument: li19sfapp12004vm.bmwgroup.net
+[1670846591] SCHEDULE_SVC_DOWNTIME;li19sfapp12004vm.bmwgroup.net;os_linux_default_check_adclient;1670846591;1670853791;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========li19sfintra12003vm.bmwgroup.net============
+Argument: li19sfintra12003vm.bmwgroup.net
+[1670846597] SCHEDULE_SVC_DOWNTIME;li19sfintra12003vm.bmwgroup.net;os_linux_default_check_adclient;1670846597;1670853797;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========lt19dcmcicdvm01.bmwgroup.net============
+Argument: lt19dcmcicdvm01.bmwgroup.net
+[1670846602] SCHEDULE_SVC_DOWNTIME;lt19dcmcicdvm01.bmwgroup.net;os_linux_default_check_adclient;1670846602;1670853802;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========lt19dcmmongodev01.bmwgroup.net============
+Argument: lt19dcmmongodev01.bmwgroup.net
+[1670846606] SCHEDULE_SVC_DOWNTIME;lt19dcmmongodev01.bmwgroup.net;os_linux_default_check_adclient;1670846606;1670853806;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+===========li19kwombci2.bmwgroup.net============
+Argument: li19kwombci2.bmwgroup.net
+[1670846610] SCHEDULE_SVC_DOWNTIME;li19kwombci2.bmwgroup.net;os_linux_default_check_adclient;1670846610;1670853810;1;0;7200;remote;qxz1mw2 upgrading pbis TAS000006783736
+
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i rpm -qa "pbis-enterprise";done
+===========li19sfintra12004vm.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+===========li19sfapp12003vm.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+===========lt19dcmservicedev01vm.bmwgroup.net============
+pbis-enterprise-10.1.1-33.x86_64
+===========lt19dkqcsit02vm.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+===========li19sfapp12004vm.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+===========li19sfintra12003vm.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+===========lt19dcmcicdvm01.bmwgroup.net============
+pbis-enterprise-10.1.1-33.x86_64
+===========lt19dcmmongodev01.bmwgroup.net============
+pbis-enterprise-10.1.1-33.x86_64
+===========li19kwombci2.bmwgroup.net============
+pbis-enterprise-10.0.0-576.x86_64
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ ansiblectl apply --playbook=PBIS_UPGRADE.yaml --hostlist=TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Verifying user-provided list /global/instserv/home/qxz1mw2/TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Looking up SSH keys for Serverlist (9)
+Info[1]: Result: 9 keys found, 0 from PAM, 9 from CONFIG
+Info[1]: Executing ansible playbook PBIS_UPGRADE.yaml for file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Logging started at /global/instserv/logs/ansible/2022.12.12.20.03.53.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN.log
+Using /global/instserv/tmp/ansible_runtime/2022.12.12.20.03.53.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN/ansible.cfg as config file
+
+PLAY [all] **************************************************************************************************************************************************
+
+TASK [SUSE version _raw_params=grep "CPE_NAME" /etc/os-release | awk -F'[=|:|\"]' '{print $6$7"_"$8}'] ******************************************************
+changed: [li19sfintra12004vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004320", "end": "2022-12-12 20:03:56.576073", "rc": 0, "start": "2022-12-12 20:03:56.571753", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.007449", "end": "2022-12-12 20:03:56.578758", "rc": 0, "start": "2022-12-12 20:03:56.571309", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.003919", "end": "2022-12-12 20:03:56.581055", "rc": 0, "start": "2022-12-12 20:03:56.577136", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.007340", "end": "2022-12-12 20:03:56.646800", "rc": 0, "start": "2022-12-12 20:03:56.639460", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp3", "stdout_lines": ["sles15_sp3"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.006457", "end": "2022-12-12 20:03:56.657696", "rc": 0, "start": "2022-12-12 20:03:56.651239", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.6"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004409", "end": "2022-12-12 20:03:56.679554", "rc": 0, "start": "2022-12-12 20:03:56.675145", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp4", "stdout_lines": ["sles15_sp4"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.006634", "end": "2022-12-12 20:03:56.682627", "rc": 0, "start": "2022-12-12 20:03:56.675993", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp3", "stdout_lines": ["sles15_sp3"]}
+changed: [li19kwombci2.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004967", "end": "2022-12-12 20:03:56.725389", "rc": 0, "start": "2022-12-12 20:03:56.720422", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp5", "stdout_lines": ["sles12_sp5"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.007090", "end": "2022-12-12 20:03:56.899315", "rc": 0, "start": "2022-12-12 20:03:56.892225", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp5", "stdout_lines": ["sles12_sp5"]}
+
+TASK [Check if PBIS works before update _raw_params=/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'] *******************
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.192261", "end": "2022-12-12 20:03:57.378371", "rc": 0, "start": "2022-12-12 20:03:57.186110", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.185354", "end": "2022-12-12 20:03:57.413929", "rc": 0, "start": "2022-12-12 20:03:57.228575", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.210085", "end": "2022-12-12 20:03:57.442163", "rc": 0, "start": "2022-12-12 20:03:57.232078", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.202011", "end": "2022-12-12 20:03:57.453169", "rc": 0, "start": "2022-12-12 20:03:57.251158", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.175941", "end": "2022-12-12 20:03:57.440550", "rc": 0, "start": "2022-12-12 20:03:57.264609", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:30.187079", "end": "2022-12-12 20:04:27.344875", "rc": 0, "start": "2022-12-12 20:03:57.157796", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:30.191042", "end": "2022-12-12 20:04:27.364925", "rc": 0, "start": "2022-12-12 20:03:57.173883", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:30.186145", "end": "2022-12-12 20:04:27.367486", "rc": 0, "start": "2022-12-12 20:03:57.181341", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:30.193572", "end": "2022-12-12 20:04:27.371228", "rc": 0, "start": "2022-12-12 20:03:57.177656", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+
+TASK [If PBIS before failed msg=OUTPUT - FAILED:,{{ inventory_hostname }},NOT WORKING BEFORE,,] *************************************************************
+skipping: [li19kwombci2.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmmongodev01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Zypper UG name=pbis-enterprise, state=latest] *********************************************************************************************************
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"56\" rate=\"16815962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"16815962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"56\" rate=\"16815962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"16815962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"14\" rate=\"4335962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"4335962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"14\" rate=\"4335962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"4335962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"18\" rate=\"5551962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"5551962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"18\" rate=\"5551962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"5551962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"1\" rate=\"567962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"567962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"1\" rate=\"567962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"567962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"29532512\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" edition-old=\"10.1.1-33\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" repository=\"PBIS\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES15/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"-1\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"50\" rate=\"15079962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"15079962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"50\" rate=\"15079962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"15079962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "stderr": "", "stderr_lines": [], "stdout": "<?xml version='1.0'?>\n<stream>\n<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">\n<to-upgrade>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</to-upgrade>\n<_unsupported>\n<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">\n<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>\n</_unsupported>\n</install-summary>\n<prompt id=\"0\">\n<text>Continue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"96\" rate=\"28951962\"/>\n<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"28951962\" done=\"1\"/>\n</stream>\n", "stdout_lines": ["<?xml version='1.0'?>", "<stream>", "<install-summary download-size=\"29868412\" space-usage-diff=\"24319588\" packages-to-change=\"1\">", "<to-upgrade>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" edition-old=\"10.0.0-576\" arch-old=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</to-upgrade>", "<_unsupported>", "<solvable type=\"package\" name=\"pbis-enterprise\" edition=\"22.2.0-210\" arch=\"x86_64\" summary=\"Identity Services for authenticating with Active Directory domains\">", "<description>AD Bridge integrates Unix desktops and servers into an Active Directory environment by joining hosts to the domain and lets Unix applications and services authenticate MS Windows&apos; users and groups via the PAM and Name Service Switch libraries.</description></solvable>", "</_unsupported>", "</install-summary>", "<prompt id=\"0\">", "<text>Continue?</text>", "<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>", "<option value=\"n\" desc=\"No, cancel the operation.\"/>", "<option value=\"v\" desc=\"Toggle display of package versions.\"/>", "<option value=\"a\" desc=\"Toggle display of package architectures.\"/>", "<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>", "<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>", "<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>", "<option value=\"g\" desc=\"View the summary in pager.\"/>", "</prompt>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"-1\" rate=\"-1\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" percent=\"96\" rate=\"28951962\"/>", "<download url=\"https://cm-repo-china.cn.sub/active-P-PBIS-SLES12/pbis-enterprise-22.2.0-210.x86_64.rpm\" rate=\"28951962\" done=\"1\"/>", "</stream>"], "update_cache": false}
+
+TASK [Check if PBIS works after update _raw_params=/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'] ********************
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.004962", "end": "2022-12-12 20:05:48.774378", "rc": 0, "start": "2022-12-12 20:05:48.769416", "stderr": "Failed to locate group.  Error code 40012 (LW_ERROR_NO_SUCH_GROUP).\nNo such group", "stderr_lines": ["Failed to locate group.  Error code 40012 (LW_ERROR_NO_SUCH_GROUP).", "No such group"], "stdout": "", "stdout_lines": []}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.005630", "end": "2022-12-12 20:05:48.795395", "rc": 0, "start": "2022-12-12 20:05:48.789765", "stderr": "Failed to locate group.  Error code 40012 (LW_ERROR_NO_SUCH_GROUP).\nNo such group", "stderr_lines": ["Failed to locate group.  Error code 40012 (LW_ERROR_NO_SUCH_GROUP).", "No such group"], "stdout": "", "stdout_lines": []}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009248", "end": "2022-12-12 20:05:48.800732", "rc": 0, "start": "2022-12-12 20:05:48.791484", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.011970", "end": "2022-12-12 20:05:48.805630", "rc": 0, "start": "2022-12-12 20:05:48.793660", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.006351", "end": "2022-12-12 20:05:48.839301", "rc": 0, "start": "2022-12-12 20:05:48.832950", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.012754", "end": "2022-12-12 20:05:48.852042", "rc": 0, "start": "2022-12-12 20:05:48.839288", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.189716", "end": "2022-12-12 20:05:49.030316", "rc": 0, "start": "2022-12-12 20:05:48.840600", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.215959", "end": "2022-12-12 20:05:49.105573", "rc": 0, "start": "2022-12-12 20:05:48.889614", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.006844", "end": "2022-12-12 20:05:49.989264", "rc": 0, "start": "2022-12-12 20:05:49.982420", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+
+TASK [If PBIS after failed msg=OUTPUT - FAILED:,{{ inventory_hostname }},NOT WORKING AFTER UG,,] ************************************************************
+fatal: [li19kwombci2.bmwgroup.net]: FAILED! => {"changed": false, "msg": "OUTPUT - FAILED:,li19kwombci2.bmwgroup.net,NOT WORKING AFTER UG,,"}
+skipping: [li19sfapp12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+fatal: [li19sfintra12004vm.bmwgroup.net]: FAILED! => {"changed": false, "msg": "OUTPUT - FAILED:,li19sfintra12004vm.bmwgroup.net,NOT WORKING AFTER UG,,"}
+skipping: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmmongodev01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Package version _raw_params=rpm -qa "pbis-enterprise"] ************************************************************************************************
+[WARNING]: Consider using the yum, dnf or zypper module rather than running 'rpm'.  If you need to use command because yum, dnf or zypper is insufficient
+you can add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.223414", "end": "2022-12-12 20:05:50.529291", "rc": 0, "start": "2022-12-12 20:05:50.305877", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.258937", "end": "2022-12-12 20:05:50.565264", "rc": 0, "start": "2022-12-12 20:05:50.306327", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.255482", "end": "2022-12-12 20:05:50.598054", "rc": 0, "start": "2022-12-12 20:05:50.342572", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.264447", "end": "2022-12-12 20:05:50.592706", "rc": 0, "start": "2022-12-12 20:05:50.328259", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.236599", "end": "2022-12-12 20:05:50.621151", "rc": 0, "start": "2022-12-12 20:05:50.384552", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.278536", "end": "2022-12-12 20:05:50.638767", "rc": 0, "start": "2022-12-12 20:05:50.360231", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.338941", "end": "2022-12-12 20:05:50.677113", "rc": 0, "start": "2022-12-12 20:05:50.338172", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+
+TASK [Output Data msg=OUTPUT - SUCCESS: {{ inventory_hostname }},{{ SUSE_version.stdout }}, VERSION AFTER UPGRADE:{{ PBIS_packages.stdout }}] ***************
+ok: [li19sfapp12003vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfapp12003vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfapp12004vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfapp12004vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfintra12003vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfintra12003vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmmongodev01.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmmongodev01.bmwgroup.net,sles15_sp3, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmcicdvm01.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmcicdvm01.bmwgroup.net,sles15_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmservicedev01vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmservicedev01vm.bmwgroup.net,sles15_sp3, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dkqcsit02vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dkqcsit02vm.bmwgroup.net,sles12_sp5, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+
+PLAY RECAP **************************************************************************************************************************************************
+li19kwombci2.bmwgroup.net  : ok=4    changed=4    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0
+li19sfapp12003vm.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfapp12004vm.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfintra12003vm.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfintra12004vm.bmwgroup.net : ok=4    changed=4    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0
+lt19dcmcicdvm01.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dcmmongodev01.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dcmservicedev01vm.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dkqcsit02vm.bmwgroup.net : ok=6    changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+Warning: Ansible playbook execution failed
+Info[1]: Log file for this run can be found at: /global/instserv/logs/ansible/2022.12.12.20.03.53.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN.log
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ ansiblectl apply --playbook=PBIS_UPGRADE.yaml --hostlist=TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Verifying user-provided list /global/instserv/home/qxz1mw2/TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Looking up SSH keys for Serverlist (9)
+Info[1]: Result: 9 keys found, 0 from PAM, 9 from CONFIG
+Info[1]: Executing ansible playbook PBIS_UPGRADE.yaml for file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN
+Info[1]: Logging started at /global/instserv/logs/ansible/2022.12.12.20.07.29.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN.log
+Using /global/instserv/tmp/ansible_runtime/2022.12.12.20.07.29.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN/ansible.cfg as config file
+
+PLAY [all] **************************************************************************************************************************************************
+
+TASK [SUSE version _raw_params=grep "CPE_NAME" /etc/os-release | awk -F'[=|:|\"]' '{print $6$7"_"$8}'] ******************************************************
+changed: [li19sfintra12004vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.008251", "end": "2022-12-12 20:07:32.619368", "rc": 0, "start": "2022-12-12 20:07:32.611117", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.005333", "end": "2022-12-12 20:07:32.637831", "rc": 0, "start": "2022-12-12 20:07:32.632498", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.006776", "end": "2022-12-12 20:07:32.638113", "rc": 0, "start": "2022-12-12 20:07:32.631337", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [li19kwombci2.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004026", "end": "2022-12-12 20:07:32.686317", "rc": 0, "start": "2022-12-12 20:07:32.682291", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp5", "stdout_lines": ["sles12_sp5"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.008040", "end": "2022-12-12 20:07:32.715298", "rc": 0, "start": "2022-12-12 20:07:32.707258", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp4", "stdout_lines": ["sles12_sp4"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.006506", "end": "2022-12-12 20:07:32.746252", "rc": 0, "start": "2022-12-12 20:07:32.739746", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp3", "stdout_lines": ["sles15_sp3"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.6"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004608", "end": "2022-12-12 20:07:32.751756", "rc": 0, "start": "2022-12-12 20:07:32.747148", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp4", "stdout_lines": ["sles15_sp4"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.007178", "end": "2022-12-12 20:07:32.776570", "rc": 0, "start": "2022-12-12 20:07:32.769392", "stderr": "", "stderr_lines": [], "stdout": "sles12_sp5", "stdout_lines": ["sles12_sp5"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "grep \"CPE_NAME\" /etc/os-release | awk -F'[=|:|\\\"]' '{print $6$7\"_\"$8}'", "delta": "0:00:00.004860", "end": "2022-12-12 20:07:32.821421", "rc": 0, "start": "2022-12-12 20:07:32.816561", "stderr": "", "stderr_lines": [], "stdout": "sles15_sp3", "stdout_lines": ["sles15_sp3"]}
+
+TASK [Check if PBIS works before update _raw_params=/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'] *******************
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009386", "end": "2022-12-12 20:07:33.045509", "rc": 0, "start": "2022-12-12 20:07:33.036123", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.006176", "end": "2022-12-12 20:07:33.068487", "rc": 0, "start": "2022-12-12 20:07:33.062311", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009597", "end": "2022-12-12 20:07:33.075299", "rc": 0, "start": "2022-12-12 20:07:33.065702", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009177", "end": "2022-12-12 20:07:33.096071", "rc": 0, "start": "2022-12-12 20:07:33.086894", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.012291", "end": "2022-12-12 20:07:33.135248", "rc": 0, "start": "2022-12-12 20:07:33.122957", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.011149", "end": "2022-12-12 20:07:33.153503", "rc": 0, "start": "2022-12-12 20:07:33.142354", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.005933", "end": "2022-12-12 20:07:33.152654", "rc": 0, "start": "2022-12-12 20:07:33.146721", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.008629", "end": "2022-12-12 20:07:33.171389", "rc": 0, "start": "2022-12-12 20:07:33.162760", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.210523", "end": "2022-12-12 20:07:33.257527", "rc": 0, "start": "2022-12-12 20:07:33.047004", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+
+TASK [If PBIS before failed msg=OUTPUT - FAILED:,{{ inventory_hostname }},NOT WORKING BEFORE,,] *************************************************************
+skipping: [li19kwombci2.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmmongodev01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Zypper UG name=pbis-enterprise, state=latest] *********************************************************************************************************
+ok: [li19sfapp12003vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [li19kwombci2.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [li19sfapp12004vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [li19sfintra12003vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [li19sfintra12004vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [lt19dcmmongodev01.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+ok: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": false, "cmd": ["/usr/bin/zypper", "--quiet", "--non-interactive", "--xmlout", "install", "--type", "package", "--auto-agree-with-licenses", "--no-recommends", "--", "+pbis-enterprise"], "name": ["pbis-enterprise"], "rc": 0, "state": "latest", "update_cache": false}
+
+TASK [Check if PBIS works after update _raw_params=/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'] ********************
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.005746", "end": "2022-12-12 20:07:34.680409", "rc": 0, "start": "2022-12-12 20:07:34.674663", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.006933", "end": "2022-12-12 20:07:34.687837", "rc": 0, "start": "2022-12-12 20:07:34.680904", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009235", "end": "2022-12-12 20:07:34.701146", "rc": 0, "start": "2022-12-12 20:07:34.691911", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.007472", "end": "2022-12-12 20:07:34.712398", "rc": 0, "start": "2022-12-12 20:07:34.704926", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.011763", "end": "2022-12-12 20:07:34.706725", "rc": 0, "start": "2022-12-12 20:07:34.694962", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009039", "end": "2022-12-12 20:07:34.729762", "rc": 0, "start": "2022-12-12 20:07:34.720723", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.011285", "end": "2022-12-12 20:07:34.768648", "rc": 0, "start": "2022-12-12 20:07:34.757363", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.009595", "end": "2022-12-12 20:07:34.781074", "rc": 0, "start": "2022-12-12 20:07:34.771479", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "/opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}'", "delta": "0:00:00.006244", "end": "2022-12-12 20:07:34.785440", "rc": 0, "start": "2022-12-12 20:07:34.779196", "stderr": "", "stderr_lines": [], "stdout": "801146", "stdout_lines": ["801146"]}
+
+TASK [If PBIS after failed msg=OUTPUT - FAILED:,{{ inventory_hostname }},NOT WORKING AFTER UG,,] ************************************************************
+skipping: [li19kwombci2.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfapp12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12003vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [li19sfintra12004vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmmongodev01.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Package version _raw_params=rpm -qa "pbis-enterprise"] ************************************************************************************************
+[WARNING]: Consider using the yum, dnf or zypper module rather than running 'rpm'.  If you need to use command because yum, dnf or zypper is insufficient
+you can add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+changed: [li19sfapp12004vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.214663", "end": "2022-12-12 20:07:35.297125", "rc": 0, "start": "2022-12-12 20:07:35.082462", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19sfintra12003vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.210499", "end": "2022-12-12 20:07:35.318846", "rc": 0, "start": "2022-12-12 20:07:35.108347", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19sfapp12003vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.235423", "end": "2022-12-12 20:07:35.323784", "rc": 0, "start": "2022-12-12 20:07:35.088361", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19sfintra12004vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.227903", "end": "2022-12-12 20:07:35.322689", "rc": 0, "start": "2022-12-12 20:07:35.094786", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [li19kwombci2.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.253231", "end": "2022-12-12 20:07:35.357347", "rc": 0, "start": "2022-12-12 20:07:35.104116", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmcicdvm01.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.260421", "end": "2022-12-12 20:07:35.405333", "rc": 0, "start": "2022-12-12 20:07:35.144912", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmservicedev01vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.297718", "end": "2022-12-12 20:07:35.434383", "rc": 0, "start": "2022-12-12 20:07:35.136665", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dcmmongodev01.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.278095", "end": "2022-12-12 20:07:35.438438", "rc": 0, "start": "2022-12-12 20:07:35.160343", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+changed: [lt19dkqcsit02vm.bmwgroup.net] => {"changed": true, "cmd": "rpm -qa \"pbis-enterprise\"", "delta": "0:00:00.338887", "end": "2022-12-12 20:07:35.542877", "rc": 0, "start": "2022-12-12 20:07:35.203990", "stderr": "", "stderr_lines": [], "stdout": "pbis-enterprise-22.2.0-210.x86_64", "stdout_lines": ["pbis-enterprise-22.2.0-210.x86_64"]}
+
+TASK [Output Data msg=OUTPUT - SUCCESS: {{ inventory_hostname }},{{ SUSE_version.stdout }}, VERSION AFTER UPGRADE:{{ PBIS_packages.stdout }}] ***************
+ok: [li19kwombci2.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19kwombci2.bmwgroup.net,sles12_sp5, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfapp12003vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfapp12003vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfapp12004vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfapp12004vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfintra12003vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfintra12003vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmcicdvm01.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmcicdvm01.bmwgroup.net,sles15_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [li19sfintra12004vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: li19sfintra12004vm.bmwgroup.net,sles12_sp4, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmmongodev01.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmmongodev01.bmwgroup.net,sles15_sp3, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dcmservicedev01vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dcmservicedev01vm.bmwgroup.net,sles15_sp3, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+ok: [lt19dkqcsit02vm.bmwgroup.net] => {
+   "msg": "OUTPUT - SUCCESS: lt19dkqcsit02vm.bmwgroup.net,sles12_sp5, VERSION AFTER UPGRADE:pbis-enterprise-22.2.0-210.x86_64"
+}
+
+PLAY RECAP **************************************************************************************************************************************************
+li19kwombci2.bmwgroup.net  : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfapp12003vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfapp12004vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfintra12003vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+li19sfintra12004vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dcmcicdvm01.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dcmmongodev01.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dcmservicedev01vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+lt19dkqcsit02vm.bmwgroup.net : ok=6    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+Info[1]: Command playbook execution succeeded
+Info[1]: Log file for this run can be found at: /global/instserv/logs/ansible/2022.12.12.20.07.29.qxz1mw2.file.TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN.log
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i rpm -qa "pbis-enterprise";done
+===========li19sfintra12004vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========li19sfapp12003vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========lt19dcmservicedev01vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========lt19dkqcsit02vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========li19sfapp12004vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========li19sfintra12003vm.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========lt19dcmcicdvm01.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========lt19dcmmongodev01.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+===========li19kwombci2.bmwgroup.net============
+pbis-enterprise-22.2.0-210.x86_64
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i systemctl status lwsmd;done
+===========li19sfintra12004vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:05:42 CST; 3min 46s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 10042 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 10044 (lwsmd)
+   Tasks: 206 (limit: 8192)
+  CGroup: /system.slice/lwsmd.service
+          ├─10044 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─10067 lw-container lwreg
+          ├─10095 lw-container eventlog
+          ├─10121 lw-container netlogon
+          ├─10146 lw-container lwio
+          ├─10173 lw-container lsass
+          ├─10205 lw-container reapsysl
+          └─10308 lw-container gpagent
+
+Dec 12 20:05:44 li19sfintra12004vm lsass[10173]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 10308
+Dec 12 20:05:44 li19sfintra12004vm gpagent[10308]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:44 li19sfintra12004vm gpagent[10308]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:44 li19sfintra12004vm gpagent[10308]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:44 li19sfintra12004vm gpagent[10308]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:44 li19sfintra12004vm gpagent[10308]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:57 li19sfintra12004vm lsass[10173]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:07:33 li19sfintra12004vm lsass[10173]: [lsass] Ignoring invalid override line:
+Dec 12 20:07:33 li19sfintra12004vm lsass[10173]: [lsass] Ignoring override line:
+Dec 12 20:07:33 li19sfintra12004vm lsass[10173]: [lsass] Ignoring invalid group override line:
+===========li19sfapp12003vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:04:57 CST; 4min 32s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 11316 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 11318 (lwsmd)
+   Tasks: 206 (limit: 8192)
+  CGroup: /system.slice/lwsmd.service
+          ├─11318 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─11341 lw-container lwreg
+          ├─11370 lw-container eventlog
+          ├─11396 lw-container netlogon
+          ├─11421 lw-container lwio
+          ├─11448 lw-container lsass
+          ├─11481 lw-container reapsysl
+          └─11583 lw-container gpagent
+
+Dec 12 20:05:00 li19sfapp12003vm lsass[11448]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 11583
+Dec 12 20:05:00 li19sfapp12003vm gpagent[11583]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:00 li19sfapp12003vm gpagent[11583]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:00 li19sfapp12003vm gpagent[11583]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:00 li19sfapp12003vm gpagent[11583]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:00 li19sfapp12003vm gpagent[11583]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:12 li19sfapp12003vm lsass[11448]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 li19sfapp12003vm lsass[11448]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 li19sfapp12003vm lsass[11448]: [lsass] Ignoring override line:
+Dec 12 20:05:48 li19sfapp12003vm lsass[11448]: [lsass] Ignoring invalid group override line:
+===========lt19dcmservicedev01vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+    Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+   Drop-In: /etc/systemd/system/lwsmd.service.d
+            └─override.conf
+    Active: active (running) since Mon 2022-12-12 20:05:28 CST; 4min 2s ago
+      Docs: man:pbis
+            man:domainjoin-cli
+            https://www.beyondtrust.com/docs/ad-bridge/
+   Process: 2868 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+  Main PID: 2870 (lwsmd)
+     Tasks: 207 (limit: 8192)
+    CGroup: /system.slice/lwsmd.service
+            ├─2870 /opt/pbis/sbin/lwsmd --start-as-daemon
+            ├─2893 lw-container lwreg
+            ├─2921 lw-container eventlog
+            ├─2947 lw-container netlogon
+            ├─2972 lw-container lwio
+            ├─2999 lw-container lsass
+            ├─3036 lw-container reapsysl
+            └─3139 lw-container gpagent
+
+Dec 12 20:05:29 lt19dcmservicedev01vm lsass[2999]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 3139
+Dec 12 20:05:29 lt19dcmservicedev01vm gpagent[3139]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:29 lt19dcmservicedev01vm gpagent[3139]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:29 lt19dcmservicedev01vm gpagent[3139]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:29 lt19dcmservicedev01vm gpagent[3139]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:29 lt19dcmservicedev01vm gpagent[3139]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:43 lt19dcmservicedev01vm lsass[2999]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 lt19dcmservicedev01vm lsass[2999]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 lt19dcmservicedev01vm lsass[2999]: [lsass] Ignoring override line:
+Dec 12 20:05:48 lt19dcmservicedev01vm lsass[2999]: [lsass] Ignoring invalid group override line:
+===========lt19dkqcsit02vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:05:03 CST; 4min 29s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 1123 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 1125 (lwsmd)
+   Tasks: 366 (limit: 8192)
+  Memory: 111.7M
+     CPU: 1.501s
+  CGroup: /system.slice/lwsmd.service
+          ├─1125 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─1169 lw-container lwreg
+          ├─1247 lw-container eventlog
+          ├─1293 lw-container netlogon
+          ├─1338 lw-container lwio
+          ├─1385 lw-container lsass
+          ├─1441 lw-container reapsysl
+          └─1626 lw-container gpagent
+
+Dec 12 20:05:06 lt19dkqcsit02vm lsass[1385]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 1626
+Dec 12 20:05:06 lt19dkqcsit02vm gpagent[1626]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:06 lt19dkqcsit02vm gpagent[1626]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:06 lt19dkqcsit02vm gpagent[1626]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:06 lt19dkqcsit02vm gpagent[1626]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:06 lt19dkqcsit02vm gpagent[1626]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:18 lt19dkqcsit02vm lsass[1385]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 lt19dkqcsit02vm lsass[1385]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 lt19dkqcsit02vm lsass[1385]: [lsass] Ignoring override line:
+Dec 12 20:05:48 lt19dkqcsit02vm lsass[1385]: [lsass] Ignoring invalid group override line:
+===========li19sfapp12004vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:04:57 CST; 4min 37s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 31415 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 31417 (lwsmd)
+   Tasks: 206 (limit: 8192)
+  CGroup: /system.slice/lwsmd.service
+          ├─31417 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─31440 lw-container lwreg
+          ├─31468 lw-container eventlog
+          ├─31494 lw-container netlogon
+          ├─31519 lw-container lwio
+          ├─31546 lw-container lsass
+          ├─31579 lw-container reapsysl
+          └─31739 lw-container gpagent
+
+Dec 12 20:04:59 li19sfapp12004vm lsass[31546]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 31739
+Dec 12 20:04:59 li19sfapp12004vm gpagent[31739]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:04:59 li19sfapp12004vm gpagent[31739]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:04:59 li19sfapp12004vm gpagent[31739]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:04:59 li19sfapp12004vm gpagent[31739]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:04:59 li19sfapp12004vm gpagent[31739]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:12 li19sfapp12004vm lsass[31546]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 li19sfapp12004vm lsass[31546]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 li19sfapp12004vm lsass[31546]: [lsass] Ignoring override line:
+Dec 12 20:05:48 li19sfapp12004vm lsass[31546]: [lsass] Ignoring invalid group override line:
+===========li19sfintra12003vm.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:04:57 CST; 4min 37s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 31995 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 31997 (lwsmd)
+   Tasks: 206 (limit: 8192)
+  CGroup: /system.slice/lwsmd.service
+          ├─31997 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─32020 lw-container lwreg
+          ├─32048 lw-container eventlog
+          ├─32074 lw-container netlogon
+          ├─32099 lw-container lwio
+          ├─32126 lw-container lsass
+          ├─32159 lw-container reapsysl
+          └─32265 lw-container gpagent
+
+Dec 12 20:05:00 li19sfintra12003vm lsass[32126]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 32265
+Dec 12 20:05:00 li19sfintra12003vm gpagent[32265]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:00 li19sfintra12003vm gpagent[32265]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:00 li19sfintra12003vm gpagent[32265]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:00 li19sfintra12003vm gpagent[32265]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:00 li19sfintra12003vm gpagent[32265]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:13 li19sfintra12003vm lsass[32126]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 li19sfintra12003vm lsass[32126]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 li19sfintra12003vm lsass[32126]: [lsass] Ignoring override line:
+Dec 12 20:05:48 li19sfintra12003vm lsass[32126]: [lsass] Ignoring invalid group override line:
+===========lt19dcmcicdvm01.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+    Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+   Drop-In: /etc/systemd/system/lwsmd.service.d
+            └─override.conf
+    Active: active (running) since Mon 2022-12-12 20:04:39 CST; 4min 56s ago
+      Docs: man:pbis
+            man:domainjoin-cli
+            https://www.beyondtrust.com/docs/ad-bridge/
+   Process: 5291 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+  Main PID: 5293 (lwsmd)
+     Tasks: 206 (limit: 8192)
+    CGroup: /system.slice/lwsmd.service
+            ├─5293 /opt/pbis/sbin/lwsmd --start-as-daemon
+            ├─5316 lw-container lwreg
+            ├─5344 lw-container eventlog
+            ├─5370 lw-container netlogon
+            ├─5395 lw-container lwio
+            ├─5422 lw-container lsass
+            ├─5454 lw-container reapsysl
+            └─5563 lw-container gpagent
+
+Dec 12 20:04:41 lt19dcmcicdvm01 lsass[5422]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 5563
+Dec 12 20:04:41 lt19dcmcicdvm01 gpagent[5563]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:04:41 lt19dcmcicdvm01 gpagent[5563]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:04:41 lt19dcmcicdvm01 gpagent[5563]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:04:41 lt19dcmcicdvm01 gpagent[5563]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:04:41 lt19dcmcicdvm01 gpagent[5563]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:04:54 lt19dcmcicdvm01 lsass[5422]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:49 lt19dcmcicdvm01 lsass[5422]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:49 lt19dcmcicdvm01 lsass[5422]: [lsass] Ignoring override line:
+Dec 12 20:05:49 lt19dcmcicdvm01 lsass[5422]: [lsass] Ignoring invalid group override line:
+===========lt19dcmmongodev01.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+    Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+   Drop-In: /etc/systemd/system/lwsmd.service.d
+            └─override.conf
+    Active: active (running) since Mon 2022-12-12 20:05:29 CST; 4min 8s ago
+      Docs: man:pbis
+            man:domainjoin-cli
+            https://www.beyondtrust.com/docs/ad-bridge/
+   Process: 6072 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+  Main PID: 6074 (lwsmd)
+     Tasks: 367 (limit: 8192)
+    CGroup: /system.slice/lwsmd.service
+            ├─6074 /opt/pbis/sbin/lwsmd --start-as-daemon
+            ├─6117 lw-container lwreg
+            ├─6165 lw-container eventlog
+            ├─6211 lw-container netlogon
+            ├─6256 lw-container lwio
+            ├─6303 lw-container lsass
+            ├─6359 lw-container reapsysl
+            └─6538 lw-container gpagent
+
+Dec 12 20:05:30 lt19dcmmongodev01 lsass[6303]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 6538
+Dec 12 20:05:30 lt19dcmmongodev01 gpagent[6538]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:30 lt19dcmmongodev01 gpagent[6538]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:30 lt19dcmmongodev01 gpagent[6538]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:30 lt19dcmmongodev01 gpagent[6538]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:30 lt19dcmmongodev01 gpagent[6538]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:44 lt19dcmmongodev01 lsass[6303]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:05:48 lt19dcmmongodev01 lsass[6303]: [lsass] Ignoring invalid override line:
+Dec 12 20:05:48 lt19dcmmongodev01 lsass[6303]: [lsass] Ignoring override line:
+Dec 12 20:05:48 lt19dcmmongodev01 lsass[6303]: [lsass] Ignoring invalid group override line:
+===========li19kwombci2.bmwgroup.net============
+● lwsmd.service - BeyondTrust AD Bridge Service Manager
+  Loaded: loaded (/usr/lib/systemd/system/lwsmd.service; enabled; vendor preset: disabled)
+ Drop-In: /etc/systemd/system/lwsmd.service.d
+          └─override.conf
+  Active: active (running) since Mon 2022-12-12 20:05:43 CST; 3min 55s ago
+    Docs: man:pbis
+          man:domainjoin-cli
+          https://www.beyondtrust.com/docs/ad-bridge/
+ Process: 24560 ExecStart=/opt/pbis/sbin/lwsmd --start-as-daemon (code=exited, status=0/SUCCESS)
+Main PID: 24562 (lwsmd)
+   Tasks: 207 (limit: 8192)
+  CGroup: /system.slice/lwsmd.service
+          ├─24562 /opt/pbis/sbin/lwsmd --start-as-daemon
+          ├─24585 lw-container lwreg
+          ├─24613 lw-container eventlog
+          ├─24639 lw-container netlogon
+          ├─24664 lw-container lwio
+          ├─24691 lw-container lsass
+          ├─24723 lw-container reapsysl
+          └─24826 lw-container gpagent
+
+Dec 12 20:05:46 li19kwombci2 lsass[24691]: [lsass] Failed to run provider specific request (request code = 1, provider = 'lsa-activedirectory-provider') -> error = 40017, symbol = LW_ERROR_NOT_HANDLED, client pid = 24826
+Dec 12 20:05:46 li19kwombci2 gpagent[24826]: [gpagent] Failed to clear the ad-cache; error code: 40017
+Dec 12 20:05:46 li19kwombci2 gpagent[24826]: [gpagent] Account override: policies applied, but failed to empty the cache; error code: 40017
+Dec 12 20:05:46 li19kwombci2 gpagent[24826]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/cses/lwiactoverride/lwiactoverride.c:1069. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:46 li19kwombci2 gpagent[24826]: [gpagent] Error at /builder/src-git/ADBridge/src/linux/grouppolicy/server/gpagentd/gpathread.c:218. Error code [0x    9c51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:46 li19kwombci2 gpagent[24826]: [gpagent] Error processing group policies while processing list of group policy objects for computer, error: [0x    9C51] (LW_ERROR_NOT_HANDLED)
+Dec 12 20:05:58 li19kwombci2 lsass[24691]: [lsass] Ignoring failure enumerating trusts for forest bmw.corp. Error was NERR_DCNotFound (2453)
+Dec 12 20:07:33 li19kwombci2 lsass[24691]: [lsass] Ignoring invalid override line:
+Dec 12 20:07:33 li19kwombci2 lsass[24691]: [lsass] Ignoring override line:
+Dec 12 20:07:33 li19kwombci2 lsass[24691]: [lsass] Ignoring invalid group override line:
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i systemctl is-active lwsmd;done
+===========li19sfintra12004vm.bmwgroup.net============
+active
+===========li19sfapp12003vm.bmwgroup.net============
+active
+===========lt19dcmservicedev01vm.bmwgroup.net============
+active
+===========lt19dkqcsit02vm.bmwgroup.net============
+active
+===========li19sfapp12004vm.bmwgroup.net============
+active
+===========li19sfintra12003vm.bmwgroup.net============
+active
+===========lt19dcmcicdvm01.bmwgroup.net============
+active
+===========lt19dcmmongodev01.bmwgroup.net============
+active
+===========li19kwombci2.bmwgroup.net============
+active
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $ for i in `cat TAS_PBIS_UPGRADE_TAS000006783736_LIST_FQDN`; do echo -e "\e[1;32m ===========$i============ \e[0m"; rootssh $i /opt/pbis/bin/find-group-by-name --level 1 gupbisadmin | grep Gid | awk '{print $2}';done
+===========li19sfintra12004vm.bmwgroup.net============
+801146
+===========li19sfapp12003vm.bmwgroup.net============
+801146
+===========lt19dcmservicedev01vm.bmwgroup.net============
+801146
+===========lt19dkqcsit02vm.bmwgroup.net============
+801146
+===========li19sfapp12004vm.bmwgroup.net============
+801146
+===========li19sfintra12003vm.bmwgroup.net============
+801146
+===========lt19dcmcicdvm01.bmwgroup.net============
+801146
+===========lt19dcmmongodev01.bmwgroup.net============
+801146
+===========li19kwombci2.bmwgroup.net============
+801146
+[INSTSERV][qxz1mw2][lpinstiaassfcn19] ~ $
+Printed by qxz10kv on Monday, 12.12.2022 14:24:58

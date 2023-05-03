@@ -1,0 +1,297 @@
+ltxensdi33:~ # vmc list lieft02 lipxq03 litfq02 littq05 ltfme03
+13:26:23 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+                                    ltxensdi33                  ltxensdi34
+                                --------------              --------------
+lieft02               running(  1)( 30/  120G)                     -------
+lipxq03               running(  2)( 12/63488M)                     -------
+litfq02               running(  3)( 30/  120G)                     -------
+littq05               running(  4)(  6/61440M)                     -------
+ltfme03               running(  5)(  4/20480M)                     -------
+ltxensdi33:~ # vmc storage lieft02
+13:26:42 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e8007292800003029280000000b 10536 000b   112G  dm-45   SAN:lieft02   md/lieft02   lieft02
+360060e8007292800003029280000000d 10536 000d   112G  dm-43   SAN:lieft02_1 md/lieft02_1 lieft02
+360060e8007295500003029550000000b 10581 000b   112G  dm-33   SAN:lieft02   md/lieft02   lieft02
+360060e8007295500003029550000000d 10581 000d   112G  dm-31   SAN:lieft02_1 md/lieft02_1 lieft02
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage lipxq03
+13:26:59 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072928000030292800000016 10536 0016    14G  dm-1    SAN:lipxq03_2 md/lipxq03_2 lipxq03
+360060e80072928000030292800000017 10536 0017   112G  dm-44   SAN:lipxq03   md/lipxq03   lipxq03
+360060e80072928000030292800000018 10536 0018   112G  dm-54   SAN:lipxq03_1 md/lipxq03_1 lipxq03
+360060e80072955000030295500000016 10581 0016    14G  dm-0    SAN:lipxq03_2 md/lipxq03_2 lipxq03
+360060e80072955000030295500000017 10581 0017   112G  dm-30   SAN:lipxq03   md/lipxq03   lipxq03
+360060e80072955000030295500000018 10581 0018   112G  dm-35   SAN:lipxq03_1 md/lipxq03_1 lipxq03
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage litfq02
+13:27:12 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072928000030292800000019 10536 0019   112G  dm-52   SAN:litfq02   md/litfq02   litfq02
+360060e8007292800003029280000001a 10536 001a   112G  dm-49   SAN:litfq02_1 md/litfq02_1 litfq02
+360060e80072928000030292800000034 10536 0034    14G  dm-41   SAN:litfq02_2 md/litfq02_2 litfq02
+360060e80072955000030295500000019 10581 0019   112G  dm-36   SAN:litfq02   md/litfq02   litfq02
+360060e8007295500003029550000001a 10581 001a   112G  dm-39   SAN:litfq02_1 md/litfq02_1 litfq02
+360060e80072955000030295500000034 10581 0034    14G  dm-29   SAN:litfq02_2 md/litfq02_2 litfq02
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage littq05
+13:27:28 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e8007292800003029280000001c 10536 001c   112G  dm-48   SAN:littq05   md/littq05   littq05
+360060e8007292800003029280000001d 10536 001d   112G  dm-47   SAN:littq05_1 md/littq05_1 littq05
+360060e8007295500003029550000001c 10581 001c   112G  dm-38   SAN:littq05   md/littq05   littq05
+360060e8007295500003029550000001d 10581 001d   112G  dm-46   SAN:littq05_1 md/littq05_1 littq05
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage ltfme03
+13:27:43 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072909000030290900000191 10505 0191    56G  dm-16   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007290900003029090000019a 10505 019a   112G  dm-25   SAN:ltfme03   md/ltfme03   ltfme03
+360060e800729090000302909000001a5 10505 01a5   112G  dm-21   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e8007291b000030291b00000191 10523 0191    56G  dm-3    SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007291b000030291b0000019a 10523 019a   112G  dm-9    SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007291b000030291b000001a5 10523 01a5   112G  dm-12   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+ltxensdi33:~ # san_shortinfo | grep -i ltfme03
+dm-16   | sdt   01:91   1B   10505    57622 | sdat  01:91   2B   10505    57622 | SAN:ltfme03_2        dgtfmedi3101
+dm-25   | sdy   01:9A   1B   10505   115245 | sday  01:9A   2B   10505   115245 | SAN:ltfme03          vgltfme03
+dm-21   | sdz   01:A5   1B   10505   115245 | sdaz  01:A5   2B   10505   115245 | SAN:ltfme03_1        dgtfmedi3101
+dm-3    | sdg   01:91   1B   10523    57622 | sdag  01:91   2B   10523    57622 | SAN:ltfme03_2        dgtfmedi3101
+dm-9    | sdl   01:9A   1B   10523   115245 | sdal  01:9A   2B   10523   115245 | SAN:ltfme03          vgltfme03
+dm-12   | sdm   01:A5   1B   10523   115245 | sdam  01:A5   2B   10523   115245 | SAN:ltfme03_1        dgtfmedi3101
+ltxensdi33:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ vi file1
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ vi 1sep
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ cat 1sep | awk -F "." '{print $1}' | xargs | tr ' ' '|'
+000B|000D|001F|001E|001D|001C|001A|0017|0018|0019|001A|001C|001D|001E|001F|000B|000D|0017|0018|0019|0020|0020|0034|0035|0034|0035
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh ltxensdi33
+ltxensdi33:~ # vmc storage free | egrep -i '000B|000D|001F|001E|001D|001C|001A|0017|0018|0019|001A|001C|001D|001E|001F|000B|000D|0017|0018|0019|0020|0020|0034|0035|0034|0035' | sort -k3
+360060e8007295500003029550000001e 10581 001e   112G  dm-40   no md header                   N/A
+360060e8007292800003029280000001e 10536 001e   112G  dm-50   no md header                   N/A
+360060e8007295500003029550000001f 10581 001f   112G  dm-34   no md header                   N/A
+360060e8007292800003029280000001f 10536 001f   112G  dm-51   no md header                   N/A
+360060e80072955000030295500000020 10581 0020    56G  dm-37   no md header                   N/A
+360060e80072928000030292800000020 10536 0020    56G  dm-53   no md header                   N/A
+360060e80072955000030295500000035 10581 0035    14G  dm-32   no md header                   N/A
+360060e80072928000030292800000035 10536 0035    14G  dm-42   no md header                   N/A
+ltxensdi33:~ # vmc info ltfme03
+Name                      : ltfme03
+Comment                   : N/A
+Domain ID                 : 5
+Status                    : Running on ltxensdi33
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles12sp4
+Last Backup (UTC)         : 2022-09-01 00:54:30
+
+Cur. VCPUs                : 4
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 20480
+Max. Mem [MB]             : 40960
+
+XML - Cur. VCPUs          : 4
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 20480
+XML - Max. Mem [MB]       : 40960
+
+Network Device 1          : e2:bf:44:82:53:d2 (br:br_160046143000 ipname:ltfme03)
+Network Device 2          : 32:1a:69:a3:5a:cd (br:br_010100049000 ipname:ltfme03b)
+
+Block Device xvda         : /dev/md/ltfme03
+Block Device xvdb         : /dev/md/ltfme03_1
+Block Device xvdc         : /dev/md/ltfme03_2
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage ltfme03
+13:43:51 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072909000030290900000191 10505 0191    56G  dm-16   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007290900003029090000019a 10505 019a   112G  dm-25   SAN:ltfme03   md/ltfme03   ltfme03
+360060e800729090000302909000001a5 10505 01a5   112G  dm-21   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e8007291b000030291b00000191 10523 0191    56G  dm-3    SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007291b000030291b0000019a 10523 019a   112G  dm-9    SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007291b000030291b000001a5 10523 01a5   112G  dm-12   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage free | egrep -i '000B|000D|001F|001E|001D|001C|001A|0017|0018|0019|001A|001C|001D|001E|001F|000B|000D|0017|0018|0019|0020|0020|0034|0035|0034|0035' | sort -k3
+360060e8007295500003029550000001e 10581 001e   112G  dm-40   no md header                   N/A
+360060e8007292800003029280000001e 10536 001e   112G  dm-50   no md header                   N/A
+360060e8007295500003029550000001f 10581 001f   112G  dm-34   no md header                   N/A
+360060e8007292800003029280000001f 10536 001f   112G  dm-51   no md header                   N/A
+360060e80072955000030295500000020 10581 0020    56G  dm-37   no md header                   N/A
+360060e80072928000030292800000020 10536 0020    56G  dm-53   no md header                   N/A
+360060e80072955000030295500000035 10581 0035    14G  dm-32   no md header                   N/A
+360060e80072928000030292800000035 10536 0035    14G  dm-42   no md header                   N/A
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc -p -d "360060e8007295500003029550000001e 360060e8007292800003029280000001e" migratemd ltfme03 /dev/md/ltfme03
+14:03:13 Checking Libvirt access on ltxensdi33                                                                                                                                         OK
+14:03:13 Checking Libvirt access on ltxensdi34                                                                                                                                         OK
+14:03:14 Locking VM ltfme03: Automatic Lock - migratemd                                                                                                                                OK
+14:03:18 Preparing pvinfo output for visibility removal...
+--------------------------------------------------------------------------
+/dev/dm-25             00 00 00 SAN:ltfme03              01:9a NA 00010505
+/dev/dm-9              00 00 00 SAN:ltfme03              01:9a NA 00010523
+--------------------------------------------------------------------------
+14:03:18 Adding /dev/disk/by-id/dm-uuid-mpath-360060e8007295500003029550000001e /dev/disk/by-id/dm-uuid-mpath-360060e8007292800003029280000001e to /dev/md/ltfme03                     OK
+14:03:18 Waiting for /dev/md/ltfme03 to finish synchronizing                                                                                                                         100%
+14:13:09 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007290900003029090000019a from /dev/md/ltfme03                                                                                 OK
+14:13:09 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b0000019a from /dev/md/ltfme03                                                                                 OK
+14:13:10 Setting writemostly flag for dm-40(10581) in /dev/md/ltfme03 on ltxensdi33                                                                                                    OK
+14:13:10 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007290900003029090000019a from ltxensdi33                                                                                      OK
+14:13:10 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b0000019a from ltxensdi33                                                                                      OK
+14:13:11 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007290900003029090000019a from ltxensdi34                                                                                      OK
+14:13:12 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b0000019a from ltxensdi34                                                                                      OK
+14:13:13 Writing /etc/.donotrescan on ltxensdi33                                                                                                                                       OK
+14:13:13 Writing /etc/.donotrescan on ltxensdi34                                                                                                                                       OK
+14:13:15 Unlocking VM ltfme03                                                                                                                                                          OK
+You have new mail in /var/mail/root
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage free | egrep -i '000B|000D|001F|001E|001D|001C|001A|0017|0018|0019|001A|001C|001D|001E|001F|000B|000D|0017|0018|0019|0020|0020|0034|0035|0034|0035' | sort -k3
+360060e8007295500003029550000001f 10581 001f   112G  dm-34   no md header                   N/A
+360060e8007292800003029280000001f 10536 001f   112G  dm-51   no md header                   N/A
+360060e80072955000030295500000020 10581 0020    56G  dm-37   no md header                   N/A
+360060e80072928000030292800000020 10536 0020    56G  dm-53   no md header                   N/A
+360060e80072955000030295500000035 10581 0035    14G  dm-32   no md header                   N/A
+360060e80072928000030292800000035 10536 0035    14G  dm-42   no md header                   N/A
+ltxensdi33:~ # vmc info ltfme03
+Name                      : ltfme03
+Comment                   : N/A
+Domain ID                 : 5
+Status                    : Running on ltxensdi33
+VM Type                   : XEN
+Virtualization Mode       : PV
+Mounts                    : None
+Storage Type              : SAN+MD
+Image                     : sles12sp4
+Last Backup (UTC)         : 2022-09-01 00:54:30
+
+Cur. VCPUs                : 4
+Max. VCPUs                : 8
+Cur. Mem [MB]             : 20480
+Max. Mem [MB]             : 40960
+
+XML - Cur. VCPUs          : 4
+XML - Max. VCPUs          : 8
+XML - Cur. Mem [MB]       : 20480
+XML - Max. Mem [MB]       : 40960
+
+Network Device 1          : e2:bf:44:82:53:d2 (br:br_160046143000 ipname:ltfme03)
+Network Device 2          : 32:1a:69:a3:5a:cd (br:br_010100049000 ipname:ltfme03b)
+
+Block Device xvda         : /dev/md/ltfme03
+Block Device xvdb         : /dev/md/ltfme03_1
+Block Device xvdc         : /dev/md/ltfme03_2
+ltxensdi33:~ # vmc storage ltfme03
+14:14:08 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072909000030290900000191 10505 0191    56G  dm-16   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e800729090000302909000001a5 10505 01a5   112G  dm-21   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e8007291b000030291b00000191 10523 0191    56G  dm-3    SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007291b000030291b000001a5 10523 01a5   112G  dm-12   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e8007292800003029280000001e 10536 001e   112G  dm-50   SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007295500003029550000001e 10581 001e   112G  dm-40   SAN:ltfme03   md/ltfme03   ltfme03
+ltxensdi33:~ #
+ltxensdi33:~ # vmc -p -d "360060e8007295500003029550000001f 360060e8007292800003029280000001f" migratemd ltfme03 /dev/md/ltfme03_1
+14:16:07 Checking Libvirt access on ltxensdi33                                                                                                                                         OK
+14:16:07 Checking Libvirt access on ltxensdi34                                                                                                                                         OK
+14:16:07 Locking VM ltfme03: Automatic Lock - migratemd                                                                                                                                OK
+14:16:11 Preparing pvinfo output for visibility removal...
+--------------------------------------------------------------------------
+/dev/dm-21             00 00 00 SAN:ltfme03_1            01:a5 NA 00010505
+/dev/dm-12             00 00 00 SAN:ltfme03_1            01:a5 NA 00010523
+--------------------------------------------------------------------------
+14:16:11 Adding /dev/disk/by-id/dm-uuid-mpath-360060e8007295500003029550000001f /dev/disk/by-id/dm-uuid-mpath-360060e8007292800003029280000001f to /dev/md/ltfme03_1                   OK
+14:16:12 Waiting for /dev/md/ltfme03_1 to finish synchronizing                                                                                                                       100%
+14:26:08 Removing /dev/disk/by-id/dm-uuid-mpath-360060e800729090000302909000001a5 from /dev/md/ltfme03_1                                                                               OK
+14:26:09 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b000001a5 from /dev/md/ltfme03_1                                                                               OK
+14:26:09 Setting writemostly flag for dm-34(10581) in /dev/md/ltfme03_1 on ltxensdi33                                                                                                  OK
+14:26:09 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e800729090000302909000001a5 from ltxensdi33                                                                                      OK
+14:26:10 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b000001a5 from ltxensdi33                                                                                      OK
+14:26:10 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e800729090000302909000001a5 from ltxensdi34                                                                                      OK
+14:26:11 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b000001a5 from ltxensdi34                                                                                      OK
+14:26:12 Writing /etc/.donotrescan on ltxensdi33                                                                                                                                       OK
+14:26:13 Writing /etc/.donotrescan on ltxensdi34                                                                                                                                       OK
+14:26:14 Unlocking VM ltfme03                                                                                                                                                          OK
+You have new mail in /var/mail/root
+ltxensdi33:~ #
+ltxensdi33:~ #
+ltxensdi33:~ # vmc storage free | egrep -i '000B|000D|001F|001E|001D|001C|001A|0017|0018|0019|001A|001C|001D|001E|001F|000B|000D|0017|0018|0019|0020|0020|0034|0035|0034|0035' | sort -k3
+360060e80072955000030295500000020 10581 0020    56G  dm-37   no md header                   N/A
+360060e80072928000030292800000020 10536 0020    56G  dm-53   no md header                   N/A
+360060e80072955000030295500000035 10581 0035    14G  dm-32   no md header                   N/A
+360060e80072928000030292800000035 10536 0035    14G  dm-42   no md header                   N/A
+ltxensdi33:~ # vmc storage ltfme03
+14:29:10 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e80072909000030290900000191 10505 0191    56G  dm-16   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007291b000030291b00000191 10523 0191    56G  dm-3    SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007292800003029280000001e 10536 001e   112G  dm-50   SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007292800003029280000001f 10536 001f   112G  dm-51   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e8007295500003029550000001e 10581 001e   112G  dm-40   SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007295500003029550000001f 10581 001f   112G  dm-34   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+ltxensdi33:~ # vmc -p -d "360060e80072955000030295500000020 360060e80072928000030292800000020" migratemd ltfme03 /dev/md/ltfme03_2
+14:30:52 Checking Libvirt access on ltxensdi33                                                                                                                                         OK
+14:30:52 Checking Libvirt access on ltxensdi34                                                                                                                                         OK
+14:30:52 Locking VM ltfme03: Automatic Lock - migratemd                                                                                                                                OK
+14:30:56 Preparing pvinfo output for visibility removal...
+--------------------------------------------------------------------------
+/dev/dm-16             00 00 00 SAN:ltfme03_2            01:91 NA 00010505
+/dev/dm-3              00 00 00 SAN:ltfme03_2            01:91 NA 00010523
+--------------------------------------------------------------------------
+14:30:56 Adding /dev/disk/by-id/dm-uuid-mpath-360060e80072955000030295500000020 /dev/disk/by-id/dm-uuid-mpath-360060e80072928000030292800000020 to /dev/md/ltfme03_2                   OK
+14:30:57 Waiting for /dev/md/ltfme03_2 to finish synchronizing                                                                                                                       100%
+14:35:52 Removing /dev/disk/by-id/dm-uuid-mpath-360060e80072909000030290900000191 from /dev/md/ltfme03_2                                                                               OK
+14:35:53 Removing /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b00000191 from /dev/md/ltfme03_2                                                                               OK
+14:35:53 Setting writemostly flag for dm-37(10581) in /dev/md/ltfme03_2 on ltxensdi33                                                                                                  OK
+14:35:53 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e80072909000030290900000191 from ltxensdi33                                                                                      OK
+14:35:54 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b00000191 from ltxensdi33                                                                                      OK
+14:35:54 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e80072909000030290900000191 from ltxensdi34                                                                                      OK
+14:35:55 Deleting /dev/disk/by-id/dm-uuid-mpath-360060e8007291b000030291b00000191 from ltxensdi34                                                                                      OK
+14:35:56 Writing /etc/.donotrescan on ltxensdi33                                                                                                                                       OK
+14:35:57 Writing /etc/.donotrescan on ltxensdi34                                                                                                                                       OK
+14:35:58 Unlocking VM ltfme03                                                                                                                                                          OK
+You have new mail in /var/mail/root
+ltxensdi33:~ # vmc storage ltfme03
+14:36:06 Gathering VM and Storage data, please wait                                                                                                                                    OK
+
+Disk UUID                         Array LDEV   Size  Dev     MDName        VMDev         VMName
+
+360060e8007292800003029280000001e 10536 001e   112G  dm-50   SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007292800003029280000001f 10536 001f   112G  dm-51   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e80072928000030292800000020 10536 0020    56G  dm-53   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+360060e8007295500003029550000001e 10581 001e   112G  dm-40   SAN:ltfme03   md/ltfme03   ltfme03
+360060e8007295500003029550000001f 10581 001f   112G  dm-34   SAN:ltfme03_1 md/ltfme03_1 ltfme03
+360060e80072955000030295500000020 10581 0020    56G  dm-37   SAN:ltfme03_2 md/ltfme03_2 ltfme03
+ltxensdi33:~ # date
+Thu Sep  1 14:36:52 CEST 2022
+ltxensdi33:~ #

@@ -1,0 +1,288 @@
+IMPORTANT: This Task Template is Non-Start time critical. The task might not start punctual at the Scheduled_Start_Date. If you require a punctual start, select another template instead.
+
+
+
+(1) Description of the Task to be done
+Description of the Task to be done
+
+Move of a VM server to another farmserver - Preparation
+
+Please notice that this preparation task MUST be submitted within the same change request as the execution and cleanup tasks!
+
+Minimum lead time: 4 hours
+Minimum solution time: 5 working days
+
+This task must start minimum 5 days before execution!
+
+Move of a  Oracle VM server to another farmserver - Preparation
+Methode:            OFFLINE
+lead time: 4 hours
+solution time: 5 days
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+ATTENTION: Downtime is mandatory to migrate VMs from SLES11 farm to SLES12 farm.
+
+ATTENTION: The requester hereby explicitly confirms that the server owner approved this task.
+
+Servername of VM: 
+ligui01
+
+Old farmserver: ltxensdi21/22  SLES-12 SP5 EDC302
+New farmserver: ltxensor23/24 SLES-12 SP5 EDC3I1 
+
+VM distribution: no
+target host:
+
+Methode: offline>
+LSAN-Zoning yes [  x] no [   ]
+
+New IP addresses yes [  ] no, all IPs remain the same [  ]
+ligui01bnew 192.168.15.13, 2a03:1e80:a04:57e:0:0:1:14
+
+Downtime: 02.12.2022 00:00 - 02:00 CET
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no
+
+__________
+(3) Additional Information (optional)
+
+LUNs which should be visible to new farmserver:
+
+__________
+(4)Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+Contact person for questions from server ops during execution:
+(If none is provided, in case of an error the task is set to pending / error without previous contact)
+
+
+==================================
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ clear
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ligui01
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ligui01.bmwgroup.net
+Address: 160.46.162.128
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ligui01b
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ligui01b.bmwgroup.net
+Address: 10.100.52.104
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 -b ltxensor23 | grep -i net_id
+ltxensor23;IP_BASE;NET_ID;160.46.143.0
+ltxensor23b;IP_BASE;NET_ID;192.168.15.0
+ltxensor23k;IP_BASE;NET_ID;160.48.133.0
+ltxensor23vl1;IP_BASE;NET_ID;160.46.108.0
+ltxensor23vl2;IP_BASE;NET_ID;160.46.162.0
+ltxensor23vl3;IP_BASE;NET_ID;160.48.100.0
+ltxensor23vl4;IP_BASE;NET_ID;160.46.104.0
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh ltxensor23
+ltxensor23:~ # route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         160.46.143.1    0.0.0.0         UG    0      0        0 br_160046143000
+160.46.104.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046104000
+160.46.108.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046108000
+160.46.143.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046143000
+160.46.162.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046162000
+160.48.100.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160048100000
+169.254.0.0     0.0.0.0         255.255.0.0     U     0      0        0 eth6
+192.168.15.0    0.0.0.0         255.255.255.0   U     0      0        0 br_192168015000
+ltxensor23:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh ltxensor24
+ltxensor24:~ # route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         160.46.143.1    0.0.0.0         UG    0      0        0 br_160046143000
+160.46.104.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046104000
+160.46.108.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046108000
+160.46.143.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046143000
+160.46.162.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160046162000
+160.48.100.0    0.0.0.0         255.255.255.0   U     0      0        0 br_160048100000
+169.254.0.0     0.0.0.0         255.255.0.0     U     0      0        0 eth6
+192.168.15.0    0.0.0.0         255.255.255.0   U     0      0        0 br_192168015000
+ltxensor24:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 ligui01b-new
+Server not found in DCODB. Aborting.
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 ligui01bnew
+.------------------------------------------------.
+|                   ligui01bnew                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    ligui01bnew |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           ligui01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  192.168.15.13 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   192.168.15.1 |
+| NET_ID        |                   192.168.15.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                 192.168.15.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 -6 ligui01bnew
+.------------------------------------------------.
+|                   ligui01bnew                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    ligui01bnew |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           ligui01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a04:57e:0:0:1:14 |
+| NSI           |                                |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a04:57e:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a04:57e:0:0:0:0/64 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 ligui01b
+.------------------------------------------------.
+|                    ligui01b                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       ligui01b |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           ligui01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  10.100.52.104 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                    10.100.52.1 |
+| NET_ID        |                    10.100.52.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                  10.100.52.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                   ligui01bnew                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    ligui01bnew |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |           ligui01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  192.168.15.13 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   192.168.15.1 |
+| NET_ID        |                   192.168.15.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+| BROADCAST     |                 192.168.15.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 ltxensor23vl2
+.------------------------------------------------.
+|                  ltxensor23vl2                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  ltxensor23vl2 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltxensor23.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  160.46.162.81 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.162.1 |
+| NET_ID        |                   160.46.162.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.162.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltxensor23vl2
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltxensor23vl2.bmwgroup.net
+Address: 160.46.162.81
+Name:   ltxensor23vl2.bmwgroup.net
+Address: 2a03:1e80:a06:505::1:1b
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup ltxensor24vl2
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ltxensor24vl2.bmwgroup.net
+Address: 160.46.162.157
+Name:   ltxensor24vl2.bmwgroup.net
+Address: 2a03:1e80:a06:505::1:1c
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 -6 ltxensor24vl2
+.------------------------------------------------.
+|                  ltxensor24vl2                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  ltxensor24vl2 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltxensor24.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a06:505:0:0:1:1c |
+| NSI           |                                |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a06:505:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a06:505:0:0:0:0/64 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ c6000 -6 ltxensor23vl2
+.------------------------------------------------.
+|                  ltxensor23vl2                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                  ltxensor23vl2 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltxensor23.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a06:505:0:0:1:1b |
+| NSI           |                                |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a06:505:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a06:505:0:0:0:0/64 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                                |
+'---------------+--------------------------------'
+
+

@@ -1,0 +1,88 @@
+lpkrd05:~ # san_rescan -o
+** Starting with PID '27902' and options '-o'
+
+** HBA Check...
+ - Checking host16  (0x100000109b9891fd): 'Link Up - Ready Fabric'
+ - Checking host18  (0x100000109b989288): 'Link Up - Ready Fabric'
+
+** Checking for failing disks...
+ - No failing disks found.
+
+** Cleaning up SCSI Devices...
+ - No unused SCSI devices found
+
+** Cleaning up zero sized SCSI Devices
+ - No zero sized SCSI devices found
+
+** Starting rescan of FC hosts 'host16 host18'.
+
+** Rescanning host16
+ = Triggering Scan on host16
+ - Checking host16:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host16
+
+** Rescanning host18
+ = Triggering Scan on host18
+ - Checking host18:
+   -> State: 'Link Up - Ready Fabric' up.
+   -> Udev: done.
+
+ = Found 2 new os-device(s) on host18
+
+** Device summary
+ - Found 4 new devices: sdbr sdbs sdbt sdbu
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   emc_clariion0_89  | sdbt  53:6F   1A   .Y... 230400 | sdbs  53:6F   1A   .Y... 230400 | sdbr  53:6F   1A   .Y... 230400 | sdbu  53:6F   1A   .Y... 230400 |
+
+ - Found 1 new Veritas device(s): 'emc_clariion0_89'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 6 sec.
+
+lpkrd05:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpkrd04              RUNNING              0
+A  lpkrd05              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpkrd04              Y          N               ONLINE
+B  NIC             lpkrd05              Y          N               ONLINE
+B  dbnemokr        lpkrd04              Y          N               OFFLINE
+B  dbnemokr        lpkrd05              Y          N               ONLINE
+lpkrd05:~ # san_shortinfo
+VXDEV              | RAW   CU:LDEV PORT SERIAL             SIZE | RAW   CU:LDEV PORT SERIAL             SIZE | DISKGROUP
+-------------------|--------------------------------------------|--------------------------------------------|----------
+emc_clariion0_100  | sdbj  100     NA   CKM00183902035   114688 | sdas  100     NA   CKM00183902035   114688 | sdac  100     NA   CKM00183902035   114688 | sdm   100     NA   CKM00183902035   114688 | dgdbnemokr
+emc_clariion0_102  | sdbl  102     NA   CKM00183902035   518144 | sdau  102     NA   CKM00183902035   518144 | sdo   102     NA   CKM00183902035   518144 | sdae  102     NA   CKM00183902035   518144 | dgdbnemokr
+emc_clariion0_103  | sdbm  103     NA   CKM00183902035  1048576 | sdav  103     NA   CKM00183902035  1048576 | sdp   103     NA   CKM00183902035  1048576 | sdaf  103     NA   CKM00183902035  1048576 | dgdbnemokr
+emc_clariion0_104  | sdaw  104     NA   CKM00183902035  1048576 | sdbo  104     NA   CKM00183902035  1048576 | sdq   104     NA   CKM00183902035  1048576 | sdag  104     NA   CKM00183902035  1048576 | dgdbnemokr
+emc_clariion0_18   | sdbk  18      NA   CKM00183902035  1048576 | sdat  18      NA   CKM00183902035  1048576 | sdad  18      NA   CKM00183902035  1048576 | sdn   18      NA   CKM00183902035  1048576 | dgdbnemokr
+emc_clariion0_44   | sdah  44      NA   CKM00183902035   230490 | sday  44      NA   CKM00183902035   230490 | sdb   44      NA   CKM00183902035   230490 | sdr   44      NA   CKM00183902035   230490 | dgoracle
+emc_clariion0_47   | sdai  47      NA   CKM00183902035  1835008 | sdaz  47      NA   CKM00183902035  1835008 | sdc   47      NA   CKM00183902035  1835008 | sds   47      NA   CKM00183902035  1835008 | dgdbnemokr
+emc_clariion0_52   | sdba  52      NA   CKM00183902035  3670016 | sdaj  52      NA   CKM00183902035  3670016 | sdt   52      NA   CKM00183902035  3670016 | sdd   52      NA   CKM00183902035  3670016 | dgdbnemokr
+emc_clariion0_62   | sdbb  62      NA   CKM00183902035    57622 | sdak  62      NA   CKM00183902035    57622 | sde   62      NA   CKM00183902035    57622 | sdu   62      NA   CKM00183902035    57622 | dgdbnemokr
+emc_clariion0_69   | sdbc  69      NA   CKM00183902035  1048576 | sdal  69      NA   CKM00183902035  1048576 | sdv   69      NA   CKM00183902035  1048576 | sdf   69      NA   CKM00183902035  1048576 | dgdbnemokr
+emc_clariion0_73   | sdbp  73      NA   CKM00183902035   230400 | sdax  73      NA   CKM00183902035   230400 | sdbn  73      NA   CKM00183902035   230400 | sdbq  73      NA   CKM00183902035   230400 | dgdbnemokr
+emc_clariion0_79   | sdam  79      NA   CKM00183902035   230400 | sdbd  79      NA   CKM00183902035   230400 | sdg   79      NA   CKM00183902035   230400 | sdw   79      NA   CKM00183902035   230400 | dgdbnemokr
+emc_clariion0_84   | sdbe  84      NA   CKM00183902035   114688 | sdan  84      NA   CKM00183902035   114688 | sdh   84      NA   CKM00183902035   114688 | sdx   84      NA   CKM00183902035   114688 | dgdbnemokr
+emc_clariion0_85   | sdao  85      NA   CKM00183902035    57344 | sdbf  85      NA   CKM00183902035    57344 | sdi   85      NA   CKM00183902035    57344 | sdy   85      NA   CKM00183902035    57344 | dgdbnemokr
+emc_clariion0_86   | sdbg  86      NA   CKM00183902035   230490 | sdap  86      NA   CKM00183902035   230490 | sdz   86      NA   CKM00183902035   230490 | sdj   86      NA   CKM00183902035   230490 | dgdbnemokr
+emc_clariion0_87   | sdbh  87      NA   CKM00183902035  1048576 | sdaq  87      NA   CKM00183902035  1048576 | sdk   87      NA   CKM00183902035  1048576 | sdaa  87      NA   CKM00183902035  1048576 |
+emc_clariion0_89   | sdbt  89      NA   CKM00183902035   230400 | sdbs  89      NA   CKM00183902035   230400 | sdbr  89      NA   CKM00183902035   230400 | sdbu  89      NA   CKM00183902035   230400 |
+emc_clariion0_99   | sdbi  99      NA   CKM00183902035   114688 | sdar  99      NA   CKM00183902035   114688 | sdab  99      NA   CKM00183902035   114688 | sdl   99      NA   CKM00183902035   114688 | dgdbnemokr
+lpkrd05:~ #

@@ -1,0 +1,1049 @@
+lp34d45:~ # for i in dbacsds dbalsh12 dbaods12 dbaodsah dbdwhw12 dbipm12 dbipsc12 dbipslah dbipst12 dbkarw12 dbkrausw12 dbportuk dbpsat12 dbqdasah dbqdcw12 dbreport dbtdhw12 dbzoll12;  do hagrp -switch $i -to lp34d46; done
+lp34d45:~ #
+
+
+====================
+
+TAS000006352855 cluster migration prep
+
+================================
+
+vmc storage free | egrep -i --color "0010|0025|0026|0029|002D|002E|002F|0030|0031"
+==========================
+
+/opt/pbis/bin/find-group-by-name --level 1 "europe.bmw.corp\\UNIX_SERVER_AQM3"
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] /opt/pbis/bin $ ./find-group-by-name --level 1 "europe.bmw.corp\\UNIX_SERVER_PRICE_APP_ADMIN"
+
+
+sed '/TAS000006585354/,/^$/!d;/^$/s//--/' /etc/sudoers
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.15.5+Linux+HBA+Problems+and+Solutions
+
+
+sed '/TAS000006718057/,/^$/!d;/^$/s//--/' /etc/sudoers
+
+
+autosan.pl order-disks-vm -o TAS000005592463 -d 1024:1:DB-Data --vmname ltdb0162vm.bmwgroup.net
+
+autosan.pl order-disks-vm -O TAS000004889235 -d 2048:2:Filesystem  --vmname lppga03705vm --vmname lppgb03705vm
+
+
+vmc storage free | egrep -i '0010|0025|0026|0029|0010|0025|0026|0029|002D|002D|002E|002F|0030|0031|002E|002F|0030|0031' | sort -k3
+
+
+cat 30nov | awk -F "." '{print $1}' | xargs | tr ' ' '|'
+
+vmc -p -d "360060e80072aad0000302aad000011a1 360060e80072ab20000302ab2000011a1" migratemd lieai48 /dev/md/lieai48
+
+for i in `cat`;do cmdb $i -x |egrep "Server:|OS";done
+
+VM CONSOLE++++++++++++++++++++++++++++++++++++++==========================================================
+
+ctrl+} - to come out of console for VM
+============================
+
+rudderctl properties-get --hostname=lt09dcr03.bmwgroup.net --key=RUDDER_MR_VERSION
+
+
+
+downtime -a -h 2 -c 'TAS000005862832 qxz10kv' lp19xenpcdla01.bmwgroup.net
+
+
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=635320679
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management
+
+
+
+rudderswinst -t TAS000005699595 update lt09dcr03
+
+
+rshut -r lt09dcr03.bmwgroup.net
+
+sodb_tag_mgmt  -s -t ipu_12.2_12.4 lp34smartopsfwdvm
+
+
+If you want to apply changes without reboot, modify /etc/pam.d/common-session by adding this line at the end of file:
+
+session required pam_limits.so
+
+
+=======================================================
+
+
+for i in *
+do
+echo "=============$i======================"
+cat $i
+done
+
+==================================
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ vi 31Jul.txt
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ sort -f 31Jul.txt | uniq
+01D4
+02AC
+02BB
+038F
+03A8
+03E1
+0426
+0427
+0434
+0435
+0436
+0437
+0438
+0439
+046A
+0494
+0498
+0499
+049A
+049B
+049C
+049D
+049E
+04CC
+04CD
+04DE
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ sort -f 31Jul.txt | uniq | wc -l
+26
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.18+Upgrade+SLES11+SAP+VM+to+SLES12
+
+
+cat 24apr | awk -F "." '{print $1}' | xargs | tr ' ' '|'
+
+cat makepipe | awk -F "." '{print $1}' | xargs | tr ' ' ','
+
+
+sort -f 14aug.txt | uniq | awk -F "." '{print $1}' | xargs | tr ' ' '|'
+
+vmc storage free | egrep -i "0290|0291|0296|0295|0294|0293|0292|0291|0290|0292|0293|0294|0295|0296|0298|0297|0299|0298|0297|0299|029A|029A" | sort -k4
+
+vmc storage free | egrep -i "0002|0008|000E|000F|0002|0008|000E|000F" | sort -k4
+
+
+00:02
+00:08
+00:0E
+00:0F
+00:02
+00:08
+00:0E
+00:0F
+
+==============================
+
+
+for i in `cat 06taskmr`;do downtime -a -h 8 -c "TAS000004900767 qxz0cvk" $i.bmwgroup.net;done
+
+
+downtime -a -h 5 -c "TAS000005986456 qxz0cvk" lpxendb053.bmwgroup.net
+
+
+
+lp10xenpg010:/tmp # for i in `cat task_mr`; do echo -------------$i------------;vmc stop $i;done
+
+
+rudderswinst -t TAS000004898693 update lp10xenpg010.bmwgroup.net
+
+
+=======================================================================================================================================================
+
+
+for i in lplislog01 lpfortifyssc01 lpitsm60 lpitsm70; do echo "******************$i*******************"; vmc info $i; echo; echo; done
+
+for i in lplislog01 lpfortifyssc01 lpitsm60 lpitsm70; do echo "******************$i*******************"; vmc storage $i; echo; echo; done
+
+
+for i in lplislog01 lpfortifyssc01 lpitsm60 lpitsm70; do echo "******************$i*******************"; vmc pvinfo $i; echo; echo; done
+
+for i in lplislog01 lpfortifyssc01 lpitsm60 lpitsm70; do echo "******************$i*******************"; san_shortinfo | grep -i $i; echo; echo; done
+
+
+
+for i in `cat 06taskmr`;do downtime -l $i.bmwgroup.net;done
+
+======================================================================================================================================
+
+for i in `cat 28augupmr`; do echo -------------$i------------; vmc info $i; echo; echo; done
+
+
+for i in `cat 28augupmr`; do echo -------------$i------------; vmc storage $i; echo; echo; done
+
+
+for i in `cat 28augupmr`; do echo -------------$i------------; vmc pvinfo $i; echo; echo; done
+
+for i in `cat 28augupmr`; do echo -------------$i------------; vmc san_shortinfo $i; echo; echo; done
+
+==========================================================================================================================
+
+downtime -a -h 6 -c "TAS000005909389 qxz10kv" lp09xenpg003.bmwgroup.net -----------  Xen ka DT set 
+
+
+for i in `cat 28augpg`;do downtime -a -h 6 -c "TAS000005909389 qxz10kv" $i.bmwgroup.net;done ---------------------------VM ka DT set  
+
+======================================================================================================
+
+
+for i in `cat 28augpg`;do downtime -a -h 8 -c "TAS000005909389 qxz10kv" $i.bmwgroup.net;done
+
+
+
+rudderswinst -t TAS000005909389 update lp09xenpg003.bmwgroup.net
+
+
+
+
+
+for i in `cat 28augupmr`; do echo -------------$i------------;vmc stop $i -f;done
+
+
+
+rudderswinst -t TAS000005909389 update lp09xenpg003.bmwgroup.net
+
+===============
+
+
+lp02xenmq03:/etc/sysconfig/network # for i in *
+> do
+> echo "=============$i=================="
+> cat $i
+> done
+=============config==================
+
+for i in *
+do
+echo "=============$i=================="
+cat $i
+done
+
+===================================================
+
+
+[OS reinstall from SP2 to SP5 with current MR & Xenversion update] 
+
+
+Xenfarms are empty while creating the task.
+
+
+Please only proceed if empty.
+
+
+List of Xenfarm - 
+
+
+lp10xen1031
+lp10xen16
+lp10xen17
+lp10xenpb2va11
+lp10xenppki02
+lp10xenppki04
+lp10xenpwgcdm001
+lp10xentb2v12
+lp10xentb2vb15
+
+
+Perform OS reinstall from SP2 to SP5 with current MR & Xenversion update on all above mentioned xenfarms.
+
+Scheduled - 24.08.2021 20:00:00 - 27.08.2021 20:00:00 CEST
+
+In case of any queries contact : iaas-unix-orga@list.bmw.com
+
+lp10xenpb2va11 - Amit
+lp10xenppki02  -    Amit
+lp10xenppki04  -      Amit
+
+
+========================
+
+Checks
+
+=====================
+
+Hello All, 
+
+Important note for SLES12SP5  servers (reinstall sles12sp2 to sleassp5) 
+After reinstall server should be with SLES12SP5 with latest kernel version along with latest xen version as mentioned below 
+Kernel= 4.12.14-122.71-default  and xen= xen-4.12.4_10-3.42.1.22691.7.PTF.1180846.x86_64  
+After reinstall we need to take a reboot of the server and then proceed with MR (MR update will install latest xen version) 
+
+Only reinstall to sles12sp5 will not serve the purpose .. we also need to perform MR after reinstall .. 
+
+Please validate OS version, kernel version and also Xen version  (for sles12sp5) 
+
+=======================
+
+Please find the steps for Dell Server reinstall and MR steps 
+
+Dell server activity  (Check console access status) 
+Console Check: https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=1488140809 
+#/var/tmp/CONSOLE/Console.sh [-H] <Hostname> -O CHECK 
+Example: #/var/tmp/CONSOLE/Console.sh -H  <servername> -O CHECK 
+
+Xen server:         Take a backup of NW config (Complete /etc/sysconfig/network directory) 
+                              #tar -zcvf <servername_network.tar.gz> /etc/sysconfig/network/
+                              Take a bckup of VMC configuration (#vmc configexport)
+                              now copy (rootscp)  the files from host to install server <servername_network.tar.gz> and vmc configurtaion file 
+
+1- Reinstall – (SLES12 SP2 to SLES12 SP5)
+               Ensure the IDRAC job queue is empty 
+                                #install_server.sh -I sles12sp5_xen --hook-noabort <Server name>|tee <servername>.bmwgroup.net_reinstall_SLES12SP5.log
+            If the installation failed with IDRAC error or unable to mount ISO or unable to boot in to mini OS then   use --normbconf with install_server.sh + reboot the server 
+#install_server.sh --normbconf  -I sles12sp5_xen --hook-noabort <Server name>|tee <servername>.bmwgroup.net_reinstall_SLES12SP5.log
+            Take a reboot of the server 
+                Check is FW BIOS is updated (Fullcheck <server name> 
+                Do a MR on server 
+                               #rudderswinst.pl -t <task> update <server>
+                                             If any issues use --no-firmware with rudderswinst
+                               #rudderswinst.pl -t <task> update <server> --no-firmware                    
+                                             manually update FW and BIOS config 
+                               #fwctl update --hostname=<Server name>
+                  If FW update hangs at Emulex FW update then you may need to terminate the process and run Emulex FW update manually from server .. for more details follow the document
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management#id-5.1.13.10SLES12PatchandFirmwareManagement-RudderswinstandManualFWupdatefwctlfailsoninstallingBMW-FW-Emulexdrivepackage 
+
+  tar -zcvf lpxendb053_keys.tar.gz /lfs/xen/keys
+
+  
+               Reboot the server and then try to reconfigure RMB (install_server.sh --rmbonly) 
+                #install_server.sh --rmbonly -u Administrator  -P <servername> >
+
+2. MR update 
+                               #rudderswinst.pl -t <task> update <server>
+                                             If any issues use --no-firmware with rudderswinst
+                               #rudderswinst.pl -t <task> update <server> --no-firmware                    
+                                             manually update FW and BIOS config 
+                               #fwctl update --hostname=<Server name>
+                  If FW update hangs at Emulex FW update then you may need to terminate the process and run Emulex FW update manually from server .. for more details follow the document
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management#id-5.1.13.10SLES12PatchandFirmwareManagement-RudderswinstandManualFWupdatefwctlfailsoninstallingBMW-FW-Emulexdrivepackage 
+
+                    Reboot the server and then try to reconfigure RMB (install_server.sh --rmbonly) 
+                #install_server.sh --rmbonly -u Administrator  -P <servername> >
+				
+				
+				
+===================Commands===============
+
+
+tar -zcvf lp10xenppki02_network.tar.gz /etc/sysconfig/network/
+
+downtime -a -h 6 -c "TAS000005904791 qxz10kv" lp10xenppki02.bmwgroup.net
+
+update_dcodb_status.py --set --release SLES12SP5 --status Installation --server lp10xenppki02.bmwgroup.net
+
+=================
+
+install_server.sh --normbconf  -I sles12sp5_xen --hook-noabort lp10xenppki02|tee lp10xenppki02.bmwgroup.net_reinstall_SLES12SP5.log
+
+
+update_dcodb_status.py --remove --server lp10xenppki02.bmwgroup.net
+
+
+rudderswinst -t TAS000005904791 update lp10xenppki02.bmwgroup.net
+
+
+install_server.sh -I sles12sp5_xen --hook-noabort lp10xenppki02|tee lp10xenppki02.bmwgroup.net_reinstall_SLES12SP5.log
+
+
+
+======================================================
+
+
+tar -zcvf lp10xenppki04_network.tar.gz /etc/sysconfig/network/
+
+
+downtime -a -h 8 -c "TAS000005904791 qxz10kv" lp10xenppki04.bmwgroup.net
+
+update_dcodb_status.py --set --release SLES12SP5 --status Installation --server lp10xenppki04.bmwgroup.net
+
+
+install_server.sh -I sles12sp5_xen --hook-noabort lp10xenppki04|tee lp10xenppki04.bmwgroup.net_reinstall_SLES12SP5.log
+
+
+If installation fails from above reason
+
+install_server.sh --normbconf -I sles12sp5_xen --hook-noabort lp10xenppki04|tee lp10xenppki04.bmwgroup.net_reinstall_SLES12SP5.log
+
+
+rudderswinst -t TAS000005904791 update lp10xenppki04.bmwgroup.net
+
+
+update_dcodb_status.py --remove --server lp10xenppki04.bmwgroup.net
+
+
+================================
+
+
+lp09zap18:/global/izaics10/apps/cd # rpm -qa --last | grep -i cd
+
+
+
+===================/////////////////////////////////////////
+
+for i in `cat`; do echo =====$i=====;vmc list $i;vmc info $i;vmc storage $i;vmc pvinfo $i;san_shortinfo | grep $i;vmc backupinfo $i;done
+lipga00858vm
+lipga00878vm
+lipga00909vm
+lipga00975vm
+lipga01013vm
+lipga01015vm
+
+for i in `cat` ; do echo =============================$i================================= ; vmc list $i ; vmc info $i; vmc storage $i; vmc pvinfo $i; san_shortinfo | grep $i ; vmc backupinfo $i; done
+
+
+
+san_shortinfo |egrep -i "lipga00858vm|lipga00878vm|lipga00909vm|lipga00975vm|lipga01013vm|lipga01015vm"
+
+
+
+
+==================================================================================
+
+uptime;cat /etc/issue;df -hT;cat /etc/issue;cat /etc/fstab;lsblk;pvs;vgs;lvs;pvdisplay;vgdisplay;lvdisplay;ifconfig -a;netstat -nrv;route -n;cd /etc/sysconfig/network/;ls;cat ifcfg-eth0;cat ifcfg-eth1;cat ifroute-eth1;cat routes;cd;df -h | grep -i sec;cat /etc/rudder_vars.lst;rpm -qa | grep -i vee;ls -l /etc/BMW-release; cat /etc/BMW-release | grep -i current
+
+
+uptime;\n cat /etc/issue;\n df -hT;cat /etc/issue;cat /etc/fstab;lsblk;pvs;vgs;lvs;pvdisplay;vgdisplay;lvdisplay;ifconfig -a;netstat -nrv;route -n;cd /etc/sysconfig/network/;ls;cat ifcfg-eth0;cat ifcfg-eth1;cat ifroute-eth1;cat routes;cd;df -h | grep -i sec;cat /etc/rudder_vars.lst;rpm -qa | grep -i vee;ls -l /etc/BMW-release; cat /etc/BMW-release | grep -i current
+
+uptime;cat /etc/issue;df -hT;cat /etc/issue;cat /etc/fstab;lsblk;pvs;vgs;lvs;pvdisplay;vgdisplay;lvdisplay;ifconfig -a;netstat -nrv;route -n;cd /etc/sysconfig/network/;ls;cat ifcfg-eth0;cat ifcfg-eth1;cat ifroute-eth1;cat routes;cd;df -h | grep -i sec;cat /etc/rudder_vars.lst;rpm -qa | grep -i vee;ls -l /etc/BMW-release; cat /etc/BMW-release | grep -i current
+
+downtime -a -h 2 -c "TAS000006308680 qxz10kv-VMMove" lpbkdb016vm.bmwgroup.net
+
+
+
+Storm Team DL:
+StorM <StorM@bmw.com> StorM operations team
+Service: server-toolsstorage:global
+Assignee Group: storage-tool-06:global:2nd 
+
+=========================================
+
+TAS000005618497 - IPU
+
+TAS000006036824  - Mine task
+
+
+TAS000006048561 - Closed failed
+
+============================================================
+
+TAS000005997360
+
+TAS000005997454
+
+=======================
+
+---------------------------------------------------
+
+TAS000006036824
+
+PLT Bugfix OS Reinstall [SP2 to SP5] lp10xentb2v11 
+
+Step 1 : Please confirm lp10xentb2v11  is empty before processing.
+ 
+Step 2 : Perform SLES 12 SP2  to SP5 OS Reinstall + MR Update + Kernel Version + Xen version update  on  lp10xentb2v11 
+
+Duration : 14.10.2021 03:00:00 - 09:00:00 CEST
+ 
+
+In case of any queries contact : iaas-unix-orga@list.bmw.
+
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.10.2.6+Reinstall+XEN+Node+with+SLES12 
+
+
+TAS000005904791 - Reference task
+
+lp10xentb2v11.bmwgroup.net
+
+
+
+downtime -a -h 6 -c "TAS000006036824 qxz10kv-xenreinstall" lp10xentb2v11.bmwgroup.net
+
+tar -zcvf lp10xentb2v11 _network.tar.gz /etc/sysconfig/network/
+
+tar -zcvf lp10xentb2v11 _keys.tar.gz /lfs/xen/keys/
+
+
+update_dcodb_status.py --set --release SLES12SP5 --status Installation --server lp10xentb2v11.bmwgroup.net
+
+
+install_server.sh --normbconf  -I sles12sp5_xen --hook-noabort lp10xentb2v11|tee lp10xentb2v11.bmwgroup.net_reinstall_SLES12SP5.log
+
+
+
+rudderswinst -t TAS000006036824 update lp10xentb2v11.bmwgroup.net
+
+update_dcodb_status.py --remove --server lp10xentb2v11.bmwgroup.net
+
+
+update_dcodb_status.py --remove --server <FQDN>
+
+
+]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+
+lt09zas01:~ # rpm -qa | grep -i docker
+docker-19.03.14_ce-98.57.1.x86_64
+docker-libnetwork-0.7.0.1+gitr2908_55e924b8a842-34.1.x86_64
+docker-runc-1.0.0rc10+gitr3981_dc9208a3303f-1.49.1.x86_64
+lt09zas01:~ # zypper up docker
+Loading repository data...
+Reading installed packages...
+Resolving package dependencies...
+
+The following NEW package is going to be installed:
+  runc
+
+The following 2 packages are going to be REMOVED:
+  docker-libnetwork docker-runc
+
+The following 2 packages are going to be upgraded:
+  containerd docker
+
+The following 3 packages have no support information from their vendor:
+  containerd docker runc
+
+2 packages to upgrade, 1 new, 2 to remove.
+Overall download size: 0 B. Already cached: 52.7 MiB. After the operation, additional 27.6 MiB will be used.
+Continue? [y/n/...? shows all options] (y): y
+In cache runc-1.0.0~rc93-16.11.1.x86_64.rpm                                                                             (1/3),   3.4 MiB ( 14.5 MiB unpacked)
+In cache containerd-1.4.4-16.42.1.x86_64.rpm                                                                            (2/3),  17.5 MiB ( 81.0 MiB unpacked)
+In cache docker-20.10.6_ce-98.66.1.x86_64.rpm                                                                           (3/3),  31.8 MiB (160.4 MiB unpacked)
+
+Checking for file conflicts: ..........................................................................................................................[done]
+(1/3) Installing: runc-1.0.0~rc93-16.11.1.x86_64 ......................................................................................................[done]
+(2/3) Installing: containerd-1.4.4-16.42.1.x86_64 .....................................................................................................[done]
+(3/3) Installing: docker-20.10.6_ce-98.66.1.x86_64 ....................................................................................................[done]
+Additional rpm output:
+Updating /etc/sysconfig/docker...
+
+
+lt09zas01:~ # rpm -qa | grep -i docker
+docker-20.10.6_ce-98.66.1.x86_64
+lt09zas01:~ #
+
+========================NAIOS ALERT DISABLEMENT===for 172 hours====================
+
+[INSTSERV][qxz0mx4][lpinstiaas10] ~ $ downtime -a -h 172 -c TAS000006091797 -s os_linux_postgres_vm-xenconfig lp10pgb01692vm.bmwgroup.net
+[1636805469] SCHEDULE_SVC_DOWNTIME;lp10pgb01692vm.bmwgroup.net;os_linux_postgres_vm-xenconfig;1636805469;1637424669;1;0;619200;remote;TAS000006091797
+
+[INSTSERV][qxz0mx4][lpinstiaas10] ~ $ 
+
+=================================
+
+downtime -a -h 2 -c "TAS000006091797 qxz10kv-PGServerMove" lp30emspab2vm.w30.bmwgroup.net
+
+vmc set lt10pga00031vm partner lt10pgb00031vm
+
+vmc set lp10pgb01561vm partner lp10pga01561vm
+
+====================================================
+
+[INSTSERV][qxz0mx4][lpinstiaas10] ~ $ downtime -a -h 172 -c TAS000006091797 -s os_linux_postgres_vm-xenconfig lp10pgb01692vm.bmwgroup.net
+[1636805469] SCHEDULE_SVC_DOWNTIME;lp10pgb01692vm.bmwgroup.net;os_linux_postgres_vm-xenconfig;1636805469;1637424669;1;0;619200;remote;TAS000006091797
+
+====================================================
+
+
+
+=================
+
+Work Info History
+Task ID	 TAS000005994273
+Submit Date	 28.09.2021 19:57:38
+Submitter	 qxz0qpl
+Source	 
+View Access	 Internal
+Summary	 Task checked - ME - ERROR
+Notes	 Dear requestor,
+
+
+unfortunately, your request cannot be processed due to the error(s) listed below at the end of this message.
+
+The task will be set to "Pending Error" and will need to be corrected by the requester.
+
+Once you have corrected the Errors below, please set the "End Date" and "Time" of the task according to the Task Guidelines below, if the necessary time frame as defined in the link below is not allotted, this may cause it to be set to "Pending Error" again. Then set the Task back to "Pending Assignment" and it will be checked again by the Task QA and assigned when all issues have been resolved.
+
+Task Guidelines and Runtime:  https://contenthub.bmwgroup.net/web/linux-unix-openstack/task-guidelines
+
+For more information and documentation on Sudo/User/Group related requests, please visit the following FG-841 page:
+https://coma.bmwgroup.net/web/linux-unix-openstack/linux-user-management
+
+Kind Regards,
+Your BMW Unix Support
+
+ERROR:  we would request you to please provide the 4 hours lead time of this task and please do not schedule the all task at same time.
+-
+Your request cannot be processed due to Error(s) TASK#
+Task ID	 TAS000005994273
+Submit Date	 29.09.2021 09:44:58
+Submitter	 qxz0c93
+Source	 
+View Access	 Internal
+Summary	 Task checked - AA - OK
+Notes	 Dear Madam, Dear Sir,
+
+your task has been pre-qualified and checked for the required information. It will be assigned to an appropriate team member shortly. Please do not modify the task. Should there be a pressing reason to modify the task, please contact the assignee directly and coordinate all modifications with the assignee. The assignee must be involved in any future modifications. This is imperative for the correct execution of the task and all commitments concerning the task run-time depend on this coordination and cannot be guaranteed if not observed.
+
+More information regarding tools, processes or responsible groups can be found here:
+
+Task Guidelines and Runtime:  https://contenthub.bmwgroup.net/web/linux-unix-openstack/task-guidelines
+
+Kind regards,
+Your Unix Operations Team.
+Printed by qxz10kv on Tuesday, 16.11.2021 10:18:32
+
+===================================
+
+
+TAS000005763027 - In this task eth1 was created 
+
+
+for i in `vmc list | awk '{print $1}' | grep ^l`; do host $i ; done
+
+
+./movexenvm -V lp01dynffzw1vm -A MIGRATE -C TAS000006305588 -T lp01xen31
+
+
+=======================
+
+
+ /global/lssp/cmd-real/reboot-remote.sh  
+
+
+
+
+hasys -unfreeze lp34d36
+
+
+==================================================
+
+
+  342  2022-07-22 08:06:46 pvs
+  343  2022-07-22 08:27:26 pvs
+  344  2022-07-22 08:27:57 dmsetup remove /dev/mapper/360060e80072c2b0000302c2b0000079c
+  345  2022-07-22 08:28:16 pvs
+  346  2022-07-22 08:28:46 pvs | grep -i error
+  347  2022-07-22 08:29:42 pvs | grep -i error | awk '{print $4}'
+  348  2022-07-22 08:30:14 pvs | grep -i error > /tmp/mdclear
+  349  2022-07-22 08:30:34 cat /tmp/mdclear
+  350  2022-07-22 08:31:04 vi /tmp/mdclear
+  351  2022-07-22 08:31:17 vi /tmp/mdclear
+  352  2022-07-22 08:32:18 cat /tmp/mdclear | awk '{print $4}'
+  353  2022-07-22 08:33:12 for i in `cat /tmp/mdclear | awk '{print $4}'`; do  dmsetup remove $i; done
+  354  2022-07-22 08:33:46 pvs
+  355  2022-07-22 08:39:11 history
+  
+  
+=======================================
+
+check_ilo
+
+ssl certification renewal
+  
+fullcheck --no-sodb --check JobQueue  lpcnproxy12001
+
+
+install_server.sh --rmbcertonly lpcnproxy12001 
+
+==================
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ fullcheck --no-sodb --check JobQueue  libcwc2
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : D793DD3
+ Node name    : libcwc2
+ Local time   : Fri Jul 22 19:26:36 CEST 2022
+====================================================================================================
+ JobQueue: iDRAC jobs: 0 (0)                                                                  [OK]
+ JobQueue: Pending BIOS Settings: 0 (0)                                                       [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ install_server.sh --rmbcertonly libcwc2
+  RMB:       libcwc2k.bmwgroup.net
+  RMB IPV6:  libcwc2k.bmwgroup.net
+
+Using hardware type DELL
+RMB user name not provided, using Administrator (PW out of DB) by default
+
+HW model     : PowerEdge R740
+Serial number: D793DD3
+
+=> Generate and upload SSL server certificate signed from BMW Group Issuing CA
+-> Generate new SSL certificate:
+OK
+-> Uploads SSL key to iDRAC:
+OK
+-> Uploads SSL server certificate to iDRAC:
+OK
+-> Reset iDRAC to apply new certificate:
+OK, sleep 300s
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+==============================
+
+
+===========================
+
+
+os_linux_fs_check_multipath
+
+
+[‎7/‎21/‎2022 1:25 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+downtime -a -h 4 -c "INC000039610068" -s "os_linux_fs_check_multipath" lpsbxenpwa2020.bmwgroup.net 
+
+
+downtime -a -h 6 -c "INC000039187797" -s "os_linux_fs_check_multipath"  FQDN    .. like this 
+
+
+========================================================
+
+
+What is NSI
+NSI is the actual connection point between the server NIC and the Switch Interface (patch panel).
+
+
+
+============================================================
+Host: lt19xen31.bmwgroup.net Service: os_linux_fs_check_multipath State: CRITICAL Date:
+
+san_shortinfo |grep ? > /var/tmp/cleanup.mth
+for i in $(cat /var/tmp/cleanup.mth | awk '{print $1}'); do dmsetup remove /dev/${i}; echo $i removed; done
+for i in $(cat /var/tmp/cleanup.mth | awk '{print $3,$7}'); do echo 1 > /sys/block/${i}/device/delete; echo $i block device deleted; done 
+
+Last login: Wed Aug 17 09:14:56 2022 from 160.46.209.61
+qplinux@lt19xen31:~> export SUDO_USER=qxz10kv
+qplinux@lt19xen31:~> readonly SUDO_USER
+qplinux@lt19xen31:~> /bin/logger PAM: User $SUDO_USER logged in as $USER on $SSH_TTY
+qplinux@lt19xen31:~> sudo -s
+lt19xen31:~ # san_shortinfo | grep -i ?
+dm-0    | sdb   ?                     14405 | sdd   ?                     14405 | -                    -
+dm-1    | sdc   ?                     14405 | sde   ?                     14405 | -                    -
+lt19xen31:~ #
+lt19xen31:~ #
+lt19xen31:~ #
+lt19xen31:~ # san_shortinfo |grep ? > /var/tmp/cleanup.mth
+lt19xen31:~ # cat /var/tmp/cleanup.mth
+dm-0    | sdb   ?                     14405 | sdd   ?                     14405 | -                    -
+dm-1    | sdc   ?                     14405 | sde   ?                     14405 | -                    -
+lt19xen31:~ # for i in $(cat /var/tmp/cleanup.mth | awk '{print $1}'); do dmsetup remove /dev/${i}; echo $i removed; done
+dm-0 removed
+dm-1 removed
+lt19xen31:~ # for i in $(cat /var/tmp/cleanup.mth | awk '{print $3,$7}'); do echo 1 > /sys/block/${i}/device/delete; echo $i block device deleted; done
+sdb block device deleted
+sdd block device deleted
+sdc block device deleted
+sde block device deleted
+lt19xen31:~ # su - qqnagio
+qqnagio@lt19xen31:~>
+
+
+============================
+
+groupadd  -g801277 I_L_RWDM [‎8/‎18/‎2022 8:00 PM] Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de): 
+
+groupadd -g 863463 gueapp_pboc_prod 
+
+
+=============
+
+
+lp34kwom1:~ # su - qqnagio
+qqnagio@lp34kwom1:~> prod/lib/nagios/plugins/check_mailq -w 0 -c 1 -t 60
+CRITICAL: postfix mailq is 6 (threshold c = 1)|unsent=6;0;1;0
+qqnagio@lp34kwom1:~> exit
+logout
+lp34kwom1:~ # postsuper -d ALL
+postsuper: Deleted: 6 messages
+lp34kwom1:~ # mailq
+Mail queue is empty
+lp34kwom1:~ # su - qqnagio
+qqnagio@lp34kwom1:~> prod/lib/nagios/plugins/check_mailq -w 0 -c 1 -t 60
+OK: postfix mailq reports queue is empty|unsent=0;0;1;0
+qqnagio@lp34kwom1:~>
+
+==================================================
+
+
+downtime -a -h 6 -c 'TAS000006555293 qxz10kv' limq75vm.bmwgroup.net
+
+
+rudderswinst ipu_12.4_12.5 --manual SERVER_FQDN
+
+
+rudderswinst -t TAS000006272759 ipu_15.2_15.3 ltgmgh01.bmwgroup.net
+
+===================
+
+
+please remount with user qq0ipm0
+
+lp02ipm12w22vm.w2 - /nfs/w2/CHRONOS_W/aw_15
+
+lp01ipm12vm.w2 - /nfs/w1/chronos_w/aw_15/
+
+
+
+san_shortinfo |grep ? > /var/tmp/cleanup.mthamit
+for i in $(cat /var/tmp/cleanup.mthamit | awk '{print $1}'); do dmsetup remove /dev/${i}; echo $i removed; done
+for i in $(cat /var/tmp/cleanup.mthamit | awk '{print $3,$7}'); do echo 1 > /sys/block/${i}/device/delete; echo $i block device deleted; done
+
+
+san_shortinfo |grep ? > /var/tmp/cleanup.mth
+for i in $(cat /var/tmp/cleanup.mth | awk '{print $1}'); do dmsetup remove /dev/${i}; echo $i removed; done
+for i in $(cat /var/tmp/cleanup.mth | awk '{print $3,$7}'); do echo 1 > /sys/block/${i}/device/delete; echo $i block device deleted; done
+
+=============================================================================================================
+
+
+[‎9/‎6/‎2022 12:51 PM] Yadav Arvind, (Arvind.Yadav@partner.bmw.de): 
+SLA Breaches
+============
+
+FYI….Breached INC needs to be resolve with Proper Tag.
+For every ticket which has Breached the Service Target, the assignee needs to update the work info notes as:
+•       Work Info Type - “Closure Follow Up”
+•       Locked - “Yes”.
+•       View Access - “Internal”
+ 
+Reasons to use in Notes section:
+Breached due to Hardware Vendor dela
+Breached due to Application Team delay
+Breached due to BMW delay
+Breached due to Customer Unavailability
+Breached due to Third Party delay
+Note: The above reasons should appear exactly as mentioned
+While you are resolving tkt   
+
+
+===========
+
+
+The issue is resolved now . Actually app team have performed a cleanup from there side and the cache folder is now under threshold 
+They received minimum server load for this environmnet  post that cleanup
+
+=========================
+
+
+liascint4jira02:~ # /opt/Symantec/symantec_antivirus/sav info -a
+Enabled
+liascint4jira02:~ # su - qqnagio -c "./prod/local/lib/nagios/plugins/check_sav"
+WARNING - signature '09/06/22 rev. 24' is older than 20220907
+liascint4jira02:~ # date
+Thu Sep 15 04:25:08 CEST 2022
+liascint4jira02:~ # /opt/Symantec/symantec_antivirus/sav info -d;/opt/Symantec/symantec_antivirus/sav liveupdate -u
+09/06/22 rev. 24
+Update was successful
+liascint4jira02:~ # /etc/init.d/rtvscand restart
+Stopping rtvscand: ..                                                done
+
+Starting rtvscand:                                                   done
+
+liascint4jira02:~ # su - qqnagio -c "./prod/local/lib/nagios/plugins/check_sav"
+OK - all checks passed successfully
+liascint4jira02:~ #
+
+
+
+==========================li19bp203:~ # su - qqnagio
+qqnagio@li19bp203:~> ./prod/local/lib/nagios/plugins/check_logfiles --config ./prod/etc/os_linux_default_check_syslogd.cfg
+CRITICAL - (2 errors) - MISSING: nagios:.*syslog\s+funktioniert ...|syslogworks_lines=0 syslogworks_warnings=0 syslogworks_criticals=2 syslogworks_unknowns=0
+qqnagio@li19bp203:~> exit
+logout
+li19bp203:~ # getfacl /var/log/messages
+getfacl: Removing leading '/' from absolute path names
+# file: var/log/messages
+# owner: root
+# group: root
+user::rw-
+user:qqsplu0:r--
+group::r--
+mask::r--
+other::---
+
+li19bp203:~ # /usr/bin/setfacl -m u:qqnagio:r /var/log/messages
+li19bp203:~ # getfacl /var/log/messages
+getfacl: Removing leading '/' from absolute path names
+# file: var/log/messages
+# owner: root
+# group: root
+user::rw-
+user:qqnagio:r--
+user:qqsplu0:r--
+group::r--
+mask::r--
+other::---
+
+======================
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ fullcheck --no-sodb --check JobQueue lpxenpwa021
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : 3GQF643
+ Node name    : lpxenpwa021
+ Local time   : Fri Sep 16 20:07:28 CEST 2022
+====================================================================================================
+ JobQueue: iDRAC jobs: 0 (0)                                                                  [OK]
+ JobQueue: Pending BIOS Settings: 0 (0)                                                       [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ install_server.sh --rmbcertonly lpxenpwa021
+  RMB:       lpxenpwa021k.bmwgroup.net
+
+Using hardware type DELL
+RMB user name not provided, using Administrator (PW out of DB) by default
+
+HW model     : PowerEdge R740
+Serial number: 3GQF643
+
+=> Generate and upload SSL server certificate signed from BMW Group Issuing CA
+-> Generate new SSL certificate:
+OK
+-> Uploads SSL key to iDRAC:
+OK
+-> Uploads SSL server certificate to iDRAC:
+OK
+-> Reset iDRAC to apply new certificate:
+OK, sleep 300s
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+
+===============
+====================================================================================
+[INSTSERV][qxz13b0][lp10instiaas02] ~ $ pbis_setreq.sh lp10dkpga0130vm
+=> Fetched roles:
+ * UNIX_PWAN_OPERATIONS_EXTERNAL
+ * UNIX_PWAN_OPERATIONS_FTI
+ * UNIX_PWAN_OPERATIONS_INTERNAL
+
+=> Connecting to Server...
+ * OK (lp10dkpga0130vm.bmwgroup.net)
+
+=> Checking 'RequireMembershipOf' policy mode...
+ * OK (local policy)
+
+=> Setting 'RequireMembershipOf'...
+ * OK (Set)
+
+=> Changes:
+ * no changes in access
+
+[INSTSERV][qxz13
+
+
+=========================
+
+we will process the request post tag "pw_allow" set for the server, Mail attached
+Notes	 In absence of pw_allow tag on the server, not able to process the request. we will process the request post tag set for the server, Mail attached
+
+
+
+[INSTSERV][qxz28vm][lpinstiaas02] ~ $ sodb_tag_mgmt --check lptep07
+
+This is SODB Server Tag Management script ...
+For a verbose log please see logfile /global/instserv/logs/sodb_tag_mgmt/2022-09-27_05-28-28_SduK.log on server lpinstiaas02 ...
+
+User 'qqinstserv' called command: /global/instserv/bin/sodb_tag_mgmt --check lptep07
+Checking SLES version ...                                   [OK]    Found OS SUSE Linux Enterprise Server 12 (x86_64) ....
+Checking SODB tags for server lptep07                       [OK]    No tags are set in SODB
+
+______________________________________________________________________________
+
+From: Noyes Geoffrey, (Geoffrey.Noyes@partner.bmw.de) <Geoffrey.Noyes@partner.bmw.de>
+Sent: Monday, September 26, 2022 7:15 PM
+To: Stanciu-Istrate Andreea, (Andreea.SA.Stanciu-Istrate@partner.bmw.de) <Andreea.SA.Stanciu-Istrate@partner.bmw.de>; Chauhan Kamendra, (Kamendra.Chauhan@partner.bmw.de) <Kamendra.Chauhan@partner.bmw.de>; Walia Lavepreet, (Lavepreet.Walia@partner.bmw.de) <Lavepreet.Walia@partner.bmw.de>; Klingbeil Dieter, FG-832RG <Dieter.Klingbeil@bmw.de>; Enseleit Jan, FG-832 <Jan.Enseleit@bmw.de>; gergely szabolcs, (szabolcs.gergely@partner.bmw.de) <szabolcs.gergely@partner.bmw.de>; Lehmann Dirk, FG-760 <Dirk.DR.Lehmann@bmw.de>; Fruth Dominik, FG-6-V-20 <Dominik.Fruth@bmw.de>; Prieto Sabugo Javier, FG-832 <Javier.Prieto@bmwgroup.com>
+Cc: DL-iaas-unix <iaas-unix@list.bmw.com>
+Subject: AW: TAS000006647574 Wichtig/Important! pw_allow
+Importance: High
+
+Hello Andreea,
+
+@Dieter (Jan is off today): These Users (qqstard & qqsq001) are OPC users & the request should be granted, they still require passwords for the HOST transfers.
+
+Passwords for QQ users always require a pw_allow for the server. This has been true for over 10 years, this is not a new process.
+
+Javier set the pw_allow for all currently productive STARD/ATLAS systems a while back due to the OPC/UCMD users as discussed w/ Dirk/Dominik when the SAP pw_allow was removed from all SAP systems. This system is new and being moved to production. For new systems you must always remember to request this, or the OS Admins will not be able to set the passwords.   As explicitly warned/discussed during the S11->S12 migrations, FG-230 no longer sets any pw_allow, so you cannot “borrow” theirs any longer. You must always request a pw_allow fopr new servers, this cannot be automated (you are requesting the systems to be Tagged non BMW security conform by doing so! and requesting an security exception).
+
+Please fill out (see https://contenthub-de.bmwgroup.net/web/linux-unix-openstack/linux-user-management )
+
+REQUIRED Technical „QQ" Account Password Exception Approval Questionnaire for a pw_allow Approval:
+https://atc.bmwgroup.net/confluence/display/LINUX/technical_account_password
+
+and send it to Dieter.Klingbeil@bmw.de & Jan.Enseleit@bmw.de and they will set the TAG in the Operations Database and the passwords can then be set by the OS admins.
+
+regards,
+
+
+
+
+TAS000006390945
+
+
+TAS000006393193
+
+
+================================
+
+TAS000006538572
+
+
+
+===================================
+
+Register SecFS host
+
+/opt/vormetric/DataSecurityExpert/agent/vmd/bin/register_host silent /var/rudder/tmp/hostreg.conf 
+
+=========================
+
+
+rudderswinst -t TAS000006681488 install lpbkvvs23.bmwgroup.net MW-SecFS
+
+
+
+===========================
+
+
+rpm -qa --last | grep -i VRTS
+
+
+===========================
+
+VMWARE SERVER REBOOT SCRIPT
+
+/global/lssp/cmd-real/reboot-remote.sh
+
+=======================================================
+
+downtime -a -h 2 -c "TAS000006745686 qxz10kv" lp10p0304.bmwgroup.net
+
+
+rudderswinst -t TAS000006745686 update lp10p0304.bmwgroup.net
+
+
+
+downtime -a -h 2 -c "TAS000006745686 qxz10kv" lp10p0305.bmwgroup.net
+
+
+rudderswinst -t TAS000006745686 update lp10p0305.bmwgroup.net
+
+
+=================================================================
+
+substitution
+
+:1,$s/existingword/bywhichtobereplaced/g
+

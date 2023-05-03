@@ -1,0 +1,65 @@
+lpbksas6:/etc # cd unixODBC
+lpbksas6:/etc/unixODBC # ls -lrta
+total 8
+drwxr-xr-x 1 root root    0 Jun 12  2018 ODBCDataSources
+-rw-r--r-- 1 root root  144 Feb 15  2022 odbcinst.ini
+-rw-r--r-- 1 root root  402 Oct  7 11:48 odbc.ini
+drwxr-xr-x 1 root root   70 Oct  7 11:48 .
+drwxr-xr-x 1 root root 4940 Feb  9 07:51 ..
+lpbksas6:/etc/unixODBC # cd ODBCDataSources
+lpbksas6:/etc/unixODBC/ODBCDataSources # ls -lrta
+total 0
+drwxr-xr-x 1 root root  0 Jun 12  2018 .
+drwxr-xr-x 1 root root 70 Oct  7 11:48 ..
+lpbksas6:/etc/unixODBC/ODBCDataSources # cd ..
+lpbksas6:/etc/unixODBC # cd ..
+lpbksas6:/etc # ls -ld unixODBC
+drwxr-xr-x 1 root root 70 Oct  7 11:48 unixODBC
+lpbksas6:/etc # ls -l unixODBC
+total 8
+drwxr-xr-x 1 root root   0 Jun 12  2018 ODBCDataSources
+-rw-r--r-- 1 root root 402 Oct  7 11:48 odbc.ini
+-rw-r--r-- 1 root root 144 Feb 15  2022 odbcinst.ini
+lpbksas6:/etc #
+lpbksas6:/etc #
+lpbksas6:/etc #
+lpbksas6:/etc # chgrp -R sassfop0 unixODBC
+lpbksas6:/etc # ls -ld unixODBC
+drwxr-xr-x 1 root sassfop0 70 Oct  7 11:48 unixODBC
+lpbksas6:/etc # ls -ltr unixODBC
+total 8
+drwxr-xr-x 1 root sassfop0   0 Jun 12  2018 ODBCDataSources
+-rw-r--r-- 1 root sassfop0 144 Feb 15  2022 odbcinst.ini
+-rw-r--r-- 1 root sassfop0 402 Oct  7 11:48 odbc.ini
+lpbksas6:/etc # chmod g+w unixODBC
+lpbksas6:/etc # ls -ltr unixODBC
+total 8
+drwxr-xr-x 1 root sassfop0   0 Jun 12  2018 ODBCDataSources
+-rw-r--r-- 1 root sassfop0 144 Feb 15  2022 odbcinst.ini
+-rw-r--r-- 1 root sassfop0 402 Oct  7 11:48 odbc.ini
+lpbksas6:/etc # ls -ld unixODBC
+drwxrwxr-x 1 root sassfop0 70 Oct  7 11:48 unixODBC
+lpbksas6:/etc # chmod -R g+w unixODBC
+lpbksas6:/etc # ls -ltr unixODBC
+total 8
+drwxrwxr-x 1 root sassfop0   0 Jun 12  2018 ODBCDataSources
+-rw-rw-r-- 1 root sassfop0 144 Feb 15  2022 odbcinst.ini
+-rw-rw-r-- 1 root sassfop0 402 Oct  7 11:48 odbc.ini
+lpbksas6:/etc #
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ rootssh lpbksas7
+lpbksas7:~ # cd /etc/
+lpbksas7:/etc # ls -ld unixODBC
+drwxr-xr-x 1 root root 70 Dec 19 16:18 unixODBC
+lpbksas7:/etc # chgrp -R sassfop0 unixODBC
+lpbksas7:/etc # chmod -R g+w unixODBC
+lpbksas7:/etc # ls -ltr unixODBC
+total 4
+-rw-rw-r-- 1 root sassfop0   0 Jun 12  2018 odbc.ini
+drwxrwxr-x 1 root sassfop0   0 Jun 12  2018 ODBCDataSources
+-rw-rw-r-- 1 root sassfop0 144 Dec 19 16:18 odbcinst.ini
+lpbksas7:/etc # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+

@@ -1,0 +1,63 @@
+lpbkinfavwp04vm:/opt/pbis/bin # find-user-by-id^C
+lpbkinfavwp04vm:/opt/pbis/bin # find-user-by-name qqabic0
+bash: find-user-by-name: command not found
+lpbkinfavwp04vm:/opt/pbis/bin # ./find-user-by-name qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # find
+find       find-jar   find2perl  findfs     findmnt
+lpbkinfavwp04vm:/opt/pbis/bin # find
+find       find-jar   find2perl  findfs     findmnt
+lpbkinfavwp04vm:/opt/pbis/bin # /opt/pbis/bin/find-user-by-name qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # opt/pbis/bin/find-user-by-name --level 0 "qqabic0"
+bash: opt/pbis/bin/find-user-by-name: No such file or directory
+lpbkinfavwp04vm:/opt/pbis/bin # opt/pbis/bin/find-user-by-name --level 0 qqabic0
+bash: opt/pbis/bin/find-user-by-name: No such file or directory
+lpbkinfavwp04vm:/opt/pbis/bin # /opt/pbis/bin/find-user-by-name --level 0 qqabic0
+Failed to locate user.  Error code 40008 (LW_ERROR_NO_SUCH_USER).
+No such user
+lpbkinfavwp04vm:/opt/pbis/bin # exit
+exit
+qplinux@lpbkinfavwp04vm:~> sudo -s
+lpbkinfavwp04vm:~ # getent passwd qqabic0
+qqabic0:x:275898:275898:SF_PROD4_V104:/home/qqabic0:/bin/bash
+lpbkinfavwp04vm:~ # cat /etc/passwd | grep -i qqabic0
+qqabic0:x:275898:275898:SF_PROD4_V104:/home/qqabic0:/bin/bash
+lpbkinfavwp04vm:~ # cat /etc/groups | grep -i qqabic0
+cat: /etc/groups: No such file or directory
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i qqabic0
+gusshkey:x:98271:qqcicb6,qqbankeu,qqirbp1,qprtam01,qqabic0,qqsfatp,qqsfchp,qqdwhsw,qqodsat,qqodsch,qqdwheu,qqbktp0,qqsfeup,qqsfesp,qqodsnl,qqodsfr,qqecapr,qqsffrp,qqsfnlp
+uabicpt:x:94404:qqabic0
+qqabic0:x:275898:qqabic0,qqbktp0,qqanagi
+qqanagi:x:87442:qqabic0,qqodsfr
+lpbkinfavwp04vm:~ #
+
+
+
+
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ # usermod -G gusshkey qqabic0
+lpbkinfavwp04vm:~ # cat /etc/group | grep -i qqabic0
+gusshkey:x:98271:qqcicb6,qqbankeu,qqirbp1,qprtam01,qqabic0,qqsfatp,qqsfchp,qqdwhsw,qqodsat,qqodsch,qqdwheu,qqbktp0,qqsfeup,qqsfesp,qqodsnl,qqodsfr,qqecapr,qqsffrp,qqsfnlp
+qqabic0:x:275898:qqbktp0,qqanagi
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey)
+lpbkinfavwp04vm:~ # id gusshkey
+id: ‘gusshkey’: no such user
+lpbkinfavwp04vm:~ # usermod -aG qqabic0 uabicpt
+usermod: user 'uabicpt' does not exist
+lpbkinfavwp04vm:~ # usermod -aG uabicpt qqabic0
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt)
+lpbkinfavwp04vm:~ # usermod -aG qqanagi qqabic0
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),98271(gusshkey),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ # gpasswd -d qqabic0 gusshkey
+Removing user qqabic0 from group gusshkey
+lpbkinfavwp04vm:~ # id qqabic0
+uid=275898(qqabic0) gid=275898(qqabic0) groups=275898(qqabic0),94404(uabicpt),87442(qqanagi)
+lpbkinfavwp04vm:~ #
+

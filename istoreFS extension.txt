@@ -1,0 +1,62 @@
+lpkrd01:~ # vxdisksetup -i emc_clariion0_101
+lpkrd01:~ # vxdg -g tdrba1kr adddisk emc_clariion0_101
+VxVM vxdg ERROR V-5-1-607 Diskgroup tdrba1kr not found
+lpkrd01:~ # vxdg -g dgtdrba1krdb adddisk emc_clariion0_101
+lpkrd01:~ # vxdisk list | grep -i emc_clariion0_101
+emc_clariion0_101 auto:cdsdisk    emc_clariion0_101  dgtdrba1krdb online
+lpkrd01:~ # vxprint -g dgtdrba1krdb
+TY NAME         ASSOC        KSTATE   LENGTH   PLOFFS   STATE    TUTIL0  PUTIL0
+dg dgtdrba1krdb dgtdrba1krdb -        -        -        -        -       -
+
+dm emc_clariion0_101 emc_clariion0_101 - 471774016 -    -        -       -
+dm 1_CKM00183902035_92 emc_clariion0_92 - 117371040 -   -        -       -
+
+v  lvdb         fsgen        ENABLED  117370880 -       ACTIVE   -       -
+pl lvdb-01      lvdb         ENABLED  117370880 -       ACTIVE   -       -
+sd 1_CKM00183902035_92-01 lvdb-01 ENABLED 117370880 0   -        -       -
+lpkrd01:~ # vxresize -g dgtdrba1krdb lvdb +224G
+lpkrd01:~ # df -hT /global/tdrba1kr/db
+Filesystem                    Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgtdrba1krdb/lvdb vxfs  280G  5.5G  258G   3% /global/tdrba1kr/db
+lpkrd01:~ #
+
+=================================================================================================================
+
+    Line 1: lpkrd01:~ # vxdisksetup -i emc_clariion0_101                   ------------------------ vxdisksetup -i emc_clariion0_89
+	Line 2: lpkrd01:~ # vxdg -g tdrba1kr adddisk emc_clariion0_101
+	Line 4: lpkrd01:~ # vxdg -g dgtdrba1krdb adddisk emc_clariion0_101     -------------------------vxdg -g dgdbnemokr adddisk emc_clariion0_89
+	Line 5: lpkrd01:~ # vxdisk list | grep -i emc_clariion0_101
+	Line 7: lpkrd01:~ # vxprint -g dgtdrba1krdb
+	Line 17: lpkrd01:~ # vxresize -g dgtdrba1krdb lvdb +224G
+	Line 18: lpkrd01:~ # df -hT /global/tdrba1kr/db
+	Line 21: lpkrd01:~ #
+
+==========================================================================================================
+vxresize -g dgdbnemokr lvdb +224G
+
+vxresize -g dgdbnemokr lvdb +224G
+
+===========================================================================================================
+
+vxdisksetup -i emc_clariion0_74
+
+df -hT /global/dbreadkr/db
+Filesystem                    Type  Size  Used Avail Use% Mounted on
+/dev/vx/dsk/dgdbreadkrdb/lvdb vxfs  3.3T  3.1T  235G  94% /global/dbreadkr/db
+
+vxdg -g dgdbreadkrdb adddisk emc_clariion0_74vxresize -g dgdbreadkrdb lvdb +224G
+
+vxresize -g dgdbreadkrdb lvdb +224G
+vxresize -g dgdbreadkrdb lvdb +224Gvxresize -g dgdbreadkrdb lvdb +224G
+
+
+
+
+
+
+
+
+
+
+
+

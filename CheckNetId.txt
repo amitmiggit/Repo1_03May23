@@ -1,0 +1,134 @@
+(1) Description of the Task to be done
+Move of a VM server to another farmserver – Execution
+
+ATTENTION: Without downtime only possible, if on destination farm server the same nets
+are available. If not, a downtime is necessary to change IPs.
+
+Minimum lead time: 3d
+Minimum solution time: 1d
+Minimum 2 hours/ VM
+
+---- Please relate relevant CIs to the change
+
+---- Please update relevant CIs in CMDB if needed
+
+__________
+(2) Required Information
+
+VMs List:
+
+<Servername 3 : lp19cncdp7>
+<Servername 4 : lp19cncdp8>
+
+<Downtime : 05.11.2022 17:00 - 21:00 CET>
+
+Support Task: Not Required.
+===========================================================
+
+
+Source Xenfarm- lp19xen13/14 <SLES-12.5> <HomeSAN: BEJ301>
+Target Xenfarm- lp19xen21/22 <SLES-12.5> <HomeSAN: BEJ301>
+
+
+target host: lp19xen21/22
+Method  : Offline 
+LSAN-Zoning : No
+
+
+Note- Corporate IP address will remain the same, Only Backup IP address will change. Please reserve backup ip address including ipv6.
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+Please update the following details
+Prep task ID : TAS000006685707
+Execution task ID :
+Cleanup task ID : TAS000006685602
+__________
+(3) Additional Information (optional)
+
+Rollback-Plan: (if none is provided, in case of errors the task is stopped where it is and if provided the contact 
+
+person is contacted to deliver a rollback plan to server operations)
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+---- for planning change and task(s)
+<<< enter here >>> <contact, tel.>
+---- during change
+<<< enter here >>> <contact, tel.>
+
+
+
+=============================================================================================
+downtime -a -h 4 -c "TAS000006685598 qxz10kv" lp19cncdp7.bmwgroup.net
+
+downtime -a -h 4 -c "TAS000006685598 qxz10kv" lp19cncdp8.bmwgroup.net
+
+
+
+lp19xen13:~ # vmc list lp19cncdp7 lp19cncdp8
+10:59:23 Gathering VM and Storage data, please wait                                                                                                    OK
+
+                                     lp19xen13                   lp19xen14
+                                --------------              --------------
+lp19cncdp7                             -------    running( 11)(  8/32768M)
+lp19cncdp8                             -------    running( 12)(  8/32768M)
+lp19xen13:~ #
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ check4autosan.pl lp19xen13 lp19xen21
+lp19xen13 has AutoSAN: BEJ301
+lp19xen21 has AutoSAN: BEJ301
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ check4autosan.pl lp19xen14 lp19xen22
+lp19xen14 has AutoSAN: BEJ301
+lp19xen22 has AutoSAN: BEJ301
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+
+lp19cncdp3b-new.bmwgroup.net has address 10.186.102.103
+lp19cncdp4b-new.bmwgroup.net has address 10.186.102.110
+lp19cncdp7b-new.bmwgroup.net has address 10.186.102.134------------------------------------My server to move 
+lp19cncdp8b-new.bmwgroup.net has address 10.186.102.135------------------------------------My server to move 
+lp19cnd01b-new.bmwgroup.net has address 10.186.102.136
+lp19cnd02b-new.bmwgroup.net has address 10.186.102.137
+
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ c6000 -b lp19xen13 | grep -i net_id
+lp19xen13;IP_BASE;NET_ID;160.48.237.0
+lp19xen13b;IP_BASE;NET_ID;10.186.3.0
+lp19xen13c2;IP_BASE;NET_ID;10.186.95.0
+lp19xen13k;IP_BASE;NET_ID;10.186.93.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ c6000 -b lp19xen14 | grep -i net_id
+lp19xen14;IP_BASE;NET_ID;160.48.237.0
+lp19xen14b;IP_BASE;NET_ID;10.186.3.0
+lp19xen14c2;IP_BASE;NET_ID;10.186.95.0
+lp19xen14k;IP_BASE;NET_ID;10.186.93.0
+lp19xen14vl1;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ c6000 -b lp19xen21 | grep -i net_id
+lp19xen21;IP_BASE;NET_ID;10.186.41.0
+lp19xen21b;IP_BASE;NET_ID;10.186.102.0------------------------------net id for backup 
+lp19xen21k;IP_BASE;NET_ID;10.186.15.0
+lp19xen21vl1;IP_BASE;NET_ID;10.186.95.0
+lp19xen21vl2;IP_BASE;NET_ID;10.186.23.0
+lp19xen21vl3;IP_BASE;NET_ID;160.48.236.0
+lp19xen21vl4;IP_BASE;NET_ID;160.48.237.0
+lp19xen21vl5;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $ c6000 -b lp19xen22 | grep -i net_id
+lp19xen22;IP_BASE;NET_ID;10.186.41.0
+lp19xen22b;IP_BASE;NET_ID;10.186.102.0 ----------------------------------------- net id for backup
+lp19xen22k;IP_BASE;NET_ID;10.186.15.0
+lp19xen22vl1;IP_BASE;NET_ID;10.186.95.0
+lp19xen22vl2;IP_BASE;NET_ID;10.186.23.0
+lp19xen22vl3;IP_BASE;NET_ID;160.48.236.0
+lp19xen22vl4;IP_BASE;NET_ID;160.48.237.0
+lp19xen22vl5;IP_BASE;NET_ID;10.186.44.0
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $
+
+=================================================================================

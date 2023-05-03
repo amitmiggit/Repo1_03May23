@@ -1,0 +1,25 @@
+Hello Team, 
+
+it seems that lpascwui01 was not provisioned as intended about 1 year ago. 
+As we just saw that this server has less RAM as the current application server (lpmodthk03).
+
+Is there a way to increase the RAM on lpascwui01?
+
+Thanks a lot and Best Regards, 
+Jennifer Ulrich
+ASCENT-Support Team
+
+
+
+linux-operating@list.bmw.com
+
+
+server-unix-std global |06|070c-modify-system 
+
+
+Hi Jennifer,
+
+Yes we can extend the RAM but we have two prerequisute for that 
+1.We need BMW BU responsible approval which you can find after droping a mail to DL linux-operating@list.bmw.com
+2.We need downtime for the increase of RAM and a task is required for that with the template as below:
+server-unix-std global |06|070c-modify-system 

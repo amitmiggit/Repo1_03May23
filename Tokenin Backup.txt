@@ -1,0 +1,30 @@
+Hello Team,
+
+We have error 7654 on the following servers on NetBackup MASTER server lp02nb3master.w2:
+
+li02sarmove22vmb.bmwgroup.net
+li02sarmove41vmb.bmwgroup.net
+li02sarmove42vmb.bmwgroup.net
+lp02pga03778vmb.bmwgroup.net
+
+
+
+taipsow2.w2(package) = LT02IPSO13VM(hostname)
+
+The system is currently unable to communicate with the NetBackup Servers because if a missing SSL certificate.
+
+Please use the following Token FSEBQHZTMZQJXKKO and run these commands as Administrator/root:
+
+Unix:   /usr/openv/netbackup/bin/nbcertcmd
+
+nbcertcmd -getCACertificate -server lp02nb3master.w2
+
+nbcertcmd -getCertificate -host li02sarmove22vmb -server lp02nb3master -token FSEBQHZTMZQJXKKO -force
+
+In the above command you should replace only hostname(using server fqdns in the list above) when you login on particular server.
+
+In case that token doesn't work please try with the following one: WWEXBKYXPOUOIFQQ
+
+Please contact me if you face any issues.
+
+Thank you.

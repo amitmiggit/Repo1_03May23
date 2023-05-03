@@ -1,0 +1,38 @@
+libkfamossvc02:/etc/sysconfig/network # cat ifcfg-eth0
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="160.46.156.247"--------------------------------------------------------------->160.46.106.12
+NETMASK="255.255.255.0"--------------------------------------------------------------->255.255.255.0  - same rahegaa 
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e80:a01:52b:0:0:1:33"---------------------------------------------------------------> 2a03:1e80:a01:55a:0:0:1:17
+PREFIXLEN_0="64"
+libkfamossvc02:/etc/sysconfig/network #
+libkfamossvc02:/etc/sysconfig/network #
+libkfamossvc02:/etc/sysconfig/network #
+
+
+libkfamossvc02:/etc/sysconfig/network # cat routes
+default 160.46.156.1 - eth0--------------------------------------------------------------->160.46.106.1
+default 2a03:1e80:a01:52b::1 - eth0--------------------------------------------------------------->2a03:1e80:a01:55a:0:0:0:1
+# All backup routes are removed by backupconf script, as this is put under control of RUDDER
+# In order to remove backup routes automatically again, delete this comment line out and re-run backupconf script with configure parameter.
+libkfamossvc02:/etc/sysconfig/network #
+
+
+=========================================eth1=================================================
+
+libkfamossvc02:/etc/sysconfig/network # cat ifcfg-eth1
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="10.100.216.107"-------------------------------------->10.100.220.46
+NETMASK="255.255.255.0"--------------------------------------> 255.255.252.0
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e80:a04:587:0:0:1:52"------------------------>2a03:1e80:a04:588:0:0:1:4a
+PREFIXLEN_0="64"
+libkfamossvc02:/etc/sysconfig/network #
+
+
+libkfamossvc02:/etc/sysconfig/network # cat ifroute-eth1
+192.168.15.0/24 192.168.15.1 - eth1-------------------------------------------------10.100.220.0/22 10.100.220.1
+2a03:1e80:a04:57e:0:0:0:0/64 2a03:1e80:a04:57e:0:0:0:1 - eth1-----------------------2a03:1e80:a04:588:0:0:0:0/64 2a03:1e80:a04:588:0:0:0:1
+

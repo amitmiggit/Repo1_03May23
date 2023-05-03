@@ -1,0 +1,367 @@
+Please Create new package pkgcocbe1i
+
+Package 1 - pkgcocbe1i
+==============================
+Server 1 : ltdbstde111.bmwgroup.net
+
+Server 2 : ltdbstde112.bmwgroup.net 	
+
+Default Server: ltdbstde112.bmwgroup.net
+
+Env: Test 
+
+APP ID : APP-118472
+
+Package-Name: pkgcocbe1i
+ 
+Action: Create
+Filesystem (Right 755 oracle:dba)
+
+with the file systems 
+/global/pkgcocbe1i/db      225 GB
+/global/pkgcocbe1i/bkup    112 GB 
+
+
+
+Please enter the package in the CMDB. 
+Please write a mail to PaaS-CPT@list.bmw.com in case of any issue/clarification.
+
+Note: Please send a mail to PaaS-CPT@list.bmw.com once the package is created
+
+
+san_shortinfo | egrep -i '01:01|01:02' | sort -k3
+
+ltdbstde111:~ # san_shortinfo | egrep -i '01:01|01:02' | sort -k3
+hitachi_vsp50000_0101 | sdgn  01:01   5A   40198   230490 | sdgf  01:01   6A   40198   230490 |
+hitachi_vsp50000_0102 | sdgo  01:02   5A   40198   115245 | sdgg  01:02   6A   40198   115245 |
+hitachi_vsp50001_0101 | sdgr  01:01   5A   40206   230490 | sdgj  01:01   6A   40206   230490 |
+hitachi_vsp50001_0102 | sdgs  01:02   5A   40206   115245 | sdgk  01:02   6A   40206   115245 |
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ nslookup pkgcocbe1i
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   pkgcocbe1i.bmwgroup.net
+Address: 10.30.36.21
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+ltdbstde111:~ #
+
+
+RG-18683 
+
+=======================================
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $ cat ltdbstde111_pkgcocbe1i_add.all
+HOST ltdbstde112 ltdbstde111
+
+#########################################################################
+# Service group section
+sg pkgcocbe1i
+node ltdbstde112 ltdbstde111
+# Primary Virtuell IP
+ip 10.30.36.21 pkgcocbe1i
+# NetBackup Virtuell IP
+#######ip (pkgbu_ip) (pkgbu_name)
+# VCS Script Templates
+app oracle module=oracle
+
+#########################################################################
+# Disk group section 1
+# DG DB
+dg dgpkgcocbe1idb
+# @000388613
+01:01 40198 B1_GS3
+01:01 40206 B1_GS3
+
+
+lv  lvdb max
+fs  lvdb 8192
+mnt lvdb /global/pkgcocbe1i/db owner=oracle:dba chmod=755 opts=mincache=direct,convosync=direct
+#########################################################################
+# Disk group section 2
+# DG BKUP
+dg dgpkgcocbe1ibkup
+# @000388613
+01:02 40198 B1_GS3
+01:02 40206 B1_GS3
+
+lv lvbkup max
+fs lvbkup 8192
+mnt lvbkup /global/pkgcocbe1i/bkup owner=oracle:dba chmod=755 opts=defaults
+#########################################################################
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh ltdbstde111_pkgcocbe1i_add.all
+
+  _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+  |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+   \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+ Processing file 'ltdbstde111_pkgcocbe1i_add.all'
+
+-> Checking File validity                        [OK]    file exist: ltdbstde111_pkgcocbe1i_add.all
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on ltdbstde112 ltdbstde111
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [OK]    found pkgcocbe1i
+-> Fetching module for Apps                      [OK]    fetched
+
+
+ Running remote sanity check
+
+-> Copy template to remote host 'ltdbstde112'    [OK]    copied
+-> Running sanity check on 'ltdbstde112'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package pkgcocbe1i...
+15:56:47 Sanity checking IP 10.30.36.21
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/pkgcocbe1i_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/pkgcocbe1i/db
+Sanity checking mount /global/pkgcocbe1i/bkup
+***************************************
+
+-> Sanity check                                  [OK]    success
+-> Copy template to remote host 'ltdbstde111'    [OK]    copied
+-> Running sanity check on 'ltdbstde111'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package pkgcocbe1i...
+15:57:03 Sanity checking IP 10.30.36.21
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/pkgcocbe1i_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/pkgcocbe1i/db
+Sanity checking mount /global/pkgcocbe1i/bkup
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+ Deploying application scripts
+
+-> Preparing files                               [OK]    staged
+-> Distributing files                            [OK]    distributed
+
+
+ Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on ltdbstde112
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+15:57:17 Initializing disk hitachi_vsp50000_0102                          OK
+15:57:17 Disabling thin provisioning on disk hitachi_vsp50000_0102        OK
+15:57:17 Initializing disk hitachi_vsp50001_0102                          OK
+15:57:18 Disabling thin provisioning on disk hitachi_vsp50001_0102        OK
+15:57:18 Creating disk group with name dgpkgcocbe1ibkup and disks
+ hitachi_vsp50000_0102 hitachi_vsp50001_0102                              OK
+15:57:18 Renaming disk hitachi_vsp50000_0102 in diskgroup
+ dgpkgcocbe1ibkup to 18_40198_0102                                        OK
+15:57:18 Renaming disk hitachi_vsp50001_0102 in diskgroup
+ dgpkgcocbe1ibkup to 2_40206_0102                                         OK
+15:57:19 Creating volume lvbkup in diskgroup dgpkgcocbe1ibkup with size
+ 115195M                                                                  OK
+15:57:20 Renaming plex lvbkup-02 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup-40206                                                             OK
+15:57:20 Renaming plex lvbkup-01 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup-40198                                                             OK
+15:57:20 Renaming plex lvbkup-03 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup_drl-40206                                                         OK
+15:57:20 Renaming plex lvbkup-04 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup_drl-40198                                                         OK
+15:57:20 Renaming plex lvbkup_dcl-02 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup_dcl-40206                                                         OK
+15:57:20 Renaming plex lvbkup_dcl-01 in diskgroup dgpkgcocbe1ibkup to
+ lvbkup_dcl-40198                                                         OK
+15:57:20 Setting read policy for volume lvbkup in diskgroup
+ dgpkgcocbe1ibkup to plex lvbkup-40206                                    OK
+15:57:20 Exec: /sbin/mkfs.vxfs -o bsize=8192
+ /dev/vx/dsk/dgpkgcocbe1ibkup/lvbkup 2>&1 >/dev/null                      OK
+15:57:20 Exec: /bin/mount -t vxfs /dev/vx/dsk/dgpkgcocbe1ibkup/lvbkup
+ /global/pkgcocbe1i/bkup                                                  OK
+15:57:20 Exec: /bin/chown oracle:dba /global/pkgcocbe1i/bkup              OK
+15:57:20 Exec: /bin/chmod 755 /global/pkgcocbe1i/bkup                     OK
+15:57:20 Exec: /bin/umount /global/pkgcocbe1i/bkup                        OK
+15:57:21 Initializing disk hitachi_vsp50000_0101                          OK
+15:57:21 Disabling thin provisioning on disk hitachi_vsp50000_0101        OK
+15:57:21 Initializing disk hitachi_vsp50001_0101                          OK
+15:57:22 Disabling thin provisioning on disk hitachi_vsp50001_0101        OK
+15:57:22 Creating disk group with name dgpkgcocbe1idb and disks
+ hitachi_vsp50000_0101 hitachi_vsp50001_0101                              OK
+15:57:23 Renaming disk hitachi_vsp50000_0101 in diskgroup dgpkgcocbe1idb
+ to 18_40198_0101                                                         OK
+15:57:23 Renaming disk hitachi_vsp50001_0101 in diskgroup dgpkgcocbe1idb
+ to 2_40206_0101                                                          OK
+15:57:23 Creating volume lvdb in diskgroup dgpkgcocbe1idb with size
+ 230437M                                                                  OK
+15:57:24 Renaming plex lvdb-03 in diskgroup dgpkgcocbe1idb to
+ lvdb_drl-40206                                                           OK
+15:57:24 Renaming plex lvdb-01 in diskgroup dgpkgcocbe1idb to lvdb-40198  OK
+15:57:24 Renaming plex lvdb-02 in diskgroup dgpkgcocbe1idb to lvdb-40206  OK
+15:57:24 Renaming plex lvdb-04 in diskgroup dgpkgcocbe1idb to
+ lvdb_drl-40198                                                           OK
+15:57:24 Renaming plex lvdb_dcl-01 in diskgroup dgpkgcocbe1idb to
+ lvdb_dcl-40198                                                           OK
+15:57:24 Renaming plex lvdb_dcl-02 in diskgroup dgpkgcocbe1idb to
+ lvdb_dcl-40206                                                           OK
+15:57:24 Setting read policy for volume lvdb in diskgroup dgpkgcocbe1idb
+ to plex lvdb-40206                                                       OK
+15:57:24 Exec: /sbin/mkfs.vxfs -o bsize=8192
+ /dev/vx/dsk/dgpkgcocbe1idb/lvdb 2>&1 >/dev/null                          OK
+15:57:25 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+ /dev/vx/dsk/dgpkgcocbe1idb/lvdb /global/pkgcocbe1i/db                    OK
+15:57:25 Exec: /bin/chown oracle:dba /global/pkgcocbe1i/db                OK
+15:57:25 Exec: /bin/chmod 755 /global/pkgcocbe1i/db                       OK
+15:57:25 Exec: /bin/umount /global/pkgcocbe1i/db                          OK
+15:57:27 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+15:57:27 Exec: /opt/VRTS/bin/hagrp -add pkgcocbe1i                        VCS NOTICE V-16-1-10136 Group added; populating SystemList and setting the Parallel attribute recommended before adding resources
+OK
+15:57:27 Exec: /opt/VRTS/bin/hagrp -modify pkgcocbe1i SystemList -add
+ ltdbstde112 0                                                            OK
+15:57:27 Exec: /opt/VRTS/bin/hagrp -modify pkgcocbe1i SystemList -add
+ ltdbstde111 1                                                            OK
+15:57:27 Exec: /opt/VRTS/bin/hagrp -modify pkgcocbe1i AutoStartList -add
+ ltdbstde112                                                              OK
+15:57:27 Exec: /opt/VRTS/bin/hagrp -modify pkgcocbe1i AutoStartList -add
+ ltdbstde111                                                              OK
+15:57:27 Exec: /opt/VRTS/bin/hares -add pkgcocbe1i_nic_proxy Proxy
+ pkgcocbe1i                                                               VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:27 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_nic_proxy
+ TargetResName NIC_monitor                                                OK
+15:57:27 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_nic_proxy Enabled 1 OK
+15:57:27 Exec: sleep 1                                                    OK
+15:57:28 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+15:57:31 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+15:57:31 Exec: /opt/VRTS/bin/hares -add pkgcocbe1i_pkgcocbe1i_ip IP
+ pkgcocbe1i                                                               VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ Address 10.30.36.21                                                      OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ NetMask 255.255.248.0                                                    OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ Options "broadcast 10.30.39.255"                                         OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ Device team0                                                             OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ Critical 1                                                               OK
+15:57:31 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_pkgcocbe1i_ip
+ Enabled 1                                                                OK
+15:57:31 Exec: /opt/VRTS/bin/hares -link pkgcocbe1i_pkgcocbe1i_ip
+ pkgcocbe1i_nic_proxy                                                     OK
+15:57:31 Exec: sleep 1                                                    OK
+15:57:32 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+15:57:33 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+15:57:33 Exec: /opt/VRTS/bin/hares -add pkgcocbe1i_oracle_app Application
+ pkgcocbe1i                                                               VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:33 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_oracle_app
+ StartProgram /lfs/cluster/vcs/pkgcocbe1i_oracle_start                    OK
+15:57:33 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_oracle_app
+ StopProgram /lfs/cluster/vcs/pkgcocbe1i_oracle_stop                      OK
+15:57:33 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_oracle_app
+ MonitorProgram /lfs/cluster/vcs/pkgcocbe1i_oracle_monitor                OK
+15:57:33 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_oracle_app Enabled
+ 1                                                                        OK
+15:57:33 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_oracle_app Critical
+ 1                                                                        OK
+15:57:33 Exec: hares -link pkgcocbe1i_oracle_app pkgcocbe1i_pkgcocbe1i_ip OK
+15:57:33 Exec: sleep 1                                                    OK
+15:57:34 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+15:57:35 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+15:57:35 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/pkgcocbe1i/db"  OK
+15:57:35 Exec: /opt/VRTS/bin/hares -add pkgcocbe1i_dgpkgcocbe1idb
+ DiskGroup pkgcocbe1i                                                     VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:35 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1idb
+ DiskGroup dgpkgcocbe1idb                                                 OK
+15:57:35 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1idb
+ StartVolumes 1                                                           OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1idb
+ StopVolumes 1                                                            OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1idb
+ Enabled 1                                                                OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1idb
+ Critical 1                                                               OK
+15:57:36 Exec: /opt/VRTS/bin/hares -add
+ pkgcocbe1i_global_pkgcocbe1i_db_mount Mount pkgcocbe1i                   VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount BlockDevice
+ /dev/vx/dsk/dgpkgcocbe1idb/lvdb                                          OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount MountPoint /global/pkgcocbe1i/db   OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount FsckOpt %-y                        OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount FSType vxfs                        OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount Enabled 1                          OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount Critical 1                         OK
+15:57:36 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_db_mount MountOpt
+ mincache=direct,convosync=direct                                         OK
+15:57:36 Exec: /opt/VRTS/bin/hares -link
+ pkgcocbe1i_global_pkgcocbe1i_db_mount pkgcocbe1i_dgpkgcocbe1idb          OK
+15:57:36 Exec: /opt/VRTS/bin/hares -link pkgcocbe1i_oracle_app
+ pkgcocbe1i_global_pkgcocbe1i_db_mount                                    OK
+15:57:36 Exec: sleep 1                                                    OK
+15:57:37 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+15:57:38 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+15:57:38 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p
+ /global/pkgcocbe1i/bkup"                                                 OK
+15:57:38 Exec: /opt/VRTS/bin/hares -add pkgcocbe1i_dgpkgcocbe1ibkup
+ DiskGroup pkgcocbe1i                                                     VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1ibkup
+ DiskGroup dgpkgcocbe1ibkup                                               OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1ibkup
+ StartVolumes 1                                                           OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1ibkup
+ StopVolumes 1                                                            OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1ibkup
+ Enabled 1                                                                OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify pkgcocbe1i_dgpkgcocbe1ibkup
+ Critical 1                                                               OK
+15:57:38 Exec: /opt/VRTS/bin/hares -add
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount Mount pkgcocbe1i                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount BlockDevice
+ /dev/vx/dsk/dgpkgcocbe1ibkup/lvbkup                                      OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount MountPoint
+ /global/pkgcocbe1i/bkup                                                  OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount FsckOpt %-y                      OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount FSType vxfs                      OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount Enabled 1                        OK
+15:57:38 Exec: /opt/VRTS/bin/hares -modify
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount Critical 1                       OK
+15:57:38 Exec: /opt/VRTS/bin/hares -link
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount pkgcocbe1i_dgpkgcocbe1ibkup      OK
+15:57:38 Exec: /opt/VRTS/bin/hares -link pkgcocbe1i_oracle_app
+ pkgcocbe1i_global_pkgcocbe1i_bkup_mount                                  OK
+15:57:38 Exec: sleep 1                                                    OK
+15:57:39 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS $

@@ -1,0 +1,124 @@
+[‎7/‎21/‎2022 12:52 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+TAS000006544147 
+Linux/Unix: 19.0 RZ2+RZ3  - N2K - Konsolidierung Admin-3/Backup-3 
+ye waise seems info task
+once your laptop is up we discuss
+[‎7/‎21/‎2022 1:00 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+Ji bhai 
+[‎7/‎21/‎2022 1:02 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ye task info task hai do we need to do anything in it
+[‎7/‎21/‎2022 1:05 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+yes its info task 
+lpivp06a.bmwgroup.net
+lpivp06b.bmwgroup.net
+liivi05b.bmwgroup.net
+lpintra202k.bmwgroup.net
+liapp152k.bmwgroup.net
+lpwebmon6k.bmwgroup.net
+lpintra52k.bmwgroup.net
+ 
+ye devices honge upni 
+[‎7/‎21/‎2022 1:06 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+inme kya check karein
+[‎7/‎21/‎2022 1:08 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+NOC is changing switch so Admin and backup network will impact for sometime 
+[‎7/‎21/‎2022 1:08 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Contact during change:
+Andreas Lehr
+Mobil: +49 151 17469182 
+isse coordinate kiya jaaye kya
+[‎7/‎21/‎2022 1:09 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+lpivp06:~ # lltstat -nvv active
+LLT node information:
+    Node                 State    Link  Status  Address
+     0 lpivp05           OPEN
+                                  link1   UP      40:F2:E9:1E:1D:B6
+                                  link2   UP      A0:36:9F:87:22:3C
+                                  link3   UP      40:F2:E9:1E:1D:B7
+   * 1 lpivp06           OPEN
+                                  link1   UP      40:F2:E9:1E:1D:1C
+                                  link2   UP      A0:36:9F:87:23:14
+                                  link3   UP      40:F2:E9:1E:1D:1D
+lpivp06:~ # 
+this is VCS node so i think they will not do at same time else system will go to jeopardy 
+[‎7/‎21/‎2022 1:10 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎7/‎21/‎2022 1:23 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+bhai aapke paas handy hai if we need to set DT for 1 alert
+[‎7/‎21/‎2022 1:24 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+yes i have 
+[‎7/‎21/‎2022 1:24 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok please give
+[‎7/‎21/‎2022 1:25 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+downtime -a -h <hours> -c "TASK" -s "nagios_service_name"  FQDN 
+[‎7/‎21/‎2022 1:25 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Thanks
+I apply
+[‎7/‎21/‎2022 1:26 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+ downtime -a -h  6 -c "INC000039187797" -s "os_linux_fs_check_multipath"  FQDN    .. like this 
+[‎7/‎21/‎2022 1:26 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+ok
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎7/‎21/‎2022 7:22 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+# ltbkapp12105vm:~ # /opt/Symantec/symantec_antivirus/sav info -a
+Malfunctioning
+# ltbkapp12105vm:~ # /opt/Symantec/symantec_antivirus/sav liveupdate -u
+Update was successful
+# ltbkapp12105vm:~ # /opt/Symantec/symantec_antivirus/sav info -a
+Malfunctioning
+# ltbkapp12105vm:~ # /opt/Symantec/symantec_antivirus/sav info -d
+07/20/22 rev. 22
+# ltbkapp12105vm:~ # /opt/Symantec/symantec_antivirus/sav info -a
+Malfunctioning
+# ltbkapp12105vm:~ # rpm -qa | grep -i vee
+# ltbkapp12105vm:~ # 
+[‎7/‎21/‎2022 7:24 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+# ltbkapp12105vm:~ # rpm -qa --last | more
+wicked-service-0.6.68-3.16.1.x86_64           Thu Jul 21 06:08:11 2022
+docker-20.10.14_ce-98.80.1.x86_64             Thu Jul 21 06:08:10 2022
+git-core-2.26.2-27.52.1.x86_64                Thu Jul 21 06:08:08 2022
+kdump-0.8.16-11.19.1.x86_64                   Thu Jul 21 06:07:50 2022
+wicked-0.6.68-3.16.1.x86_64                   Thu Jul 21 06:07:49 2022
+apparmor-parser-2.8.2-56.6.3.x86_64           Thu Jul 21 06:07:49 2022
+patterns-sles-Minimal-12-12.9.1.x86_64        Thu Jul 21 06:07:48 2022
+openssh-7.2p2-78.13.1.x86_64                  Thu Jul 21 06:07:48 2022
+dnsmasq-2.78-18.18.1.x86_64                   Thu Jul 21 06:07:48 2022 
+kuch to update hua hai
+[‎7/‎21/‎2022 7:27 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+uptime 
+[‎7/‎21/‎2022 7:28 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+# ltbkapp12105vm:~ # uptime
+ 15:57pm  up   9:47,  3 users,  load average: 0.00, 0.02, 0.08
+# ltbkapp12105vm:~ # 
+[‎7/‎21/‎2022 7:28 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+we need to rebuild with new kernel 
+reboot bhi hua hai 
+[‎7/‎21/‎2022 7:28 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+koi link hai jahan available hai ye
+[‎7/‎21/‎2022 7:30 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+INC number dena 
+[‎7/‎21/‎2022 7:30 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+INC000039607204 
+[‎7/‎21/‎2022 7:36 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+ok
+[‎7/‎21/‎2022 7:37 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=523638318 
+[‎7/‎21/‎2022 7:45 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+# ltbkapp12105vm:~ # su - qqnagio -c "./prod/local/lib/nagios/plugins/check_sav"                                              OK - all checks passed successfully
+# ltbkapp12105vm:~ # 
+done 
+[‎7/‎21/‎2022 7:47 PM] Seikh Farhan, (Farhan.Seikh@partner.bmw.de): 
+ 32  2022-07-21 16:14:28 cd src/
+   33  2022-07-21 16:14:29 ll
+   34  2022-07-21 16:14:36 bunzip2 ap-kernelmodule.tar.bz2
+   35  2022-07-21 16:14:38 ll
+   36  2022-07-21 16:14:54 tar xvf ap-kernelmodule.tar
+   37  2022-07-21 16:14:56 ll
+   38  2022-07-21 16:15:04 cd ap-kernelmodule-14.3.1148-0100/
+   39  2022-07-21 16:15:04 ll
+   40  2022-07-21 16:15:09 ./build.sh
+   41  2022-07-21 16:15:31 cd
+   42  2022-07-21 16:15:42 su - qqnagio -c "./prod/local/lib/nagios/plugins/check_sav"
+   43  2022-07-21 16:16:34 history
+# ltbkapp12105vm:~ # 

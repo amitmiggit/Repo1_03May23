@@ -1,0 +1,447 @@
+Please perform the following on li16db001:
+LUN 00:00 from serial 11191 needs to be replaced with a LUN from serial 85225
+
+This server should only see storage from one array.
+So please order a new LUN from the correct serial, replace it and return the old one afterwards.
+
+
+** Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   hitachi_vsp0_5080 | sdpo  50:80   1A   85225 230490 | sdpn  50:80   2A   85225 230490 |
+
+ - Found 1 new Veritas device(s): 'hitachi_vsp0_5080'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 9 sec.
+
+li16db001:~ #
+
+
+
+vxedit -g dgoracle_lp16d09 rename lvoracleaudit-11191 lvoracleaudit-85225  
+
+
+=============================
+
+vxedit -g dgoracle_li16db001 rename lvoracle-11191 lvoracle-85225
+
+vxedit -g dgoracle_li16db001 rename lvoracleaudit-11191 lvoracleaudit-85225  
+
+
+
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-11191 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_11191_0000-01 lvoracle-11191 16_11191_0000 0.00 175.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-11191 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_11191_0000-02 lvoracleaudit-11191 16_11191_0000 175.00g 50.00g 0.00 hitachi_vspg1k0_0000 ENA
+li16db001:~ #
+li16db001:~ #
+li16db001:~ #
+
+
+# vxdisksetup -i hitachi_vspg1k0_0130 (e.g. new disk name)
+# vxdisksetup -i hitachi_vspg1k1_0130 (e.g. new disk name)
+# vxdg -g <dg-name> adddisk 13_10774_0130=hitachi_vspg1k1_0130
+# vxdg -g <dg-name> adddisk 19_10754_0130=hitachi_vspg1k0_0130
+# vxevac -g <dg-name> <old-disk> <new-disk> 
+
+16_11191_0000 -- Old disk name 
+16_85225_5080   - New Disk Name 
+vxdisksetup -i hitachi_vsp0_5080
+
+vxdg -g <dg-name> adddisk 13_10774_0130=hitachi_vspg1k1_0130
+
+vxdg -g dgoracle_li16db001 adddisk 16_85225_5080=hitachi_vsp0_5080
+
+
+vxevac -g dgoracle_li16db001 16_11191_0000 16_85225_5080 
+
+=================
+
+
+vxdg -g dgoracle_li16db001 rmdisk 16_11191_0000
+
+
+===========================================================================
+
+
+  529  2022-07-11 12:51:34 ##############--- 20220711.125134 ---##############
+  530  2022-07-11 12:52:23 san_shortinfo
+  531  2022-07-11 12:52:43 san_shortinfo  | grep -i 11191
+  532  2022-07-11 12:52:53 san_rescan -o
+  533  2022-07-11 12:53:41 san_shortinfo
+  534  2022-07-11 12:54:04 vxprint -htq -g dgoracle_li16db001 htu h
+  535  2022-07-11 12:54:13 vxprint -htq -g dgoracle_li16db001 -htu h
+  536  2022-07-11 12:54:20 vxprint -htq -g dgoracle_li16db001 -htu h
+  537  2022-07-11 12:59:36 vxedit -g dgoracle_li16db001 rename lvoracle-11191 lvoracle-85225
+  538  2022-07-11 12:59:48 vxprint -htq -g dgoracle_li16db001 -htu h
+  539  2022-07-11 13:00:48 vxedit -g dgoracle_li16db001 rename lvoracleaudit-11191 lvoracleaudit-85225
+  540  2022-07-11 13:00:52 vxprint -htq -g dgoracle_li16db001 -htu h
+  541  2022-07-11 13:08:50 vxdg -g dgoracle_li16db001 adddisk 16_85225_5080=hitachi_vsp0_5080
+  542  2022-07-11 13:09:45 vxdisksetup -i hitachi_vsp0_5080
+  543  2022-07-11 13:10:12 vxdg -g dgoracle_li16db001 adddisk 16_85225_5080=hitachi_vsp0_5080
+  544  2022-07-11 13:10:21 vxprint -htq -g dgoracle_li16db001 -htu h
+  545  2022-07-11 13:11:43 vxevac -g dgoracle_li16db001 16_11191_0000 16_85225_5080
+  546  2022-07-11 13:16:35 vxprint -htq -g dgoracle_li16db001 -htu h
+  547  2022-07-11 13:18:34 vxdg -g dgoracle_li16db001 rmdisk 16_11191_0000
+  548  2022-07-11 13:18:37 vxprint -htq -g dgoracle_li16db001 -htu h
+  549  2022-07-11 13:20:07 san_shortinfo | grep -i hitachi_vspg1k0_0000
+  550  2022-07-11 13:24:26 history
+li16db001:~ #
+
+
+Before
+
+
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 htu h
+VxVM vxprint ERROR V-5-1-924 Record htu not found
+VxVM vxprint ERROR V-5-1-924 Record h not found
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-11191 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_11191_0000-01 lvoracle-11191 16_11191_0000 0.00 175.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-11191 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_11191_0000-02 lvoracleaudit-11191 16_11191_0000 175.00g 50.00g 0.00 hitachi_vspg1k0_0000 ENA
+li16db001:~ #
+li16db001:~ #
+
+===============================================================================
+
+li16db001:~ # vxedit -g dgoracle_li16db001 rename lvoracle-11191 lvoracle-85225
+li16db001:~ #
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-85225 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_11191_0000-01 lvoracle-85225 16_11191_0000 0.00 175.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-11191 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_11191_0000-02 lvoracleaudit-11191 16_11191_0000 175.00g 50.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+
+li16db001:~ # vxedit -g dgoracle_li16db001 rename lvoracleaudit-11191 lvoracleaudit-85225
+li16db001:~ #
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-85225 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_11191_0000-01 lvoracle-85225 16_11191_0000 0.00 175.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-85225 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_11191_0000-02 lvoracleaudit-85225 16_11191_0000 175.00g 50.00g 0.00 hitachi_vspg1k0_0000 ENA
+li16db001:~ #
+
+li16db001:~ # vxdisksetup -i hitachi_vsp0_5080
+li16db001:~ # vxdg -g dgoracle_li16db001 adddisk 16_85225_5080=hitachi_vsp0_5080
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+dm 16_85225_5080 hitachi_vsp0_5080 auto 32.00m 225.04g  -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-85225 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_11191_0000-01 lvoracle-85225 16_11191_0000 0.00 175.00g 0.00 hitachi_vspg1k0_0000 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-85225 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_11191_0000-02 lvoracleaudit-85225 16_11191_0000 175.00g 50.00g 0.00 hitachi_vspg1k0_0000 ENA
+li16db001:~ #
+li16db001:~ #
+li16db001:~ #
+li16db001:~ #
+li16db001:~ # vxevac -g dgoracle_li16db001 16_11191_0000 16_85225_5080
+Replaced subdisk 16_11191_0000-01 with 16_85225_5080-01
+Replaced subdisk 16_11191_0000-02 with 16_85225_5080-02
+li16db001:~ #
+li16db001:~ #
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_11191_0000 hitachi_vspg1k0_0000 auto 32.00m 225.04g -
+dm 16_85225_5080 hitachi_vsp0_5080 auto 32.00m 225.04g  -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-85225 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_85225_5080-01 lvoracle-85225 16_85225_5080 0.00 175.00g 0.00 hitachi_vsp0_5080 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-85225 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_85225_5080-02 lvoracleaudit-85225 16_85225_5080 175.00g 50.00g 0.00 hitachi_vsp0_5080 ENA
+li16db001:~ #
+li16db001:~ #
+li16db001:~ # vxdg -g dgoracle_li16db001 rmdisk 16_11191_0000
+li16db001:~ #
+li16db001:~ # vxprint -htq -g dgoracle_li16db001 -htu h
+dg dgoracle_li16db001 default default 28000    1649250411.9.li16db001
+
+dm 16_85225_5080 hitachi_vsp0_5080 auto 32.00m 225.04g  -
+
+v  lvoracle     -            ENABLED  ACTIVE   175.00g  SELECT    -        fsgen
+pl lvoracle-85225 lvoracle   ENABLED  ACTIVE   175.00g  CONCAT    -        RW
+sd 16_85225_5080-01 lvoracle-85225 16_85225_5080 0.00 175.00g 0.00 hitachi_vsp0_5080 ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   50.00g   SELECT    -        fsgen
+pl lvoracleaudit-85225 lvoracleaudit ENABLED ACTIVE 50.00g CONCAT -        RW
+sd 16_85225_5080-02 lvoracleaudit-85225 16_85225_5080 175.00g 50.00g 0.00 hitachi_vsp0_5080 ENA
+li16db001:~ #
+li16db001:~ #
+li16db001:~ # san_shortinfo | grep -i hitachi_vspg1k0_0000
+hitachi_vspg1k0_0000 | sdc   00:00   5A   11191   230490 | sdb   00:00   6A   11191   230490 |
+li16db001:~ #
+li16db001:~ #
+li16db001:~ # san_shortinfo | grep -i hitachi_vspg1k0_0000
+hitachi_vspg1k0_0000 | sdc   00:00   5A   11191   230490 | sdb   00:00   6A   11191   230490 |
+li16db001:~ #
+
+
+
+
+==================
+
+li16db001:~ # san_shortinfo
+VXDEV              | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | DISKGROUP
+-------------------|-----------------------------------|-----------------------------------|----------
+hitachi_vsp0_0009  | sdmx  00:09   1A   85225   115245 | sdhh  00:09   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_000a  | sdmy  00:0A   1A   85225   115245 | sdhi  00:0A   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_000b  | sdmz  00:0B   1A   85225   115245 | sdhj  00:0B   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_0011  | sdd   00:11   1A   85225    14405 | sdbs  00:11   2A   85225    14405 | dgidna53aldb
+hitachi_vsp0_0012  | sde   00:12   1A   85225    14405 | sdbt  00:12   2A   85225    14405 | dgidna53aldb
+hitachi_vsp0_0013  | sdf   00:13   1A   85225    14405 | sdbu  00:13   2A   85225    14405 | dgidna53albkup
+hitachi_vsp0_0016  | sdg   00:16   1A   85225   230490 | sdbv  00:16   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0017  | sdh   00:17   1A   85225   230490 | sdbw  00:17   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0018  | sdi   00:18   1A   85225   230490 | sdbx  00:18   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0019  | sdj   00:19   1A   85225   230490 | sdby  00:19   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_001a  | sdk   00:1A   1A   85225   230490 | sdbz  00:1A   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_001b  | sdl   00:1B   1A   85225   230490 | sdca  00:1B   2A   85225   230490 | dgidna58albkup
+hitachi_vsp0_001c  | sdm   00:1C   1A   85225   230490 | sdcb  00:1C   2A   85225   230490 | dgidna58albkup
+hitachi_vsp0_001d  | sdn   00:1D   1A   85225   230490 | sdcc  00:1D   2A   85225   230490 | dgidna58albkup
+hitachi_vsp0_001e  | sdo   00:1E   1A   85225   230490 | sdcd  00:1E   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_001f  | sdp   00:1F   1A   85225   230490 | sdce  00:1F   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0020  | sdq   00:20   1A   85225   230490 | sdcf  00:20   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0021  | sdr   00:21   1A   85225   230490 | sdcg  00:21   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0022  | sds   00:22   1A   85225   230490 | sdch  00:22   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0023  | sdt   00:23   1A   85225   230490 | sdci  00:23   2A   85225   230490 | dgtdnv58albkup
+hitachi_vsp0_0024  | sdu   00:24   1A   85225   230490 | sdcj  00:24   2A   85225   230490 | dgtdnv58albkup
+hitachi_vsp0_0025  | sdv   00:25   1A   85225   230490 | sdck  00:25   2A   85225   230490 | dgtdnv58albkup
+hitachi_vsp0_0028  | sdjx  00:28   1A   85225    57622 | sdeh  00:28   2A   85225    57622 | dgtdpl61taldb
+hitachi_vsp0_0029  | sdjy  00:29   1A   85225    57622 | sdei  00:29   2A   85225    57622 | dgtdpl61talbkup
+hitachi_vsp0_002a  | sdna  00:2A   1A   85225    57622 | sdhk  00:2A   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_002b  | sdnb  00:2B   1A   85225    57622 | sdhl  00:2B   2A   85225    57622 | dgtdpl61valbkup
+hitachi_vsp0_002f  | sdjz  00:2F   1A   85225    57622 | sdej  00:2F   2A   85225    57622 | dgidpl61aalbkup
+hitachi_vsp0_0030  | sdka  00:30   1A   85225    57622 | sdek  00:30   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_0031  | sdw   00:31   1A   85225   115245 | sdcl  00:31   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_0032  | sdx   00:32   1A   85225   115245 | sdcm  00:32   2A   85225   115245 | dgidna42albkup
+hitachi_vsp0_0033  | sdnc  00:33   1A   85225   115245 | sdhm  00:33   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_0034  | sdnd  00:34   1A   85225   115245 | sdhn  00:34   2A   85225   115245 | dgtdnv42albkup
+hitachi_vsp0_0035  | sdkb  00:35   1A   85225    14405 | sdel  00:35   2A   85225    14405 | dgtdnd42aldb
+hitachi_vsp0_0036  | sdkc  00:36   1A   85225    14405 | sdem  00:36   2A   85225    14405 | dgtdnd42albkup
+hitachi_vsp0_0038  | sdkd  00:38   1A   85225    57622 | sden  00:38   2A   85225    57622 | dgtdno42albkup
+hitachi_vsp0_0039  | sdy   00:39   1A   85225   230490 | sdcn  00:39   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_003a  | sdke  00:3A   1A   85225    57622 | sdeo  00:3A   2A   85225    57622 | dgtdpl61taldb
+hitachi_vsp0_003b  | sdkf  00:3B   1A   85225    57622 | sdep  00:3B   2A   85225    57622 | dgtdpl61taldb
+hitachi_vsp0_003c  | sdkg  00:3C   1A   85225   230490 | sdeq  00:3C   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_003d  | sdkh  00:3D   1A   85225   230490 | sder  00:3D   2A   85225   230490 | dgidna31albkup
+hitachi_vsp0_003e  | sdne  00:3E   1A   85225   230490 | sdho  00:3E   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_003f  | sdnf  00:3F   1A   85225   230490 | sdhp  00:3F   2A   85225   230490 | dgtdno31albkup
+hitachi_vsp0_0040  | sdki  00:40   1A   85225   230490 | sdes  00:40   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_0041  | sdkj  00:41   1A   85225   230490 | sdet  00:41   2A   85225   230490 | dgtdnv31albkup
+hitachi_vsp0_0042  | sdng  00:42   1A   85225    14405 | sdhq  00:42   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_0043  | sdnh  00:43   1A   85225    14405 | sdhr  00:43   2A   85225    14405 | dgtdnd31albkup
+hitachi_vsp0_0044  | sdz   00:44   1A   85225   230490 | sdco  00:44   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_004c  | sdaa  00:4C   1A   85225   115245 | sdcp  00:4C   2A   85225   115245 | dgtdaa62taldb
+hitachi_vsp0_004d  | sdab  00:4D   1A   85225   115245 | sdcq  00:4D   2A   85225   115245 | dgtdaa62taldb
+hitachi_vsp0_004e  | sdkk  00:4E   1A   85225    57622 | sdeu  00:4E   2A   85225    57622 | dgtdpl61talbkup
+hitachi_vsp0_0064  | sdkl  00:64   1A   85225  1048576 | sdev  00:64   2A   85225  1048576 | dgidna31aldb
+hitachi_vsp0_0069  | sdac  00:69   1A   85225   230490 | sdcr  00:69   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_006a  | sdad  00:6A   1A   85225   230490 | sdcs  00:6A   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_006f  | sdae  00:6F   1A   85225   230490 | sdct  00:6F   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0070  | sdaf  00:70   1A   85225   230490 | sdcu  00:70   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0071  | sdag  00:71   1A   85225   230490 | sdcv  00:71   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0072  | sdah  00:72   1A   85225   230490 | sdcw  00:72   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_0073  | sdai  00:73   1A   85225   230490 | sdcx  00:73   2A   85225   230490 | dgidna58aldb
+hitachi_vsp0_009f  | sdni  00:9F   1A   85225   230490 | sdhs  00:9F   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_00a0  | sdnj  00:A0   1A   85225   230490 | sdht  00:A0   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_00a1  | sdnk  00:A1   1A   85225   230490 | sdhu  00:A1   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_00a2  | sdkm  00:A2   1A   85225   230490 | sdew  00:A2   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_00a3  | sdkn  00:A3   1A   85225   230490 | sdex  00:A3   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_00a4  | sdnl  00:A4   1A   85225    57622 | sdhv  00:A4   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_00a6  | sdnm  00:A6   1A   85225    57622 | sdhw  00:A6   2A   85225    57622 | dgtdtstalbkup
+hitachi_vsp0_00a9  | sdko  00:A9   1A   85225    57622 | sdey  00:A9   2A   85225    57622 | dgtdpl61talbkup
+hitachi_vsp0_00b0  | sdkp  00:B0   1A   85225    57622 | sdez  00:B0   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_00b1  | sdkq  00:B1   1A   85225    57622 | sdfa  00:B1   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_00b2  | sdkr  00:B2   1A   85225    57622 | sdfb  00:B2   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_00e8  | sdaj  00:E8   1A   85225   115245 | sdcy  00:E8   2A   85225   115245 | dgtdaa62taldb
+hitachi_vsp0_00e9  | sdak  00:E9   1A   85225   115245 | sdcz  00:E9   2A   85225   115245 | dgtdaa62taldb
+hitachi_vsp0_00ea  | sdal  00:EA   1A   85225   115245 | sdda  00:EA   2A   85225   115245 | dgtdaa62taldb
+hitachi_vsp0_00eb  | sdam  00:EB   1A   85225   115245 | sddb  00:EB   2A   85225   115245 | dgtdaa62talbkup
+hitachi_vsp0_00ec  | sdan  00:EC   1A   85225   115245 | sddc  00:EC   2A   85225   115245 | dgtdaa62talbkup
+hitachi_vsp0_00ed  | sdao  00:ED   1A   85225   230490 | sddd  00:ED   2A   85225   230490 | dgidaa62aaldb
+hitachi_vsp0_00ee  | sdap  00:EE   1A   85225   230490 | sdde  00:EE   2A   85225   230490 | dgidaa62aaldb
+hitachi_vsp0_00ef  | sdaq  00:EF   1A   85225   230490 | sddf  00:EF   2A   85225   230490 | dgidaa62aaldb
+hitachi_vsp0_00f0  | sdar  00:F0   1A   85225   115245 | sddg  00:F0   2A   85225   115245 | dgidaa62aalbkup
+hitachi_vsp0_00f1  | sdas  00:F1   1A   85225   115245 | sddh  00:F1   2A   85225   115245 | dgidaa62aalbkup
+hitachi_vsp0_00f2  | sdks  00:F2   1A   85225    57622 | sdfc  00:F2   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_00f3  | sdkt  00:F3   1A   85225    57622 | sdfd  00:F3   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_00f7  | sdku  00:F7   1A   85225    57622 | sdfe  00:F7   2A   85225    57622 | dgidpl61aalbkup
+hitachi_vsp0_00f8  | sdkv  00:F8   1A   85225    57622 | sdff  00:F8   2A   85225    57622 | dgidpl61aalbkup
+hitachi_vsp0_0109  | sdnn  01:09   1A   85225    57622 | sdhx  01:09   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_010a  | sdno  01:0A   1A   85225    57622 | sdhy  01:0A   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_011b  | sdnp  01:1B   1A   85225    57622 | sdhz  01:1B   2A   85225    57622 | dgtdpl61valbkup
+hitachi_vsp0_0123  | sdat  01:23   1A   85225   230490 | sddi  01:23   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0124  | sdau  01:24   1A   85225   230490 | sddj  01:24   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0125  | sdav  01:25   1A   85225   230490 | sddk  01:25   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_0129  | sdkw  01:29   1A   85225   230490 | sdfg  01:29   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012a  | sdkx  01:2A   1A   85225   230490 | sdfh  01:2A   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012b  | sdky  01:2B   1A   85225   230490 | sdfi  01:2B   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012c  | sdkz  01:2C   1A   85225   230490 | sdfj  01:2C   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012d  | sdla  01:2D   1A   85225   230490 | sdfk  01:2D   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012e  | sdlb  01:2E   1A   85225   230490 | sdfl  01:2E   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_012f  | sdlc  01:2F   1A   85225   230490 | sdfm  01:2F   2A   85225   230490 | dgtdnv31aldb
+hitachi_vsp0_0130  | sdld  01:30   1A   85225   230490 | sdfn  01:30   2A   85225   230490 | dgtdnv31albkup
+hitachi_vsp0_0131  | sdle  01:31   1A   85225   230490 | sdfo  01:31   2A   85225   230490 | dgtdnv31albkup
+hitachi_vsp0_0132  | sdlf  01:32   1A   85225   230490 | sdfp  01:32   2A   85225   230490 | dgtdnv31albkup
+hitachi_vsp0_0139  | sdlg  01:39   1A   85225   230490 | sdfq  01:39   2A   85225   230490 | dgidna31albkup
+hitachi_vsp0_013a  | sdlh  01:3A   1A   85225   230490 | sdfr  01:3A   2A   85225   230490 | dgidna31albkup
+hitachi_vsp0_013b  | sdli  01:3B   1A   85225   230490 | sdfs  01:3B   2A   85225   230490 | dgidna31albkup
+hitachi_vsp0_013c  | sdlj  01:3C   1A   85225   230490 | sdft  01:3C   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_013d  | sdlk  01:3D   1A   85225   230490 | sdfu  01:3D   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_013e  | sdll  01:3E   1A   85225   230490 | sdfv  01:3E   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_013f  | sdlm  01:3F   1A   85225   230490 | sdfw  01:3F   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_0140  | sdln  01:40   1A   85225   230490 | sdfx  01:40   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_0141  | sdlo  01:41   1A   85225   230490 | sdfy  01:41   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_0142  | sdlp  01:42   1A   85225   230490 | sdfz  01:42   2A   85225   230490 | dgidna31aldb
+hitachi_vsp0_0144  | sdnq  01:44   1A   85225   230490 | sdia  01:44   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_0145  | sdnr  01:45   1A   85225   230490 | sdib  01:45   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_0146  | sdns  01:46   1A   85225   230490 | sdic  01:46   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_0147  | sdnt  01:47   1A   85225   230490 | sdid  01:47   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_0148  | sdnu  01:48   1A   85225   230490 | sdie  01:48   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_0149  | sdnv  01:49   1A   85225   230490 | sdif  01:49   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_014a  | sdnw  01:4A   1A   85225   230490 | sdig  01:4A   2A   85225   230490 | dgtdno31aldb
+hitachi_vsp0_014b  | sdnx  01:4B   1A   85225   230490 | sdih  01:4B   2A   85225   230490 | dgtdno31albkup
+hitachi_vsp0_014c  | sdny  01:4C   1A   85225   230490 | sdii  01:4C   2A   85225   230490 | dgtdno31albkup
+hitachi_vsp0_014d  | sdnz  01:4D   1A   85225   230490 | sdij  01:4D   2A   85225   230490 | dgtdno31albkup
+hitachi_vsp0_014e  | sdoa  01:4E   1A   85225    14405 | sdik  01:4E   2A   85225    14405 | dgtdnd31albkup
+hitachi_vsp0_014f  | sdob  01:4F   1A   85225    14405 | sdil  01:4F   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_0150  | sdoc  01:50   1A   85225    14405 | sdim  01:50   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_0151  | sdod  01:51   1A   85225   115245 | sdin  01:51   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_0152  | sdoe  01:52   1A   85225   115245 | sdio  01:52   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_0153  | sdof  01:53   1A   85225   115245 | sdip  01:53   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_0154  | sdog  01:54   1A   85225   115245 | sdiq  01:54   2A   85225   115245 | dgtdnv42albkup
+hitachi_vsp0_0177  | sdoh  01:77   1A   85225   115245 | sdir  01:77   2A   85225   115245 | dgidtrenaldb
+hitachi_vsp0_0178  | sdoi  01:78   1A   85225    57622 | sdis  01:78   2A   85225    57622 | dgidtrenalbkup
+hitachi_vsp0_017b  | sdlq  01:7B   1A   85225    57622 | sdga  01:7B   2A   85225    57622 | dgidpl61aaldb
+hitachi_vsp0_0182  | sdoj  01:82   1A   85225    57622 | sdit  01:82   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_0183  | sdlr  01:83   1A   85225    14405 | sdgb  01:83   2A   85225    14405 | dgtdnd42albkup
+hitachi_vsp0_0184  | sdls  01:84   1A   85225    14405 | sdgc  01:84   2A   85225    14405 | dgtdnd42aldb
+hitachi_vsp0_0185  | sdlt  01:85   1A   85225    14405 | sdgd  01:85   2A   85225    14405 | dgtdnd42aldb
+hitachi_vsp0_0186  | sdlu  01:86   1A   85225    57622 | sdge  01:86   2A   85225    57622 | dgtdpl61taldb
+hitachi_vsp0_0187  | sdlv  01:87   1A   85225    57622 | sdgf  01:87   2A   85225    57622 | dgtdpl61taldb
+hitachi_vsp0_018a  | sdlw  01:8A   1A   85225   230490 | sdgg  01:8A   2A   85225   230490 | dgtdaa62daldb
+hitachi_vsp0_018b  | sdlx  01:8B   1A   85225   230490 | sdgh  01:8B   2A   85225   230490 | dgtdaa62daldb
+hitachi_vsp0_018c  | sdly  01:8C   1A   85225   230490 | sdgi  01:8C   2A   85225   230490 | dgtdaa62daldb
+hitachi_vsp0_018d  | sdlz  01:8D   1A   85225   230490 | sdgj  01:8D   2A   85225   230490 | dgtdaa62dalbkup
+hitachi_vsp0_018e  | sdaw  01:8E   1A   85225   115245 | sddl  01:8E   2A   85225   115245 | dgtdpl61ialbkup
+hitachi_vsp0_018f  | sdax  01:8F   1A   85225   115245 | sddm  01:8F   2A   85225   115245 | dgtdpl61ialdb
+hitachi_vsp0_0190  | sday  01:90   1A   85225   115245 | sddn  01:90   2A   85225   115245 | dgtdpl61ialdb
+hitachi_vsp0_0191  | sdaz  01:91   1A   85225   115245 | sddo  01:91   2A   85225   115245 | dgtdpl61ialdb
+hitachi_vsp0_0194  | sdok  01:94   1A   85225   115245 | sdiu  01:94   2A   85225   115245 | dgtdaa62ialbkup
+hitachi_vsp0_0195  | sdol  01:95   1A   85225   115245 | sdiv  01:95   2A   85225   115245 | dgtdaa62ialbkup
+hitachi_vsp0_0196  | sdom  01:96   1A   85225   230490 | sdiw  01:96   2A   85225   230490 | dgtdaa62ialdb
+hitachi_vsp0_019a  | sdon  01:9A   1A   85225   230490 | sdix  01:9A   2A   85225   230490 | dgtdaa62ialdb
+hitachi_vsp0_019b  | sdoo  01:9B   1A   85225   230490 | sdiy  01:9B   2A   85225   230490 | dgtdaa62ialdb
+hitachi_vsp0_019c  | sdma  01:9C   1A   85225    57622 | sdgk  01:9C   2A   85225    57622 | dgtdno42albkup
+hitachi_vsp0_019d  | sdmb  01:9D   1A   85225    57622 | sdgl  01:9D   2A   85225    57622 | dgtdno42albkup
+hitachi_vsp0_019e  | sdmc  01:9E   1A   85225    57622 | sdgm  01:9E   2A   85225    57622 | dgtdno42albkup
+hitachi_vsp0_01a1  | sdop  01:A1   1A   85225    57622 | sdiz  01:A1   2A   85225    57622 | dgtdtstaldb
+hitachi_vsp0_01a2  | sdoq  01:A2   1A   85225    57622 | sdja  01:A2   2A   85225    57622 | dgtdtstalbkup
+hitachi_vsp0_01a3  | sdor  01:A3   1A   85225    14405 | sdjb  01:A3   2A   85225    14405 | dgtdtstalredo1
+hitachi_vsp0_01a4  | sdos  01:A4   1A   85225    14405 | sdjc  01:A4   2A   85225    14405 | dgtdtstalredo2
+hitachi_vsp0_01a6  | sdba  01:A6   1A   85225   115245 | sddp  01:A6   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01a7  | sdbb  01:A7   1A   85225   115245 | sddq  01:A7   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01a8  | sdbc  01:A8   1A   85225   115245 | sddr  01:A8   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01a9  | sdbd  01:A9   1A   85225   115245 | sdds  01:A9   2A   85225   115245 | dgidna42albkup
+hitachi_vsp0_01b5  | sdbe  01:B5   1A   85225   115245 | sddt  01:B5   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01b6  | sdbf  01:B6   1A   85225   115245 | sddu  01:B6   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01b7  | sdbg  01:B7   1A   85225   115245 | sddv  01:B7   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01b8  | sdbh  01:B8   1A   85225   115245 | sddw  01:B8   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01b9  | sdbi  01:B9   1A   85225   115245 | sddx  01:B9   2A   85225   115245 | dgidna42aldb
+hitachi_vsp0_01ba  | sdmd  01:BA   1A   85225   230490 | sdgn  01:BA   2A   85225   230490 | dgtdno42aldb
+hitachi_vsp0_01bb  | sdme  01:BB   1A   85225   230490 | sdgo  01:BB   2A   85225   230490 | dgtdno42aldb
+hitachi_vsp0_01bc  | sdmf  01:BC   1A   85225   230490 | sdgp  01:BC   2A   85225   230490 | dgtdno42aldb
+hitachi_vsp0_01bd  | sdmg  01:BD   1A   85225   230490 | sdgq  01:BD   2A   85225   230490 | dgtdno42aldb
+hitachi_vsp0_01be  | sdmh  01:BE   1A   85225   230490 | sdgr  01:BE   2A   85225   230490 | dgtdno42aldb
+hitachi_vsp0_01c2  | sdot  01:C2   1A   85225    14405 | sdjd  01:C2   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_01c3  | sdou  01:C3   1A   85225    14405 | sdje  01:C3   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_01c4  | sdov  01:C4   1A   85225    14405 | sdjf  01:C4   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_01c5  | sdow  01:C5   1A   85225    14405 | sdjg  01:C5   2A   85225    14405 | dgtdnd31aldb
+hitachi_vsp0_01c6  | sdbj  01:C6   1A   85225   230490 | sddy  01:C6   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_01c7  | sdbk  01:C7   1A   85225   230490 | sddz  01:C7   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_01c8  | sdbl  01:C8   1A   85225   230490 | sdea  01:C8   2A   85225   230490 | dgtdnv58aldb
+hitachi_vsp0_01cd  | sdox  01:CD   1A   85225   115245 | sdjh  01:CD   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_01ce  | sdoy  01:CE   1A   85225   115245 | sdji  01:CE   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_01cf  | sdoz  01:CF   1A   85225   115245 | sdjj  01:CF   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_01d0  | sdpa  01:D0   1A   85225   115245 | sdjk  01:D0   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_01d1  | sdpb  01:D1   1A   85225   115245 | sdjl  01:D1   2A   85225   115245 | dgtdnv42aldb
+hitachi_vsp0_01d4  | sdpc  01:D4   1A   85225    57622 | sdjm  01:D4   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_01d5  | sdpd  01:D5   1A   85225    57622 | sdjn  01:D5   2A   85225    57622 | dgtdpl61valdb
+hitachi_vsp0_01f5  | sdmi  01:F5   1A   85225   115245 | sdgs  01:F5   2A   85225   115245 | dgtdpl61taldb
+hitachi_vsp0_01f6  | sdmj  01:F6   1A   85225   115245 | sdgt  01:F6   2A   85225   115245 | dgtdpl61taldb
+hitachi_vsp0_01f7  | sdmk  01:F7   1A   85225   115245 | sdgu  01:F7   2A   85225   115245 | dgtdpl61taldb
+hitachi_vsp0_01f8  | sdml  01:F8   1A   85225   115245 | sdgv  01:F8   2A   85225   115245 | dgtdpl61taldb
+hitachi_vsp0_01f9  | sdmm  01:F9   1A   85225   115245 | sdgw  01:F9   2A   85225   115245 | dgtdpl61taldb
+hitachi_vsp0_5001  | sdmn  50:01   1A   85225   115245 | sdgx  50:01   2A   85225   115245 | dgidpl61aaldb
+hitachi_vsp0_5007  | sdbm  50:07   1A   85225   115245 | sdeb  50:07   2A   85225   115245 | dgtdpl61ialdb
+hitachi_vsp0_5008  | sdmo  50:08   1A   85225  1048576 | sdgy  50:08   2A   85225  1048576 | dgtdnv31aldb
+hitachi_vsp0_5009  | sdbn  50:09   1A   85225  1048576 | sdec  50:09   2A   85225  1048576 | dgidna58aldb
+hitachi_vsp0_501c  | sdpe  50:1C   1A   85225   115245 | sdjo  50:1C   2A   85225   115245 | dgtdpl61valbkup
+hitachi_vsp0_5020  | sdmp  50:20   1A   85225  1048576 | sdgz  50:20   2A   85225  1048576 | dgtdnv31aldb
+hitachi_vsp0_5022  | sdpf  50:22   1A   85225   115245 | sdjp  50:22   2A   85225   115245 | dgtdpl61valdb
+hitachi_vsp0_5023  | sdmq  50:23   1A   85225   518602 | sdha  50:23   2A   85225   518602 | dgidna31aldb
+hitachi_vsp0_5029  | sdpg  50:29   1A   85225   518602 | sdjq  50:29   2A   85225   518602 | dgtdno31aldb
+hitachi_vsp0_502a  | sdmr  50:2A   1A   85225    57622 | sdhb  50:2A   2A   85225    57622 | dgtdpl61talbkup
+hitachi_vsp0_502b  | sdms  50:2B   1A   85225   230490 | sdhc  50:2B   2A   85225   230490 | dgtdpl61taldb
+hitachi_vsp0_502f  | sdbo  50:2F   1A   85225   230490 | sded  50:2F   2A   85225   230490 | dgtdpl61ialbkup
+hitachi_vsp0_5031  | sdmt  50:31   1A   85225   115245 | sdhd  50:31   2A   85225   115245 | dgidpl61aalbkup
+hitachi_vsp0_503b  | sdph  50:3B   1A   85225  1048576 | sdjr  50:3B   2A   85225  1048576 | dgtdno31aldb
+hitachi_vsp0_503f  | sdpi  50:3F   1A   85225   230490 | sdjs  50:3F   2A   85225   230490 | dgtdpl61valbkup
+hitachi_vsp0_5040  | sdmu  50:40   1A   85225   230490 | sdhe  50:40   2A   85225   230490 | dgidpl61aalbkup
+hitachi_vsp0_5041  | sdbp  50:41   1A   85225  1048576 | sdee  50:41   2A   85225  1048576 | dgtdnv58aldb
+hitachi_vsp0_5042  | sdpj  50:42   1A   85225   230490 | sdjt  50:42   2A   85225   230490 | dgtdaa62ialbkup
+hitachi_vsp0_5044  | sdpk  50:44   1A   85225  2097152 | sdju  50:44   2A   85225  2097152 | dgtdno31aldb
+hitachi_vsp0_5045  | sdpl  50:45   1A   85225   518602 | sdjv  50:45   2A   85225   518602 | dgtdno31aldb
+hitachi_vsp0_5058  | sdbq  50:58   1A   85225   518602 | sdef  50:58   2A   85225   518602 | dgidna42aldb
+hitachi_vsp0_5061  | sdmv  50:61   1A   85225  1048576 | sdhf  50:61   2A   85225  1048576 | dgidna31aldb
+hitachi_vsp0_5062  | sdpm  50:62   1A   85225   230490 | sdjw  50:62   2A   85225   230490 | dgtdpl61valdb
+hitachi_vsp0_5063  | sdmw  50:63   1A   85225   230490 | sdhg  50:63   2A   85225   230490 | dgidpl61aaldb
+hitachi_vsp0_5064  | sdbr  50:64   1A   85225   518602 | sdeg  50:64   2A   85225   518602 | dgtdpl61ialdb
+hitachi_vsp0_5080  | sdpo  50:80   1A   85225   230490 | sdpn  50:80   2A   85225   230490 |
+hitachi_vspg1k0_0000 | sdc   00:00   5A   11191   230490 | sdb   00:00   6A   11191   230490 | dgoracle_li16db001
+li16db001:~ #
+li16db001:~ #

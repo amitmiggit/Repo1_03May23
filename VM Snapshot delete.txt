@@ -1,0 +1,162 @@
+lp34pgb03873vm:/.snapshots # cd
+lp34pgb03873vm:~ # df -hT
+Filesystem                             Type      Size  Used Avail Use% Mounted on
+devtmpfs                               devtmpfs  3.8G  8.0K  3.8G   1% /dev
+tmpfs                                  tmpfs     3.8G   24K  3.8G   1% /dev/shm
+tmpfs                                  tmpfs     3.8G  1.2M  3.8G   1% /run
+tmpfs                                  tmpfs     3.8G     0  3.8G   0% /sys/fs/cgroup
+/dev/sda2                              btrfs     101G  100G     0 100% /
+/dev/sda2                              btrfs     101G  100G     0 100% /home
+/dev/sda2                              btrfs     101G  100G     0 100% /var/opt
+/dev/sda2                              btrfs     101G  100G     0 100% /var/cache
+/dev/sda2                              btrfs     101G  100G     0 100% /global/local
+/dev/sda2                              btrfs     101G  100G     0 100% /opt
+/dev/mapper/dgpc03873app-lvapp         xfs       1.0T  267G  758G  27% /global/pc03873
+/dev/sda2                              btrfs     101G  100G     0 100% /lfs
+/dev/sda1                              ext3      976M  112M  814M  13% /boot
+/dev/sda2                              btrfs     101G  100G     0 100% /.snapshots
+/dev/sda2                              btrfs     101G  100G     0 100% /tmp
+/dev/sda2                              btrfs     101G  100G     0 100% /var/tmp
+/dev/sda2                              btrfs     101G  100G     0 100% /var/log
+/dev/sda2                              btrfs     101G  100G     0 100% /var/spool
+/dev/mapper/vglocal-lvvarcrash         xfs        50G   33M   50G   1% /var/crash
+/dev/mapper/dgpc03873xlog-lvxlog       xfs       224G   17G  208G   8% /global/pc03873/xlog
+/dev/mapper/dgpc03873archive-lvarchive xfs       8.0T  839G  7.1T  11% /global/pc03873/archive
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/48952
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/379785
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/1149499
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/0
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/846785
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/44035
+lp34pgb03873vm:~ # df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       101G  100G     0 100% /
+lp34pgb03873vm:~ # snapper list
+Type   | #  | Pre # | Date                     | User | Cleanup | Description  | Userdata
+-------+----+-------+--------------------------+------+---------+--------------+--------------
+single | 0  |       |                          | root |         | current      |
+pre    | 38 |       | Wed Apr 27 01:48:41 2022 | root | number  | zypp(zypper) | important=no
+post   | 39 | 38    | Wed Apr 27 01:48:41 2022 | root | number  |              | important=no
+pre    | 40 |       | Thu May  5 04:33:38 2022 | root | number  | zypp(zypper) | important=no
+post   | 41 | 40    | Thu May  5 04:33:39 2022 | root | number  |              | important=no
+pre    | 42 |       | Fri May 20 03:19:35 2022 | root | number  | zypp(zypper) | important=no
+post   | 43 | 42    | Fri May 20 03:19:36 2022 | root | number  |              | important=no
+pre    | 44 |       | Fri Jun  3 21:11:32 2022 | root | number  | zypp(zypper) | important=yes
+post   | 45 | 44    | Fri Jun  3 21:12:15 2022 | root | number  |              | important=yes
+pre    | 46 |       | Tue Jun 28 16:34:30 2022 | root | number  | zypp(zypper) | important=no
+post   | 47 | 46    | Tue Jun 28 16:34:30 2022 | root | number  |              | important=no
+lp34pgb03873vm:~ # snapper delete 38 39 40 41 42 43
+lp34pgb03873vm:~ #
+lp34pgb03873vm:~ #
+lp34pgb03873vm:~ # snapper list
+Type   | #  | Pre # | Date                     | User | Cleanup | Description  | Userdata
+-------+----+-------+--------------------------+------+---------+--------------+--------------
+single | 0  |       |                          | root |         | current      |
+pre    | 44 |       | Fri Jun  3 21:11:32 2022 | root | number  | zypp(zypper) | important=yes
+post   | 45 | 44    | Fri Jun  3 21:12:15 2022 | root | number  |              | important=yes
+pre    | 46 |       | Tue Jun 28 16:34:30 2022 | root | number  | zypp(zypper) | important=no
+post   | 47 | 46    | Tue Jun 28 16:34:30 2022 | root | number  |              | important=no
+lp34pgb03873vm:~ # snapper delete 46 47
+lp34pgb03873vm:~ #
+lp34pgb03873vm:~ # cd /var/log/
+lp34pgb03873vm:/var/log # ls -lrt message*
+-rw-r-----+ 1 root root     1009612 Jun  1 00:00 messages-20220601.xz
+-rw-r-----+ 1 root root     1006172 Jun  2 00:00 messages-20220602.xz
+-rw-r-----+ 1 root root      982596 Jun  3 00:00 messages-20220603.xz
+-rw-r-----+ 1 root root     1013072 Jun  4 00:00 messages-20220604.xz
+-rw-r-----+ 1 root root      982332 Jun  5 00:00 messages-20220605.xz
+-rw-r-----+ 1 root root      966516 Jun  6 00:00 messages-20220606.xz
+-rw-r-----+ 1 root root      998168 Jun  7 00:00 messages-20220607.xz
+-rw-r-----+ 1 root root      989988 Jun  8 00:00 messages-20220608.xz
+-rw-r-----+ 1 root root     1006192 Jun  9 00:00 messages-20220609.xz
+-rw-r-----+ 1 root root     1018432 Jun 10 00:00 messages-20220610.xz
+-rw-r-----+ 1 root root      980076 Jun 11 00:00 messages-20220611.xz
+-rw-r-----+ 1 root root     1009020 Jun 12 00:00 messages-20220612.xz
+-rw-r-----+ 1 root root     1011060 Jun 13 00:00 messages-20220613.xz
+-rw-r-----+ 1 root root      999468 Jun 14 00:00 messages-20220614.xz
+-rw-r-----+ 1 root root     1023568 Jun 15 00:00 messages-20220615.xz
+-rw-r-----+ 1 root root      997744 Jun 16 00:00 messages-20220616.xz
+-rw-r-----+ 1 root root     1005628 Jun 17 00:00 messages-20220617.xz
+-rw-r-----+ 1 root root     1009668 Jun 18 00:00 messages-20220618.xz
+-rw-r-----+ 1 root root     1024780 Jun 19 00:00 messages-20220619.xz
+-rw-r-----+ 1 root root     1087052 Jun 20 00:00 messages-20220620.xz
+-rw-r-----+ 1 root root     1016036 Jun 21 00:00 messages-20220621.xz
+-rw-r-----+ 1 root root     1008960 Jun 22 00:00 messages-20220622.xz
+-rw-r-----+ 1 root root     1000148 Jun 23 00:00 messages-20220623.xz
+-rw-r-----+ 1 root root     1007584 Jun 24 00:00 messages-20220624.xz
+-rw-r-----+ 1 root root     1027408 Jun 25 00:00 messages-20220625.xz
+-rw-r-----+ 1 root root     1022664 Jun 26 00:00 messages-20220626.xz
+-rw-r-----+ 1 root root     8588548 Jun 27 00:00 messages-20220627.xz
+-rw-r-----+ 1 root root     1035988 Jun 28 00:00 messages-20220628.xz
+-rw-r-----+ 1 root root   263372832 Jun 29 00:00 messages-20220629.xz
+-rw-r-----+ 1 root root   727037768 Jun 30 00:00 messages-20220630.xz
+-rw-r-----+ 1 root root 22120139427 Jun 30 14:25 messages
+lp34pgb03873vm:/var/log # > messages
+lp34pgb03873vm:/var/log #
+lp34pgb03873vm:/var/log #
+lp34pgb03873vm:/var/log # ls -lrt message*
+-rw-r-----+ 1 root root   1009612 Jun  1 00:00 messages-20220601.xz
+-rw-r-----+ 1 root root   1006172 Jun  2 00:00 messages-20220602.xz
+-rw-r-----+ 1 root root    982596 Jun  3 00:00 messages-20220603.xz
+-rw-r-----+ 1 root root   1013072 Jun  4 00:00 messages-20220604.xz
+-rw-r-----+ 1 root root    982332 Jun  5 00:00 messages-20220605.xz
+-rw-r-----+ 1 root root    966516 Jun  6 00:00 messages-20220606.xz
+-rw-r-----+ 1 root root    998168 Jun  7 00:00 messages-20220607.xz
+-rw-r-----+ 1 root root    989988 Jun  8 00:00 messages-20220608.xz
+-rw-r-----+ 1 root root   1006192 Jun  9 00:00 messages-20220609.xz
+-rw-r-----+ 1 root root   1018432 Jun 10 00:00 messages-20220610.xz
+-rw-r-----+ 1 root root    980076 Jun 11 00:00 messages-20220611.xz
+-rw-r-----+ 1 root root   1009020 Jun 12 00:00 messages-20220612.xz
+-rw-r-----+ 1 root root   1011060 Jun 13 00:00 messages-20220613.xz
+-rw-r-----+ 1 root root    999468 Jun 14 00:00 messages-20220614.xz
+-rw-r-----+ 1 root root   1023568 Jun 15 00:00 messages-20220615.xz
+-rw-r-----+ 1 root root    997744 Jun 16 00:00 messages-20220616.xz
+-rw-r-----+ 1 root root   1005628 Jun 17 00:00 messages-20220617.xz
+-rw-r-----+ 1 root root   1009668 Jun 18 00:00 messages-20220618.xz
+-rw-r-----+ 1 root root   1024780 Jun 19 00:00 messages-20220619.xz
+-rw-r-----+ 1 root root   1087052 Jun 20 00:00 messages-20220620.xz
+-rw-r-----+ 1 root root   1016036 Jun 21 00:00 messages-20220621.xz
+-rw-r-----+ 1 root root   1008960 Jun 22 00:00 messages-20220622.xz
+-rw-r-----+ 1 root root   1000148 Jun 23 00:00 messages-20220623.xz
+-rw-r-----+ 1 root root   1007584 Jun 24 00:00 messages-20220624.xz
+-rw-r-----+ 1 root root   1027408 Jun 25 00:00 messages-20220625.xz
+-rw-r-----+ 1 root root   1022664 Jun 26 00:00 messages-20220626.xz
+-rw-r-----+ 1 root root   8588548 Jun 27 00:00 messages-20220627.xz
+-rw-r-----+ 1 root root   1035988 Jun 28 00:00 messages-20220628.xz
+-rw-r-----+ 1 root root 263372832 Jun 29 00:00 messages-20220629.xz
+-rw-r-----+ 1 root root 727037768 Jun 30 00:00 messages-20220630.xz
+-rw-r-----+ 1 root root 161111246 Jun 30 14:25 messages
+lp34pgb03873vm:/var/log # df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       101G   79G   21G  80% /
+lp34pgb03873vm:/var/log #
+lp34pgb03873vm:/var/log # df -hT
+Filesystem                             Type      Size  Used Avail Use% Mounted on
+devtmpfs                               devtmpfs  3.8G  8.0K  3.8G   1% /dev
+tmpfs                                  tmpfs     3.8G   24K  3.8G   1% /dev/shm
+tmpfs                                  tmpfs     3.8G  1.2M  3.8G   1% /run
+tmpfs                                  tmpfs     3.8G     0  3.8G   0% /sys/fs/cgroup
+/dev/sda2                              btrfs     101G   79G   21G  80% /
+/dev/sda2                              btrfs     101G   79G   21G  80% /home
+/dev/sda2                              btrfs     101G   79G   21G  80% /var/opt
+/dev/sda2                              btrfs     101G   79G   21G  80% /var/cache
+/dev/sda2                              btrfs     101G   79G   21G  80% /global/local
+/dev/sda2                              btrfs     101G   79G   21G  80% /opt
+/dev/mapper/dgpc03873app-lvapp         xfs       1.0T  267G  758G  27% /global/pc03873
+/dev/sda2                              btrfs     101G   79G   21G  80% /lfs
+/dev/sda1                              ext3      976M  112M  814M  13% /boot
+/dev/sda2                              btrfs     101G   79G   21G  80% /.snapshots
+/dev/sda2                              btrfs     101G   79G   21G  80% /tmp
+/dev/sda2                              btrfs     101G   79G   21G  80% /var/tmp
+/dev/sda2                              btrfs     101G   79G   21G  80% /var/log
+/dev/sda2                              btrfs     101G   79G   21G  80% /var/spool
+/dev/mapper/vglocal-lvvarcrash         xfs        50G   33M   50G   1% /var/crash
+/dev/mapper/dgpc03873xlog-lvxlog       xfs       224G   17G  208G   8% /global/pc03873/xlog
+/dev/mapper/dgpc03873archive-lvarchive xfs       8.0T  840G  7.1T  11% /global/pc03873/archive
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/48952
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/379785
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/1149499
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/0
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/846785
+tmpfs                                  tmpfs     773M     0  773M   0% /run/user/44035
+lp34pgb03873vm:/var/log #

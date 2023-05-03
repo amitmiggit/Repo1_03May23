@@ -1,0 +1,61 @@
+lp05wyp07:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05wyp07            RUNNING              0
+A  lp05wyp08            RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05wyp07            Y          N               ONLINE
+B  NIC             lp05wyp08            Y          N               ONLINE
+B  iwyqci10        lp05wyp07            Y          N               OFFLINE
+B  iwyqci10        lp05wyp08            Y          N               ONLINE
+B  pwypci00        lp05wyp07            Y          N               ONLINE
+B  pwypci00        lp05wyp08            Y          N               OFFLINE
+lp05wyp07:~ #
+lp05wyp07:~ #
+lp05wyp07:~ # vxdisk list | egrep 'DEV|fail'
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vspg1k0_006c auto:cdsdisk    63_11034_006c  dgpwypci0002 online failing
+hitachi_vspg1k1_006c auto:cdsdisk    13_11042_006c  dgpwypci0002 online failing
+lp05wyp07:~ #
+lp05wyp07:~ #
+lp05wyp07:~ # cd /lfs/opt/nagios/prod/lib/nagios/plugins/
+lp05wyp07:/lfs/opt/nagios/prod/lib/nagios/plugins #
+lp05wyp07:/lfs/opt/nagios/prod/lib/nagios/plugins #
+lp05wyp07:/lfs/opt/nagios/prod/lib/nagios/plugins # cd
+lp05wyp07:~ #
+lp05wyp07:~ #
+lp05wyp07:~ #
+lp05wyp07:~ # sh /tmp/vxplex.sh;su - qqnagio -c "./prod/local/lib/nagios/plugins/check_vxvm";date
+OK - Veritas Volume Manager OK
+Thu Jun 30 10:48:44 CEST 2022
+lp05wyp07:~ # vxdisk list | egrep 'DEV|fail'
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vspg1k0_006c auto:cdsdisk    63_11034_006c  dgpwypci0002 online failing
+hitachi_vspg1k1_006c auto:cdsdisk    13_11042_006c  dgpwypci0002 online failing
+lp05wyp07:~ #
+lp05wyp07:~ #
+lp05wyp07:~ # san_rescan -r
+** Starting with PID '5386' and options '-r'
+
+** Clearing failing disks, if any...
+ - Clearing failing-flag on disk 13_11042_006c in diskgroup dgpwypci0002
+ - Clearing failing-flag on disk 63_11034_006c in diskgroup dgpwypci0002
+
+** Normal exit after 0 sec.
+
+lp05wyp07:~ # vxdisk list | egrep 'DEV|fail'
+DEVICE          TYPE            DISK         GROUP        STATUS
+lp05wyp07:~ # sh /tmp/vxplex.sh;su - qqnagio -c "./prod/local/lib/nagios/plugins/check_vxvm";date
+OK - Veritas Volume Manager OK
+Thu Jun 30 10:49:43 CEST 2022
+lp05wyp07:~ # hostname -f
+lp05wyp07.bmwgroup.net
+You have new mail in /var/mail/root
+lp05wyp07:~ # exit
+exit
+qplinux@lp05wyp07:~>

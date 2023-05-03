@@ -1,0 +1,25 @@
+ServerName	Server Contract 	Install Server
+libkxen107	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen108	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen117	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen118	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen127	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen128	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen137	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen138	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen77	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen78	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen87	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen88	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen97	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxen98	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxeninf11	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxeninf12	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxeninf13	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxeninf14	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxentwa12001	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxentwa12002	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxentwb12001	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+libkxentwb12002	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+lixeneai17	IAAS_NTT_LI-UX_SRV	lpinstiaas02
+lixeneai18	IAAS_NTT_LI-UX_SRV	lpinstiaas02

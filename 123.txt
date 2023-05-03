@@ -1,0 +1,45 @@
+liaaq07.bmwgroup.net   Linux ----Done 
+lpaap23.bmwgroup.net   - Xen
+lpaap24.bmwgroup.net  - Xen
+lpaap25.bmwgroup.net - Xen
+lpaap26.bmwgroup.net - Xen
+lpaap27.bmwgroup.net  - Xen 
+lpaap28.bmwgroup.net  - Xen - Server: lpaap28.bmwgroup.net
+
+
+
+usermod -g NewPrimaryGroup -G mackey,adm,cdrom,sudo,dip,plugdev,sambashare,lpadmin mackey
+
+
+Earlier 
+lp05ktbo41vm:~ # id qqktbo
+uid=810591(qqktbo) gid=802013(usss) groups=802013(usss),33547(qqbmw)
+
+After Implementation
+
+lp05ktbo41vm:~ # id qqktbo
+uid=810591(qqktbo) gid=33547(qqbmw) groups=33547(qqbmw),802013(usss)
+lp05ktbo41vm:~ # date
+Sun Nov 20 11:41:32 CET 2022
+
+
+qqktbo@lp05ktbovm.bmw.co.at:/apktbo> id
+uid=810591(qqktbo) gid=33547(qqbmw) groups=33547(qqbmw),36113(arcw5),802013(usss)
+
+
+
+usermod -g qqbmw -G arcw5,usss qqktbo
+
+
+lp05ktbo41vm:~ # id qqktbo
+uid=810591(qqktbo) gid=33547(qqbmw) groups=33547(qqbmw),802013(usss)
+lp05ktbo41vm:~ # date
+Sun Nov 20 11:41:32 CET 2022
+
+
+
+
+
+
+
+

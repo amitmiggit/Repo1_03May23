@@ -1,0 +1,84 @@
+dgdevlynxdb
+dgdevprd7db
+dgdevwhr1bkup
+dgdevwhr1db
+dgidlis279bkup
+dgprelynxbkup
+dgprewhr2bkup
+dgsupsealbkup
+dgtdiet1hkdb
+dgtdiet3hkdb
+dgtdifsi1db
+dgtdsbmt89db
+dgtst3sealbkup
+dgtst3sealdb
+dgtst5sealbkup
+dgtst5sealdb
+dgtst7sealbkup
+dgtstprd2bkup
+dgtstwhr1bkup
+dgtstwhr1db
+dgtw34h01db
+dgtw50h01db
+
+dm 10_10538_00cd hitachi_vspg1k0_00cd auto 32.00m 56.23g -
+dm 10_10538_00ce hitachi_vspg1k0_00ce auto 32.00m 56.23g -
+dm 10_10538_00cf hitachi_vspg1k0_00cf auto 32.00m 56.23g -
+dm 10_10538_0145 hitachi_vspg1k0_0145 auto 32.00m 56.23g -
+dm 10_10538_0146 hitachi_vspg1k0_0146 auto 32.00m 56.23g -------------------------------
+dm 10_10538_0147 hitachi_vspg1k0_0147 auto 32.00m 56.23g -
+dm 13_10565_00cd hitachi_vspg1k1_00cd auto 32.00m 56.23g -
+dm 13_10565_00ce hitachi_vspg1k1_00ce auto 32.00m 56.23g -
+dm 13_10565_00cf hitachi_vspg1k1_00cf auto 32.00m 56.23g -
+dm 13_10565_0145 hitachi_vspg1k1_0145 auto 32.00m 56.23g -
+dm 13_10565_0146 hitachi_vspg1k1_0146 auto 32.00m 56.23g ----------------------------------------
+dm 13_10565_0147 hitachi_vspg1k1_0147 auto 32.00m 56.23g -
+=================================================================================
+vxassist -g dgdevlynxdb remove log lvdb logtype=drl 
+vxassist -g dgdevlynxdb remove log lvdb logtype=dco 
+
+vxassist -g dgdevlynxdb addlog lvdb logtype=drl loglen=2112 nlog=2 alloc=10_10538_0146,13_10565_0146
+
+vxassist -g dgdevlynxdb addlog lvdb logtype=dco dcolen=2112 alloc=10_10538_0147,13_10565_0147
+
+vxprint -htq -g dgdevlynxdb -htu h
+==================================================
+
+vxassist -g dgdevprd7db remove log lvdb logtype=drl
+
+vxassist -g dgdevwhr1bkup remove log lvbkup logtype=drl
+
+vxassist -g dgdevwhr1db remove log lvdb logtype=drl
+
+vxassist -g dgidlis279bkup remove log lvbkup logtype=drl
+
+vxassist -g dgidlis279bkup remove log lvbkup logtype=drl
+
+vxassist -g dgprelynxbkup remove log lvbkup logtype=drl
+
+
+
+====================================================================
+
+Another server
+
+lt09d07:~ # vxctl fixnames
+14:35:29 Renaming plex lvtdpsat92redo1-97013 in diskgroup dgtdpsat92 to lvtdpsat92redo1-97158                                                          FAILED
+14:35:29 VxVM vxedit ERROR V-5-1-10127 renaming lvtdpsat92redo1-97013 to lvtdpsat92redo1-97158
+        Record already exists in disk group
+14:35:29 Renaming plex lvtdpsat92redo2-97013 in diskgroup dgtdpsat92 to lvtdpsat92redo2-97158                                                          FAILED
+14:35:29 VxVM vxedit ERROR V-5-1-10127 renaming lvtdpsat92redo2-97013 to lvtdpsat92redo2-97158
+        Record already exists in disk group
+lt09d07:~ #
+
+
+bad mirror: dgtdpsat92/lvtdpsat92redo1,dgtdpsat92/lvtdpsat92redo2
+
+
+
+TAS000006525660 
+
+
+
+
+

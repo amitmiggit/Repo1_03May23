@@ -1,0 +1,329 @@
+Servername: lpbkvvs23
+
+* Please select at least one of these Checkboxes: 
+
+[ ] Server can be booted without consultation
+[ x ] another Task Group must be informed before reboot TAS000006704919
+[  ] a Contact Person must be informed before reboot
+
+* Mandatory if your system is using SEC-FS / Vormetric CoreGuard:
+
+[ x ] Server has SEC-FS / an encrypted filesystem TAS000006704919
+
+==================================================================================================
+
+downtime -a -h 2 -c "TAS000006681488 qxz10kv" lpbkvvs23.bmwgroup.net
+
+
+rudderswinst -t TAS000006681488 update lpbkvvs23.bmwgroup.net
+
+
+/opt/vormetric/DataSecurityExpert/agent/vmd/bin/register_host silent /var/rudder/tmp/hostreg.conf
+
+
+Server: lpbkvvs23.bmwgroup.net
+******************************************
+machine type:          XEN-Guest
+vendor:                -
+OS version:            SP5
+OS name:               SLES 12
+Rollout type:          DELEGATE
+serial number:         GWX5ZX2
+Instserv:              lpinstiaas02
+Logical ID:            SLOG-91020
+Rudder UUID:           0a71423a-d625-4128-b059-5bfd041317a1
+Rudder PolSrv:         cm-relay-bss-sles12-muc-bank.bmwgroup.net
+location:              01.93 / 001.0 / 00.0 / RZ1
+lampe:                 J5
+rack ID:               RZ-012047
+description:           Provision - 10.12.2020 - CRQ000001575024
+modul:                 Bank
+usage:                 VVS FS-DE PROD
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .bmwgroup.net
+nagios:                Y
+virtual server:        Y
+farm name:             lpbkxen45.bmwgroup.net|lpbkxen46.bmwgroup.net
+farmservers:           lpbkxen45; lpbkxen46
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           -
+warranty until:        30-SEP-23
+BU-Name:               Bank-BU
+BU-EMail:              Georgi.Tomov@partner.bmw.de
+accountable BU-EMail:  andreas.wa.wolf@bmw.de,Stephan.Pulina@bmwgroup.com
+criticality:           CRITICAL
+[INSTSERV][qxz10kv][lp19instiaas02] ~ $lpbkvvs23:~ # uptime;cat /etc/issue;df -hT;cat /etc/issue;cat /etc/fstab;lsblk;pvs;vgs;lvs;pvdisplay;vgdisplay;lvdisplay;ifconfig -a;netstat -nrv;route -n;cd /etc/sysconfig/network/;ls;cat ifcfg-eth0;cat ifcfg-eth1;cat ifroute-eth1;cat routes;cd;df -h | grep -i sec;cat /etc/rudder_vars.lst;rpm -qa | grep -i vee;ls -l /etc/BMW-release; cat /etc/BMW-release | grep -i current
+ 08:01am  up 19 days 14:41,  4 users,  load average: 0.34, 0.29, 0.21
+
+Welcome to SUSE Linux Enterprise Server 12 SP5  (x86_64) - Kernel \r (\l).
+
+
+Filesystem                                                   Type      Size  Used Avail Use% Mounted on
+devtmpfs                                                     devtmpfs   31G  8.0K   31G   1% /dev
+tmpfs                                                        tmpfs      31G     0   31G   0% /dev/shm
+tmpfs                                                        tmpfs      31G  1.7M   31G   1% /run
+tmpfs                                                        tmpfs      31G     0   31G   0% /sys/fs/cgroup
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /var/cache
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /var/opt
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /.snapshots
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /lfs
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /global/local
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /var/tmp
+/dev/xvda1                                                   ext3      976M   71M  854M   8% /boot
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /var/log
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /var/spool
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /opt
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /tmp
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /home
+/dev/xvda2                                                   btrfs      93G   48G   45G  52% /lfs/oracle
+/dev/mapper/dgvvs-lvvvs                                      xfs       225G  160G   66G  71% /global/vvs
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/497593
+nv01010022.bmwgroup.net:/f07616/t081901/nfs/vvs/housekeeping nfs       100G   22G   79G  22% /nfs/vvs/housekeeping
+nv01010022.bmwgroup.net:/f07616/t017040                      nfs        25G  1.8M   25G   1% /nfs/vvs/vvs2txp
+nv01010022.bmwgroup.net:/f07616/t017038                      nfs       1.0G     0  1.0G   0% /nfs/vvs/besy
+nv01010014.bmwgroup.net:/f01709/t016890                      nfs        10G  229M  9.8G   3% /nfs/schwacke
+nv01010015.bmwgroup.net:/f01712/t016977                      nfs       5.0G  739M  4.3G  15% /nfs/inf/versko
+nv01010015.bmwgroup.net:/f01711/t016959/vvs-p                nfs        30G  1.6G   29G   6% /nfs/inf/esig
+nv01010015.bmwgroup.net:/f01712/t016979                      nfs       5.0G  149M  4.9G   3% /nfs/inf/bmwr
+nv01010022.bmwgroup.net:/f07616/t023726                      nfs       5.0G  526M  4.5G  11% /nfs/bnk/vvs/schamgmt
+nv01010015.bmwgroup.net:/f01712/t016978                      nfs       5.0G  293M  4.8G   6% /nfs/inf/abli_subs
+nv01010022.bmwgroup.net:/f07616/t017039                      nfs       5.0G  1.1G  4.0G  21% /nfs/vvs/fpm
+nv01010015.bmwgroup.net:/f01710/t016940                      nfs        15G   11G  4.8G  69% /nfs/sap
+nv01010015.bmwgroup.net:/f01711/t016965                      nfs        40G  598M   40G   2% /nfs/vvs/massendruck
+nv01010136.bmwgroup.net:/f08943/t023249                      nfs        10G  301M  9.8G   3% /nfs/inf/f02112/VVS
+nv01010032.bmwgroup.net:/f02431/t069543/nfs/vvs/datei_archiv nfs        10G     0   10G   0% /nfs/vvs/datei_archiv
+nv01010015.bmwgroup.net:/f01710/t016941                      nfs       100G   68G   33G  68% /nfs/vvsbatch
+nv01010016.bmwgroup.net:/f01713/t016988                      nfs       5.0G  490M  4.6G  10% /nfs/schwacke/qbk00022
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/48952
+/opt/vormetric/DataSecurityExpert/agent/secfs/.sec           secfs2     93G   48G   45G  52% /opt/vormetric/DataSecurityExpert/agent/secfs/.sec
+/nfs/inf/f02112/VVS/encrypted                                secfs2     10G  301M  9.8G   3% /nfs/inf/f02112/VVS/encrypted
+/nfs/vvs/vvs2txp/prod                                        secfs2     25G  1.8M   25G   1% /nfs/vvs/vvs2txp/prod
+/nfs/sap/SDBC                                                secfs2     15G   11G  4.8G  69% /nfs/sap/SDBC
+/nfs/sap/KFZS                                                secfs2     15G   11G  4.8G  69% /nfs/sap/KFZS
+/nfs/sap/STAMM                                               secfs2     15G   11G  4.8G  69% /nfs/sap/STAMM
+nv01502317.bmwgroup.net:/f05586/t020505                      nfs       5.0G     0  5.0G   0% /nfs/inf/rema
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/66159
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/443617
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/443616
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/0
+tmpfs                                                        tmpfs     6.2G     0  6.2G   0% /run/user/44035
+
+Welcome to SUSE Linux Enterprise Server 12 SP5  (x86_64) - Kernel \r (\l).
+
+
+###
+### OS mounts
+###
+LABEL=ROOT_91020                    /                             btrfs     defaults                      0 0
+LABEL=BOOT_91020                    /boot                         ext3      defaults                      1 2
+LABEL=ROOT_91020                    /lfs                          btrfs     subvol=@/lfs                  0 0
+LABEL=ROOT_91020                    /lfs/oracle                   btrfs     subvol=@/lfs/oracle           0 0
+LABEL=ROOT_91020                    /home                         btrfs     subvol=@/home                 0 0
+LABEL=ROOT_91020                    /opt                          btrfs     subvol=@/opt                  0 0
+LABEL=ROOT_91020                    /tmp                          btrfs     subvol=@/tmp                  0 0
+LABEL=ROOT_91020                    /var/log                      btrfs     subvol=@/var/log              0 0
+LABEL=ROOT_91020                    /var/opt                      btrfs     subvol=@/var/opt              0 0
+LABEL=ROOT_91020                    /var/spool                    btrfs     subvol=@/var/spool            0 0
+LABEL=ROOT_91020                    /var/cache                    btrfs     subvol=@/var/cache            0 0
+LABEL=ROOT_91020                    /global/local                 btrfs     subvol=@/global/local         0 0
+LABEL=ROOT_91020                    /var/tmp                      btrfs     subvol=@/var/tmp              0 0
+LABEL=ROOT_91020                    /.snapshots                   btrfs     subvol=@/.snapshots           0 0
+LABEL=SWAP_91020                    swap                          swap      pri=42                        0 0
+
+###
+### Application mounts
+### Mandatory mount options for SAN/NAS: nofail,x-systemd.device-timeout=20
+###
+/dev/dgvvs/lvvvs    /global/vvs xfs defaults,nofail,x-systemd.device-timeout=20 0 0
+#TAS000005504280
+nv01010015.bmwgroup.net:/f01710/t016941     /nfs/vvsbatch             nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01710/t016940     /nfs/sap                  nfs rw,nofail,x-systemd.device-timeout=20
+nv01010016.bmwgroup.net:/f01713/t016988     /nfs/schwacke/qbk00022    nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01712/t016977     /nfs/inf/versko           nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01712/t016978     /nfs/inf/abli_subs        nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01712/t016979     /nfs/inf/bmwr             nfs rw,nofail,x-systemd.device-timeout=20
+nv01502317.bmwgroup.net:/f05586/t020505     /nfs/inf/rema             nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01711/t016959/vvs-p /nfs/inf/esig      nfs rw,nofail,x-systemd.device-timeout=20
+nv01010014.bmwgroup.net:/f01709/t016890     /nfs/schwacke             nfs rw,nofail,x-systemd.device-timeout=20
+nv01010015.bmwgroup.net:/f01711/t016965     /nfs/vvs/massendruck      nfs rw,nofail,x-systemd.device-timeout=20
+nv01010022.bmwgroup.net:/f07616/t017038     /nfs/vvs/besy             nfs rw,nofail,x-systemd.device-timeout=20
+nv01010022.bmwgroup.net:/f07616/t017039     /nfs/vvs/fpm              nfs rw,nofail,x-systemd.device-timeout=20
+nv01010022.bmwgroup.net:/f07616/t017040     /nfs/vvs/vvs2txp          nfs rw,nofail,x-systemd.device-timeout=20
+nv01010022.bmwgroup.net:/f07616/t023726     /nfs/bnk/vvs/schamgmt     nfs rw,nofail,x-systemd.device-timeout=20
+nv01010136.bmwgroup.net:/f08943/t023249     /nfs/inf/f02112/VVS       nfs rw,nofail,x-systemd.device-timeout=20
+#nv01010032.bmwgroup.net:/f02431/t069543     /nfs/vvs/datei_archiv     nfs rw,nofail,x-systemd.device-timeout=20
+nv01010032.bmwgroup.net:/f02431/t069543/nfs/vvs/datei_archiv    /nfs/vvs/datei_archiv nfs rw,nofail,x-systemd.device-timeout=20
+#TAS000005897421
+nv01010022.bmwgroup.net:/f07616/t081901/nfs/vvs/housekeeping    /nfs/vvs/housekeeping nfs rw,nosuid,nodev,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr   0 0
+NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+xvda          202:0    0 97.5G  0 disk
+├─xvda1       202:1    0    1G  0 part /boot
+├─xvda2       202:2    0 92.5G  0 part /
+└─xvda3       202:3    0    4G  0 part [SWAP]
+xvdb          202:16   0  225G  0 disk
+└─dgvvs-lvvvs 254:0    0  225G  0 lvm  /global/vvs
+  PV         VG    Fmt  Attr PSize   PFree
+  /dev/xvdb  dgvvs lvm2 a--  224.96g    0
+  VG    #PV #LV #SN Attr   VSize   VFree
+  dgvvs   1   1   0 wz--n- 224.96g    0
+  LV    VG    Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lvvvs dgvvs -wi-ao---- 224.96g
+  --- Physical volume ---
+  PV Name               /dev/xvdb
+  VG Name               dgvvs
+  PV Size               224.96 GiB / not usable 2.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              57590
+  Free PE               0
+  Allocated PE          57590
+  PV UUID               BrepgK-eKJP-5XWq-iPQO-PW4P-l59C-2a2Abr
+
+  --- Volume group ---
+  VG Name               dgvvs
+  System ID
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               224.96 GiB
+  PE Size               4.00 MiB
+  Total PE              57590
+  Alloc PE / Size       57590 / 224.96 GiB
+  Free  PE / Size       0 / 0
+  VG UUID               pfEs4D-YLQ7-Zpir-vP7B-M8iW-nUsQ-1uZQfJ
+
+  --- Logical volume ---
+  LV Path                /dev/dgvvs/lvvvs
+  LV Name                lvvvs
+  VG Name                dgvvs
+  LV UUID                Iqk8sv-VKGv-0ep1-sAe3-o4dI-JRfx-TwsgmX
+  LV Write Access        read/write
+  LV Creation host, time lpbkvvs23, 2020-12-21 17:02:07 +0100
+  LV Status              available
+  # open                 1
+  LV Size                224.96 GiB
+  Current LE             57590
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     1024
+  Block device           254:0
+
+eth0      Link encap:Ethernet  HWaddr 7E:06:DE:F7:83:15
+          inet addr:160.50.54.74  Bcast:160.50.54.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e80:a09:506::41/64 Scope:Global
+          inet6 addr: fe80::7c06:deff:fef7:8315/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:615355006 errors:0 dropped:6 overruns:0 frame:0
+          TX packets:597346259 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:892403948270 (851062.7 Mb)  TX bytes:267162548997 (254786.0 Mb)
+
+eth1      Link encap:Ethernet  HWaddr 56:76:0B:15:ED:2E
+          inet addr:10.100.144.250  Bcast:10.100.144.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e80:a0a:503::1:5c/64 Scope:Global
+          inet6 addr: fe80::5476:bff:fe15:ed2e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:11548030 errors:0 dropped:10 overruns:0 frame:0
+          TX packets:11753841 errors:0 dropped:175 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:783425026 (747.1 Mb)  TX bytes:461214573137 (439848.4 Mb)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:381922877 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:381922877 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:108336597761 (103317.8 Mb)  TX bytes:108336597761 (103317.8 Mb)
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         160.50.54.1     0.0.0.0         UG        0 0          0 eth0
+10.100.144.0    0.0.0.0         255.255.255.0   U         0 0          0 eth1
+160.50.54.0     0.0.0.0         255.255.255.0   U         0 0          0 eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         160.50.54.1     0.0.0.0         UG    0      0        0 eth0
+10.100.144.0    0.0.0.0         255.255.255.0   U     0      0        0 eth1
+160.50.54.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+config  if-down.d  ifcfg-eth0  ifcfg-lo        ifroute-eth1  routes                            scripts
+dhcp    if-up.d    ifcfg-eth1  ifcfg.template  providers     routes.2020-12-21_16-51-07.14414
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="160.50.54.74"
+NETMASK="255.255.255.0"
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e80:a09:506:0:0:0:41"
+PREFIXLEN_0="64"
+STARTMODE="onboot"
+BOOTPROTO="static"
+IPADDR="10.100.144.250"
+NETMASK="255.255.255.0"
+IP_OPTIONS_0="preferred_lft 0"
+IPADDR_0="2a03:1e80:a0a:503:0:0:1:5c"
+PREFIXLEN_0="64"
+10.100.144.0/24 10.100.144.1 - eth1
+2a03:1e80:a0a:503:0:0:0:0/64 2a03:1e80:a0a:503:0:0:0:1 - eth1
+default 160.50.54.1 - eth0
+default 2a03:1e80:a09:506:0:0:0:1 - eth0
+# All backup routes are removed by backupconf script, as this is put under control of RUDDER
+# In order to remove backup routes automatically again, delete this comment line out and re-run backupconf script with configure parameter.
+/opt/vormetric/DataSecurityExpert/agent/secfs/.sec             93G   48G   45G  52% /opt/vormetric/DataSecurityExpert/agent/secfs/.sec
+#########################
+## Whole File Generated by Rudder Rule APP-CMS-Variables
+## *** DO NOT EDIT ***
+## Directive: File CMS Rudder Variables
+## CMDVAR: sys.policy_hub, var_REPO, var_REPO_IP, var_REPO_FQDN, var_RUDDER_MR_VERSION, var_RUDDER_MR_DEFAULT
+
+
+RELAY="160.50.54.117"
+
+REPO="cm-repo-muc-bank"
+REPO_IP="160.50.54.28"
+REPO_FQDN="cm-repo-muc-bank.bmwgroup.net"
+RUDDER_MR_VERSION="2022Q02.00"
+RUDDER_MR_DEFAULT="2022Q04.00"
+vee-fs-7.0.0-88.x86_64
+-rw-r--r-- 1 root root 759 May 15 14:46 /etc/BMW-release
+CURRENT_MR_VERSION="2022Q02.00"
+CURRENT_MR_DATE="1652618771 2022-05-15 14:46:11 +0200"
+lpbkvvs23:~ #
+
+
+lpbkvvs23:~ # rpm -qa | grep -i vee
+vee-fs-7.0.0-88.x86_64
+lpbkvvs23:~ #
+lpbkvvs23:~ #
+lpbkvvs23:~ # secfsd -status guard
+GuardPoint                     Policy                       Type   ConfigState  Status   Reason
+----------                     ------                       ----   -----------  ------   ------
+/nfs/inf/f02112/VVS/encrypted  POL_PROD_PROD_VVS_DokMA      local  guarded      guarded  N/A
+/nfs/vvs/vvs2txp/prod          VVS_Policy_vvs06p            local  guarded      guarded  N/A
+/nfs/sap/SDBC                  VVS_to_SAP_Policy_lpbkvvs06  local  guarded      guarded  N/A
+/nfs/sap/KFZS                  VVS_to_SAP_Policy_lpbkvvs06  local  guarded      guarded  N/A
+/nfs/sap/STAMM                 VVS_to_SAP_Policy_lpbkvvs06  local  guarded      guarded  N/A
+lpbkvvs23:~ # date
+Sat Nov  5 08:03:39 CET 2022
+lpbkvvs23:~ #
+
+
+
+=====================================================
+
+rudderswinst -t TAS000006681488 update lpbkvvs23.bmwgroup.net   --------------------------- before firing this command ensure about secfs
+
+
+
+

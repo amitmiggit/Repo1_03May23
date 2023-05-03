@@ -1,0 +1,73 @@
+Hi,
+
+An iStore export was mounted to liapprsa121.bmwgroup.net. (CRQ000002062302) (Note: Also mounted on Windows via CIFS)
+
+I'd like to request WRITE permissions for the user "qqrssd0" on all 4 folders by either through group "rssd" (qqrssd0 is part of this group) or by making qqrssd0 the owner.
+
+Regards,
+Szabolcs Besenyei
+
+------------------------
+
+qqrssd0@liapprsa121:~/translations-prod> id
+uid=739847(qqrssd0) gid=801199(rssd) groups=801199(rssd)
+
+
+nv01502311.bmwgroup.net:/f06075/t067343 on /nfs/inf/rsa_translations_prod type nfs (rw,relatime,vers=3,rsize=262144,wsize=262144,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=10.248.68.27,mountvers=3,mountport=1234,mountproto=tcp,local_lock=none,addr=10.248.68.27)
+
+qqrssd0@liapprsa121:~> ls -l /nfs/inf/rsa_translations_prod/
+total 72
+drwxr-sr-x 2 2147484297 rssd  8192 Aug 16 09:35 error
+drwxr-sr-x 2 2147484297 rssd 24576 Aug  9 15:18 sprachpakete
+drwxr-sr-x 2 2147484297 rssd   152 Jun 27 18:54 temp
+drwxr-sr-x 2 2147484297 rssd 36864 Aug 16 09:39 uepakete
+
+
+=====================
+
+
+Will give you lowercase s instead of uppercase S. The lowercase s bit on the group permission means that the directory is setguid. Any directory created in that directory will belong to the same group as its parents directory instead of the default group of the user that created it.
+
+
+========================
+
+export mytoken="WWEXBKYXPOUOIFQQ"
+/usr/openv/netbackup/bin/nbcertcmd -getCertificate -host lp02pgb03778vmb.bmwgroup.net -server lp02nb3master -token TCKWBIFAZAKNPDDK -force
+
+
+
+backup is failing  with error (7658) Connection cannot be established because the host validation failed .Please add token  
+
+INC000039946013
+=========================
+ # export mytoken="WWEXBKYXPOUOIFQQ"
+ # /usr/openv/netbackup/bin/nbcertcmd -getCertificate -force -token $mytoken
+
+lp02pga03778vmb - Failing
+lp02pga03746vmb - Done successfully
+lp02pga03779vmb - Done successfully
+lp02pgb03778vmb - Done successfully
+
+==========================
+
+INC000039962966
+
+Hello team , 
+
+backup is failing  with error (7658) Connection cannot be established because the host validation failed .Please add token  
+
+
+ # export mytoken="WWEXBKYXPOUOIFQQ"
+ # /usr/openv/netbackup/bin/nbcertcmd -getCertificate -force -token $mytoken
+
+li02webdsa02vmb
+lp02ipsc12avmb
+
+
+if that not work 
+
+# /usr/openv/netbackup/bin/nbcertcmd -getCertificate -host lp02kqal12vmb.bmwgroup.net -server lp02nb3master -token TCKWBIFAZAKNPDDK -force
+
+/usr/openv/netbackup/bin/nbcertcmd -getCertificate -host li02webdsa02vmb.bmwgroup.net -server lp02nb3master -token TCKWBIFAZAKNPDDK -force
+
+/usr/openv/netbackup/bin/nbcertcmd -getCertificate -host lp02ipsc12avmb.bmwgroup.net -server lp02nb3master -token TCKWBIFAZAKNPDDK -force
